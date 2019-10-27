@@ -7,3 +7,5 @@ baseurl: /saidai-deep-learning
 toc:
   min_level: 2
   max_level: 3
+
+theme: minima
