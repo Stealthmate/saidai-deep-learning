@@ -9,3 +9,8 @@ toc:
   max_level: 3
 
 theme: minima
+
+collections:
+  linux:
+    output: True
+    title: Linuxについて

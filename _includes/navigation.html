@@ -3,12 +3,20 @@
     <li class="{% if "/" == page.url %} here-now {% endif %}">
       <a href="{{ "/" | relative_url }}">Home</a>
     </li>
-    {% for post in site.posts %}
-    <li class="{% if post.url == page.url %} here-now {% endif %}">
-      <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
-      </a>
+    {% for collection in site.collections %}
+    {% if collection.label != "posts" %}
+    <li> {{ collection.title }}
+      <ul>
+        {% for post in site[collection.label] %}
+        <li class="{% if post.url == page.url %} here-now {% endif %}">
+          <a href="{{ post.url | relative_url }}">
+            {{ post.title }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
     </li>
+    {% endif %}
     {% endfor %}
   </ul>
 </nav>

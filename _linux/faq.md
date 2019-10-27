@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Linuxよくある質問
+title: よくある質問
 toc: true
 ---
 
