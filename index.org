@@ -1,4 +1,0 @@
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style.css" />
-* 埼玉大学　学年18　心想学習勉強会
-
-** [[./linux-faq.html][Linuxよくある質問]]
