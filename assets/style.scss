@@ -1,0 +1,44 @@
+---
+---
+
+$color-text: #333;
+$color-border: #CCC;
+
+header {
+
+    h1 {
+        font-size: 3em;
+        border-bottom: solid 3px $color-border;
+    }
+}
+
+body {
+    color: var(--color-text);
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.title {
+    display: none;
+}
+
+h2 {
+    color: $color-text;
+    padding: 3px;
+    border-bottom: solid 3px $color-border;
+    border-top: solid 3px $color-border;
+}
+
+nav {
+    width: 400px;
+    border-left: solid 3px $color-border;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    margin: 20px;
+    padding: 0px;
+}
