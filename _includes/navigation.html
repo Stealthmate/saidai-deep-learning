@@ -1,6 +1,14 @@
 <nav>
   <ul>
-    <li><a href="/" {% if page.url == "/" %} {% endif %}>トップ</a></li>
-    <li><a href="/linux-faq.html" {% if page.url == "/linux-faq.html" %} {% endif %}>Linuxよくある質問</a></li>
+    <li class="{% if "/" == page.url %} here-now {% endif %}">
+      <a href="{{ "/" | relative_url }}">Home</a>
+    </li>
+    {% for post in site.posts %}
+    <li class="{% if post.url == page.url %} here-now {% endif %}">
+      <a href="{{ post.url | relative_url }}">
+        {{ post.title }}
+      </a>
+    </li>
+    {% endfor %}
   </ul>
 </nav>

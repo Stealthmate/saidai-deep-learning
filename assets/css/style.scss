@@ -4,11 +4,15 @@
 $color-text: #333;
 $color-border: #CCC;
 
-header {
 
+header {
+    display: flex;
+    flex-direction: column;
     h1 {
         font-size: 3em;
         border-bottom: solid 3px $color-border;
+        align-self: center;
+
     }
 }
 
@@ -16,10 +20,6 @@ body {
     color: var(--color-text);
     display: flex;
     flex-direction: row-reverse;
-}
-
-.title {
-    display: none;
 }
 
 h2 {
@@ -41,4 +41,16 @@ nav {
 main {
     margin: 20px;
     padding: 0px;
+    width: 100%;
+}
+
+nav li {
+    padding: 3px;
+    padding-left: 10px;
+}
+
+nav .here-now {
+    font-weight: bold;
+    background: #CCCC;
+    border-radius: 10px;
 }
