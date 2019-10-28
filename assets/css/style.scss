@@ -4,7 +4,6 @@
 $color-text: #333;
 $color-border: #CCC;
 
-
 header {
     display: flex;
     flex-direction: column;
@@ -19,7 +18,8 @@ header {
 body {
     color: var(--color-text);
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
+    align-items: stretch;
 }
 
 h2 {
@@ -30,8 +30,6 @@ h2 {
 }
 
 nav {
-    width: 400px;
-    border-left: solid 3px $color-border;
     padding: 10px;
 
     display: flex;
@@ -41,7 +39,6 @@ nav {
 main {
     margin: 20px;
     padding: 0px;
-    width: 100%;
 }
 
 nav li {
