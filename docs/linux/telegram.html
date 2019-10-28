@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Telegramの入れ方</title>
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+  </head>
+  <body>
+    <nav>
+  <ul>
+    <li class="">
+      <a href="/saidai-deep-learning/">Home</a>
+    </li>
+    
+    
+    <li> Linuxについて
+      <ul>
+        
+        <li class="">
+          <a href="/saidai-deep-learning/linux/environment_vars.html">
+            PATHとその他環境変数
+          </a>
+        </li>
+        
+        <li class="">
+          <a href="/saidai-deep-learning/linux/faq.html">
+            よくある質問
+          </a>
+        </li>
+        
+        <li class="">
+          <a href="/saidai-deep-learning/linux/jp_input.html">
+            日本語入力の設定
+          </a>
+        </li>
+        
+        <li class="">
+          <a href="/saidai-deep-learning/linux/profile.html">
+            .profileと.bashrcの初期設定
+          </a>
+        </li>
+        
+        <li class=" here-now ">
+          <a href="/saidai-deep-learning/linux/telegram.html">
+            Telegramの入れ方
+          </a>
+        </li>
+        
+      </ul>
+    </li>
+    
+    
+    
+    
+  </ul>
+</nav>
+
+    
+    <main>
+      <header>
+        <h1>
+          Linuxについて - Telegramの入れ方
+        </h1>
+        <div id="table-of-contents">
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#事前準備">事前準備</a></li>
+<li class="toc-entry toc-h2"><a href="#telegramをダウンロード">Telegramをダウンロード</a></li>
+<li class="toc-entry toc-h2"><a href="#telegramのファイルを決まった場所に置く">Telegramのファイルを決まった場所に置く</a></li>
+<li class="toc-entry toc-h2"><a href="#telegramをmenuで表示できるようにする">TelegramをMenuで表示できるようにする</a></li>
+</ul>
+        </div>
+      </header>
+      <section>
+        <h2 id="事前準備">事前準備</h2>
+
+<ul>
+  <li>以下の手順で、ユーザーが<code class="highlighter-rouge">michael</code>だと仮定し、ホームディレクトリを<code class="highlighter-rouge">/home/michael</code>とします。各自自分のユーザーネームに合わせてください。</li>
+</ul>
+
+<h2 id="telegramをダウンロード">Telegramをダウンロード</h2>
+
+<p><a href="https://desktop.telegram.org/">ここ</a>からTelegramをダウンロード（Linux 64-bit版）。以下の手順は<code class="highlighter-rouge">/home/michael/Downloads/tsetup.1.8.15.tar.xz</code>にダウンロードしたと仮定しますが、ファイル名が異なる場合は変えて適宜変更してください。</p>
+
+<h2 id="telegramのファイルを決まった場所に置く">Telegramのファイルを決まった場所に置く</h2>
+
+<p>Linuxでは、パッケージマネージャー（Mintは<code class="highlighter-rouge">apt</code>）以外の方法で取得したソフトは<code class="highlighter-rouge">/opt</code>に置くことが習慣です*。なので、Telegramもそこに置きましょう。
+ただし、<code class="highlighter-rouge">/opt</code>はHOMEディレクトリの外にあるので、特別な権限が必要です。そのために<code class="highlighter-rouge">sudo</code>を使います。以下はダウンロードしてからの手順です。なお、#はコメントで、コマンドの動作には関係ありません。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> /opt/Telegram                                                                          <span class="c"># ディレクトリを作る</span>
+<span class="nb">sudo tar</span> <span class="nt">-xvf</span> /home/michael/Downloads/tsetup.1.8.15.tar.xz <span class="nt">-C</span> /opt/Telegram <span class="nt">--strip-components</span><span class="o">=</span>1  <span class="c"># .tar.xzというのは圧縮ファイルなので、/opt/Telegramで解凍します</span>
+<span class="nb">sudo ln</span> <span class="nt">-s</span> /opt/Telegram/Telegram /usr/bin/Telegram                                               <span class="c"># /usr/binはPATHに入っているので、/opt/Telegram/Telegramを指すリンクを/usr/binに置きます</span>
+</code></pre></div></div>
+
+<p>最後の1行に注目してください。<code class="highlighter-rouge">ln</code>というプログラムはリンクを作るためのものです。リンクというのは、プログラムのように見せかけたものですが、実際はプログラムの場所を指しているだけです。大事なのは、<code class="highlighter-rouge">/usr/bin/Telegram</code>というリンクを実行すると、結果は<code class="highlighter-rouge">/opt/Telegram/Telegram</code>を実行したのと同じです。</p>
+
+<div class="footnote">
+* ソースコードからビルドした物はまた別のところに置きます。
+</div>
+
+<h2 id="telegramをmenuで表示できるようにする">TelegramをMenuで表示できるようにする</h2>
+
+<p>このままでもTerminalでTelegramを打てば使えますが、タスクバーのMenuに入れると起動しやすいですよね。</p>
+
+<p>そのために、まずアイコンが必要ですね。Telegramから落としたものに残念ながらアイコンが入っていなかったので、自分達で落とす必要があります。幸い、ネットにはアイコンがあったので、</p>
+
+<p><img src="https://i.stack.imgur.com/OO565.png" alt="telegram image" /></p>
+
+<p>以下のコマンドでネットから画像を落とすことができます。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>curl https://i.stack.imgur.com/OO565.png <span class="nt">-o</span> /opt/Telegram/telegram128.png
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">curl</code>というプログラムは、あるインターネットへのリンクから内容を落とします。</p>
+
+<hr />
+
+<p>TelegramをMenuで表示するためには、<code class="highlighter-rouge">/usr/share/applications/</code>で新しいファイルを作らなければなりません。書式の説明は省略しますが、以下の内容のファイルを<code class="highlighter-rouge">/home/michael/telegram.desktop</code>という場所と名前で作りましょう。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Desktop Entry]
+Name=Telegram
+Exec=/usr/bin/Telegram -- %u
+GenericName=Messenger
+Comment=Message your friends
+Type=Application
+Terminal=false
+StartupNotify=false
+Icon=/opt/Telegram/telegram128.png
+</code></pre></div></div>
+
+<p>これでほぼ完成です。後はファイルを指定した場所に移動するだけなので、以下のコマンドで終わらせましょう。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo mv /home/michael/telegram.desktop /usr/share/applications/
+</code></pre></div></div>
+
+<p>MenuでTelegramを打って見ましょう！</p>
+
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+header {
+  display: flex;
+  flex-direction: column; }
+  header h1 {
+    font-size: 3em;
+    border-bottom: solid 3px #CCC;
+    align-self: center; }
+
+body {
+  color: var(--color-text);
+  display: flex;
+  flex-direction: row-reverse; }
+
+h2 {
+  color: #333;
+  padding: 3px;
+  border-bottom: solid 3px #CCC;
+  border-top: solid 3px #CCC; }
+
+nav {
+  width: 400px;
+  border-left: solid 3px #CCC;
+  padding: 10px;
+  display: flex;
+  flex-direction: column; }
+
+main {
+  margin: 20px;
+  padding: 0px;
+  width: 100%; }
+
+nav li {
+  padding: 3px;
+  padding-left: 10px; }
+
+nav .here-now {
+  font-weight: bold;
+  background: #CCCC;
+  border-radius: 10px; }

@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PATHとその他環境変数</title>
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+  </head>
+  <body>
+    <nav>
+  <ul>
+    <li class="">
+      <a href="/saidai-deep-learning/">Home</a>
+    </li>
+    
+    
+    <li> Linuxについて
+      <ul>
+        
+        <li class=" here-now ">
+          <a href="/saidai-deep-learning/linux/environment_vars.html">
+            PATHとその他環境変数
+          </a>
+        </li>
+        
+        <li class="">
+          <a href="/saidai-deep-learning/linux/faq.html">
+            よくある質問
+          </a>
+        </li>
+        
+        <li class="">
+          <a href="/saidai-deep-learning/linux/jp_input.html">
+            日本語入力の設定
+          </a>
+        </li>
+        
+        <li class="">
+          <a href="/saidai-deep-learning/linux/profile.html">
+            .profileと.bashrcの初期設定
+          </a>
+        </li>
+        
+        <li class="">
+          <a href="/saidai-deep-learning/linux/telegram.html">
+            Telegramの入れ方
+          </a>
+        </li>
+        
+      </ul>
+    </li>
+    
+    
+    
+    
+  </ul>
+</nav>
+
+    
+    <main>
+      <header>
+        <h1>
+          Linuxについて - PATHとその他環境変数
+        </h1>
+        <div id="table-of-contents">
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#環境変数とは">環境変数とは</a></li>
+<li class="toc-entry toc-h2"><a href="#path変数">PATH変数</a></li>
+<li class="toc-entry toc-h2"><a href="#環境変数の設定">環境変数の設定</a></li>
+<li class="toc-entry toc-h2"><a href="#profileとbashrcの書き方">.profileと.bashrcの書き方</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#環境変数を新しく作る">環境変数を新しく作る</a></li>
+<li class="toc-entry toc-h3"><a href="#環境変数に値をくっつける">環境変数に値をくっつける</a></li>
+<li class="toc-entry toc-h3"><a href="#環境変数を削除する">環境変数を削除する</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#path変数を設定するときの注意点">PATH変数を設定するときの注意点</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#pathにディレクトリを追加する時後ろに追加すること">PATHにディレクトリを追加する時、後ろに追加すること</a></li>
+<li class="toc-entry toc-h3"><a href="#pathの前の値を無視しないこと">PATHの前の値を無視しないこと</a></li>
+</ul>
+</li>
+</ul>
+        </div>
+      </header>
+      <section>
+        <h2 id="環境変数とは">環境変数とは</h2>
+
+<p>プログラムを実行するというのは、ある<strong>文脈</strong>で行われることなので、その文脈をプログラムに知らせるために<strong>環境変数</strong>があります。例えば、LinuxでTerminalを起動したときに、<code class="highlighter-rouge">michael@michael-pc</code>という文字が出てくるのは、michaelというユーザーがTerminalを起動しているからです。つまり、「ユーザーがmichaelである」という文脈の中でTerminalが動いています。そして、「ユーザーがmichaelである」ということをTerminalに知らせるのは、<code class="highlighter-rouge">USER</code>という環境変数です。</p>
+
+<p>Terminalで<code class="highlighter-rouge">env</code>というコマンドを打つと、そのTerminalに見えている全ての環境変数とその値が表示されます。そこで<code class="highlighter-rouge">USER</code>変数を探してみてください。値はあなたのユーザーネームになっているはずです。他にも<code class="highlighter-rouge">HOME</code>変数（現ユーザーのHOMEディレクトリの場所）や、<code class="highlighter-rouge">LANG</code>変数（現ユーザーが設定しているシステム言語）などもぜひ確認してみてください。</p>
+
+<h2 id="path変数">PATH変数</h2>
+
+<p>Terminalで<code class="highlighter-rouge">gcc</code>や<code class="highlighter-rouge">python</code>など、様々なコマンドを実行できますよね。厳密に言えば、これらはコマンドではなくプログラムです*。つまり、パソコンのどこかに<code class="highlighter-rouge">python</code>というファイルがあり、そのファイルを実行すると、pythonのインタープリタが起動します。しかし、Terminalはどうやって<code class="highlighter-rouge">python</code>ファイルの居場所が分かるのでしょう？</p>
+
+<p>答えはPATH環境変数です。PATHの値はディレクトリのリストです。Terminalで<code class="highlighter-rouge">python</code>と打ったときに、shellはPATH変数のディレクトリを順番に見て、その中にpythonというファイルが存在すれば、それを実行します。</p>
+
+<div class="footnote">* コマンドはshell（Terminalでの入力を解釈しているもの）の中に組み込まれているものであり、プログラムはshellに関係なく存在するものである。例えば、lsはコマンドである（どこにlsというファイルが存在するわけではない）のに対し、pythonはプログラムである。</div>
+
+<h2 id="環境変数の設定">環境変数の設定</h2>
+
+<p>Linuxでは様々なところで環境変数が設定されます。その中で一番身近にあるのが.profileファイルと.bashrcファイルです。この二つのファイルで環境変数を設定したり、その他の設定等もできます。.profileも.bashrcも全く同じように書式で書くものですが、違いがあります。</p>
+
+<p>.profileは、システムにログインした時（電源を入れて起動したときや、SSHで接続した時など）だけに実行されます。つまり、最初にパソコンの電源を入れた時点で1回だけ実行され、そこで行った設定はその後で実行されたあらゆるプログラムで受け継げられます。</p>
+
+<p>一方で.bashrcは、Terminalを起動した時点で実行されます。つまり、パソコンの電源を入れてから、例えば10個のTerminalを起動したら、それぞれの中で.bashrcが実行されます。そして、そのTerminalの中では.bashrcで行った設定が適用されます。</p>
+
+<h2 id="profileとbashrcの書き方">.profileと.bashrcの書き方</h2>
+
+<p>.profileと.bashrcはshell scriptなので、shellの言語で書きます。ここでshellの言語について詳しくは説明しませんが、環境変数を設定したいときは以下のような書き方で書けます。</p>
+
+<h3 id="環境変数を新しく作る">環境変数を新しく作る</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">MY_VARIABLE</span><span class="o">=</span><span class="s2">"value"</span>
+</code></pre></div></div>
+
+<p>これで<code class="highlighter-rouge">MY_VARIABLE</code>という変数に<code class="highlighter-rouge">value</code>という値が保存されます。</p>
+
+<h3 id="環境変数に値をくっつける">環境変数に値をくっつける</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PATH</span><span class="s2">:/my/directory"</span>
+</code></pre></div></div>
+
+<p>これで、仮に<code class="highlighter-rouge">PATH</code>の値が<code class="highlighter-rouge">/home/michael</code>だった場合、新しくなった値は<code class="highlighter-rouge">/home/michael:/my/directory</code>になります。一般的に、<code class="highlighter-rouge">$VARIABLE</code>と書くと、<code class="highlighter-rouge">VARIABLE</code>の値を意味するので、どこに値をくっつけたいかによっては<code class="highlighter-rouge">export VARIABLE="value $VARIABLE"</code>や、<code class="highlighter-rouge">export VARIABLE=value1 $VARIABLE value2</code>などの書き方ができます。</p>
+
+<h3 id="環境変数を削除する">環境変数を削除する</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">unset </span>BAD_VARIABLE
+</code></pre></div></div>
+
+<p>これで<code class="highlighter-rouge">BAD_VARIABLE</code>は文脈から消え、元々なかったのと同じです。</p>
+
+<h2 id="path変数を設定するときの注意点">PATH変数を設定するときの注意点</h2>
+
+<p>PATH変数の値を自分で更新する時は多くありますが、そこで気をつけなければいけないところが何個かあります。</p>
+
+<h3 id="pathにディレクトリを追加する時後ろに追加すること">PATHにディレクトリを追加する時、後ろに追加すること</h3>
+
+<p>shellがPATHでプログラムを探す時、左から順番に探して行きます。そして、最初にプログラムが見つかったディレクトリからプログラムを実行します。</p>
+
+<p><code class="highlighter-rouge">date</code>という、現在の日付を表示するプログラムを実行したとします。もし、あなたがPATHの頭にディレクトリを追加していて、たまたまそこに<code class="highlighter-rouge">date</code>というプログラムがあり、それが全く違うことをするプログラムだったら、求めている結果と違いますよね。パソコンでは、自分から実行しなくても、裏にあるソフトが色々なプログラムを実行したりします。その場合も同じくPATHが参照されるので、そこでこのような齟齬が起きたら、パソコンの動作が正しくなくなります。</p>
+
+<h3 id="pathの前の値を無視しないこと">PATHの前の値を無視しないこと</h3>
+
+<p>PATHには予め様々なディレクトリが設定されています。それらはシステムが正しく動くためのものなので、PATHから無くなると、パソコンが動かなくなります。なので、PATHを変更する時は、常に前の値を維持したまま、<code class="highlighter-rouge">export PATH=$PATH:something</code>という形で後ろへの追加だけ行いましょう。</p>
+
+      </section>
+    </main>
+  </body>
+</html>
