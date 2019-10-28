@@ -1,6 +1,7 @@
 ---
 layout: default
 title: 日本語入力の設定
+toc: true
 ---
 
 ## 必要なパッケージをインストールする

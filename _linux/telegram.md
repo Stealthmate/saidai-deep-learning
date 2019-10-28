@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Telegramの入れ方
+toc: true
 ---
 
 ## 事前準備

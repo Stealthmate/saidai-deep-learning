@@ -1,6 +1,7 @@
 ---
 title: .profileと.bashrcの初期設定
 layout: default
+toc: true
 ---
 
 ## 必要な知識
