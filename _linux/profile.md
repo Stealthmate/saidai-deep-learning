@@ -1,7 +1,6 @@
 ---
 title: .profileと.bashrcの初期設定
 layout: default
-output: False
 ---
 
 ## 必要な知識
