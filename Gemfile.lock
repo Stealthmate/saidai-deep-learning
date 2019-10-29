@@ -248,6 +248,7 @@ DEPENDENCIES
   github-pages
   jekyll
   jekyll-toc
+  kramdown
   minima
 
 BUNDLED WITH
