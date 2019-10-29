@@ -10,6 +10,12 @@ header {
     border-bottom: solid 3px #CCC;
     align-self: center; }
 
+section h1 {
+  color: #333;
+  padding: 3px;
+  border-bottom: solid 3px #CCC;
+  border-top: solid 3px #CCC; }
+
 body {
   color: var(--color-text);
   display: flex;
