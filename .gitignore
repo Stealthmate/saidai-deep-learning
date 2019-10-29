@@ -1,3 +1,4 @@
+docs/**
 .bundle
 vendor
 .jekyll-cache
