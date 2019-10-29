@@ -42,5 +42,5 @@ Anacondaは、簡単に言うと**開発環境**を管理するためのツー�
 ### インストール
 
 - Terminalで`cd ~/Downloads`でDownloadsに移動して、`sh Anaconda3-YYYY-MM-Linux-x86-64.sh`を実行します（`YYYY-MM`を適宜埋めてください）。
-
 - TerminalでAnacondaがインストール仮定について丁寧に教えてくれるので、それに従えば良い。
+- インストールが終わったあっと、`.bashrc`に新たにAnacondaの環境設定が入っているので、それを適用するためにTerminalを再起動します。[.bashrcについてはここ]({{ site.baseurl }}{% link _linux/environment_vars.md %})を参照してください。
