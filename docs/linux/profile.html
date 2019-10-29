@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>.profileと.bashrcの初期設定</title>
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+  </head>
+  <body>
+    <nav>
+  <a class="" href="/saidai-deep-learning/">Home</a>
+
+  
+  
+  <a href="/saidai-deep-learning/anaconda/home.html">Pythonについて</a>
+  
+  <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
+  
+</nav>
+
+    
+    <main>
+      <header>
+        <h1>
+          Linuxについて - .profileと.bashrcの初期設定
+        </h1>
+        <div id="table-of-contents">
+          <ul class="section-nav">
+<li class="toc-entry toc-h2"><a href="#必要な知識">必要な知識</a></li>
+<li class="toc-entry toc-h2"><a href="#初期設定の意義">初期設定の意義</a></li>
+<li class="toc-entry toc-h2"><a href="#profileの設定">.profileの設定</a></li>
+<li class="toc-entry toc-h2"><a href="#bashrcの設定">.bashrcの設定</a></li>
+</ul>
+        </div>
+      </header>
+      <section>
+        <h2 id="必要な知識">必要な知識</h2>
+
+<ul>
+  <li><a href="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html">PATHとその他環境変数</a></li>
+</ul>
+
+<h2 id="初期設定の意義">初期設定の意義</h2>
+
+<p>以下は、一般的に良く使われるプロフィール設定で、このブログではほぼ前提として扱うので、入れてしておきましょう。なお、随時更新していく予定なので、定期的に確認してください。</p>
+
+<h2 id="profileの設定">.profileの設定</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HOME</span>/bin:<span class="nv">$HOME</span>/.local/bin
+<span class="nb">eval</span> <span class="sb">`</span>ssh-agent <span class="nt">-s</span><span class="sb">`</span>
+</code></pre></div></div>
+
+<h2 id="bashrcの設定">.bashrcの設定</h2>
+
+      </section>
+    </main>
+  </body>
+</html>
