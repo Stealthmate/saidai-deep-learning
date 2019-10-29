@@ -1,0 +1,21 @@
+@import 'colors';
+
+header {
+    display: flex;
+    flex-direction: column;
+    h1 {
+        font-size: 3em;
+        border-bottom: solid 3px $color-border;
+        align-self: center;
+
+    }
+}
+
+section {
+    h1 {
+        color: $color-text;
+        padding: 3px;
+        border-bottom: solid 3px $color-border;
+        border-top: solid 3px $color-border;
+    }
+}

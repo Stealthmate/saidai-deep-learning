@@ -2,20 +2,10 @@
 ---
 
 @import 'collection_home';
+@import 'default';
 
 $color-text: #333;
 $color-border: #CCC;
-
-header {
-    display: flex;
-    flex-direction: column;
-    h1 {
-        font-size: 3em;
-        border-bottom: solid 3px $color-border;
-        align-self: center;
-
-    }
-}
 
 body {
     color: var(--color-text);
