@@ -1,22 +1,8 @@
 <nav>
-  <ul>
-    <li class="{% if "/" == page.url %} here-now {% endif %}">
-      <a href="{{ "/" | relative_url }}">Home</a>
-    </li>
-    {% for collection in site.collections %}
-    {% if collection.label != "posts" %}
-    <li> {{ collection.title }}
-      <ul>
-        {% for post in site[collection.label] %}
-        <li class="{% if post.url == page.url %} here-now {% endif %}">
-          <a href="{{ post.url | relative_url }}">
-            {{ post.title }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-    </li>
-    {% endif %}
-    {% endfor %}
-  </ul>
+  <a class="{% if "/" == page.url %} here-now {% endif %}" href="{{ "/" | relative_url }}">Home</a>
+
+  {% assign collections = site.collections | where_exp: "x", "x.label != 'posts'" %}
+  {% for collection in collections %}
+  <a href="{{ collection.label | relative_url }}/home.html">{{ collection.title }}</a>
+  {% endfor %}
 </nav>

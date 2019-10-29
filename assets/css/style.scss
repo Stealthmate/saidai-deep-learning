@@ -33,21 +33,21 @@ nav {
     padding: 10px;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+
+    a {
+        padding: 3px;
+        padding-left: 10px;
+    }
+
+    .here-now {
+        font-weight: bold;
+        background: #CCCC;
+        border-radius: 10px;
+    }
 }
 
 main {
     margin: 20px;
     padding: 0px;
-}
-
-nav li {
-    padding: 3px;
-    padding-left: 10px;
-}
-
-nav .here-now {
-    font-weight: bold;
-    background: #CCCC;
-    border-radius: 10px;
 }
