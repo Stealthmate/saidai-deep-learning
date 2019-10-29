@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Anacondaの役割と入れ方
+toc: true
 ---
 
 # 予め入っているpythonでは何故だめなのか

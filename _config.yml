@@ -5,7 +5,7 @@ url: stealthmate.github.io
 baseurl: /saidai-deep-learning
 
 toc:
-  min_level: 2
+  min_level: 1
   max_level: 3
 
 theme: minima
@@ -14,5 +14,13 @@ collections:
   linux:
     output: True
     title: Linuxについて
+    order: 0
+  python:
+    output: True
+    title: Pythonについて
+    order: 1
 
 destination: docs
+
+markdown: kramdown
+mathjax: true
