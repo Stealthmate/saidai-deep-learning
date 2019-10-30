@@ -40,6 +40,7 @@
 <ul>
   <li><a href="/saidai-deep-learning/python/anaconda.html">Anacondaの役割と入れ方</a></li>
   <li>Anacondaが既に使えるようになっている</li>
+  <li>ユーザー名が<code class="highlighter-rouge">michael</code>だと仮定する</li>
 </ul>
 
 <h1 id="anacondaで環境を作る">Anacondaで環境を作る</h1>
@@ -50,6 +51,23 @@
 </code></pre></div></div>
 
 <p>ここで、<code class="highlighter-rouge">&lt;env_name&gt;</code>は環境を識別するための名前で、半角英数からなる文字列です。以下、環境名が<code class="highlighter-rouge">myenv</code>だと仮定して行きますが、どうぞ好きな名前にしてください。</p>
+
+<p>ターミナルでは現在恐らく以下のようなprompt（コマンドの前にくる部分）が表示されています。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>base<span class="o">)</span> michael@michael-pc:
+</code></pre></div></div>
+
+<p>ここにある<code class="highlighter-rouge">(base)</code>というのは、今使っている環境の名前を指しています。Anacondaがデフォルトで使う環境の名前が<code class="highlighter-rouge">base</code>なので、今<code class="highlighter-rouge">base</code>環境にいることがわかります。</p>
+
+<p>では、<code class="highlighter-rouge">myenv</code>に切り替えるのにどうすればいいでしょう？答えは、以下のコマンドです：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda activate myenv
+</code></pre></div></div>
+
+<p>これで、promptの頭が<code class="highlighter-rouge">(myenv)</code>に変わるはずです。また、もし<code class="highlighter-rouge">base</code>に戻りたかったら、以下のコマンドでできます。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda deactivate
+</code></pre></div></div>
 
 <h1 id="anacondaのパッケージについて">Anacondaのパッケージについて</h1>
 

@@ -9,6 +9,7 @@ toc: true
 {% assign lnk = site.python | where: "url", "/python/anaconda.html" | first %}
 - [{{ lnk.title }}]({{ lnk.url | relative_url }})
 - Anacondaが既に使えるようになっている
+- ユーザー名が`michael`だと仮定する
 
 # Anacondaで環境を作る
 
@@ -19,6 +20,26 @@ conda create --name <env_name>
 ```
 
 ここで、`<env_name>`は環境を識別するための名前で、半角英数からなる文字列です。以下、環境名が`myenv`だと仮定して行きますが、どうぞ好きな名前にしてください。
+
+ターミナルでは現在恐らく以下のようなprompt（コマンドの前にくる部分）が表示されています。
+
+```bash
+(base) michael@michael-pc:
+```
+
+ここにある`(base)`というのは、今使っている環境の名前を指しています。Anacondaがデフォルトで使う環境の名前が`base`なので、今`base`環境にいることがわかります。
+
+では、`myenv`に切り替えるのにどうすればいいでしょう？答えは、以下のコマンドです：
+
+```bash
+conda activate myenv
+```
+
+これで、promptの頭が`(myenv)`に変わるはずです。また、もし`base`に戻りたかったら、以下のコマンドでできます。
+
+```bash
+conda deactivate
+```
 
 # Anacondaのパッケージについて
 
