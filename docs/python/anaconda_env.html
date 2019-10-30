@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Anacondaで環境を作る</title>
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+    <script async type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </head>
+  <body>
+    <nav>
+  <a class="" href="/saidai-deep-learning/">Home</a>
+
+  
+  
+  <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
+  
+  <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
+  
+</nav>
+
+    
+    <main>
+      <header>
+        <h1>
+          Pythonについて - Anacondaで環境を作る
+        </h1>
+        <div id="table-of-contents">
+          <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#事前知識準備">事前知識・準備</a></li>
+<li class="toc-entry toc-h1"><a href="#anacondaで環境を作る">Anacondaで環境を作る</a></li>
+<li class="toc-entry toc-h1"><a href="#anacondaのパッケージについて">Anacondaのパッケージについて</a></li>
+<li class="toc-entry toc-h1"><a href="#pythonパッケージをインストールする">pythonパッケージをインストールする</a></li>
+<li class="toc-entry toc-h1"><a href="#心想学習のためのパッケージをインストールする">心想学習のためのパッケージをインストールする</a></li>
+</ul>
+        </div>
+      </header>
+      <section>
+        <h1 id="事前知識準備">事前知識・準備</h1>
+
+<ul>
+  <li><a href="stealthmate.github.io/saidai-deep-learning/python/anaconda.html">Anacondaの役割と入れ方</a></li>
+  <li>Anacondaが既に使えるようになっている</li>
+</ul>
+
+<h1 id="anacondaで環境を作る">Anacondaで環境を作る</h1>
+
+<p>Anacondaで環境を作る時、以下のコマンドを使います。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda create <span class="nt">--name</span> &lt;env_name&gt;
+</code></pre></div></div>
+
+<p>ここで、<code class="highlighter-rouge">&lt;env_name&gt;</code>は環境を識別するための名前で、半角英数からなる文字列です。以下、環境名が<code class="highlighter-rouge">myenv</code>だと仮定して行きますが、どうぞ好きな名前にしてください。</p>
+
+<h1 id="anacondaのパッケージについて">Anacondaのパッケージについて</h1>
+
+<p>Anacondaからは、<strong>パッケージ</strong>という、ライブラリやプログラム等をインストールすることができます。Anacondaのサイトでは、パッケージは<strong>channel</strong>（チャンネル）という、供給源で分類されます。チャンネルを特に指定しない場合は、<code class="highlighter-rouge">anaconda</code>というチャンネルが使われますが、ライブラリやプログラムによっては、<code class="highlighter-rouge">anaconda</code>にはない物もあります。何がどこにあるかを知るためには、<a href="https://anaconda.org/anaconda/repo" target="_blank">Anacondaのrepository</a>のサイトを検索すると良いでしょう。</p>
+
+<h1 id="pythonパッケージをインストールする">pythonパッケージをインストールする</h1>
+
+<p>Anacondaでパッケージをインストールしたい時は以下を使います:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda <span class="nb">install</span> <span class="o">[</span> <span class="nt">-c</span> &lt;channel&gt; <span class="o">]</span> &lt;package&gt;
+</code></pre></div></div>
+
+<p>では、pythonをインストールしてみましょう。<code class="highlighter-rouge">python</code>は<code class="highlighter-rouge">anaconda</code>チャンネルにあるので、チャンネルを指定しなくても問題ありません。以下のいずれかのコマンドでインストールできます。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda <span class="nb">install </span>python
+conda <span class="nb">install</span> <span class="nt">-c</span> anaconda python
+</code></pre></div></div>
+
+<p>これを実行すると、Anacondaはいくつかのリストを表示してくれます。文字がいっぱいあって凄まじいと思うかもしれませんが、良くみてみると、以下の行があります：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">The following packages will be DOWNLOADED</code> - これは、Anacondaがパッケージをインストールするためにダウンロードするもの</li>
+  <li><code class="highlighter-rouge">The following packages will be INSTALLED</code> - これは、Anacondaがパッケージをインストールするために、追加でインストールしなければいけないもの</li>
+  <li><code class="highlighter-rouge">The following packages will be DOWNGRADED</code> - これは、Anacondaがバッケージを古いバージョンに戻すもの</li>
+  <li><code class="highlighter-rouge">The following packages will be UPGRADED</code> - これは、Anacondaがパッケージを新しいバージョンに更新するもの</li>
+</ul>
+
+<p>では、何故<code class="highlighter-rouge">python</code>だけをインストールしたいのに、こんなにも色々入れたり更新したりしなければいけないのでしょう？実は、ライブラリというのも、他のライブラリの力を借りています。なので、一つのパッケージをインストールしようとすると、ほとんどの場合は他にもインストールしなければいけないことが多いです。更には、パッケージAがパッケージBの力を借りているとき、パッケージBのバージョンを厳密に指定しなければいけないのです。場合によっては、バージョンを調整しなければいけないこともあるので、古いものに戻したり更新したりする必要も出てきます。</p>
+
+<h1 id="心想学習のためのパッケージをインストールする">心想学習のためのパッケージをインストールする</h1>
+
+<p>心想学習などで良く使うパッケージをここで列挙しておきますので、各自でインストールしてみましょう。<a href="https://anaconda.org/anaconda/repo" target="_blank">Anacondaのrepository</a>でチャンネルの確認を忘れないよに。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">numpy</code> - ベクトルや行列計算用のライブラリ</li>
+  <li><code class="highlighter-rouge">pandas</code> - 表データを扱うためのライブラリ</li>
+  <li><code class="highlighter-rouge">scipy</code> - 数学や科学のためのライブラリ*</li>
+  <li><code class="highlighter-rouge">matplotlib</code> - 図を描くためのライブラリ</li>
+  <li><code class="highlighter-rouge">seaborn</code> - 図を綺麗に描くためのライブラリ</li>
+  <li><code class="highlighter-rouge">scikit-learn</code> - 機械学習やディープラーニングを行うためのライブラリ</li>
+  <li><code class="highlighter-rouge">keras</code> - （GPUで）ディープラーニングを行うためのライブラリ</li>
+</ul>
+
+      </section>
+    </main>
+  </body>
+</html>
