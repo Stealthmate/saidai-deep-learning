@@ -7,7 +7,7 @@ toc: true
 # 事前知識・準備
 
 {% assign lnk = site.python | where: "url", "/python/anaconda.html" | first %}
-- [{{ lnk.title }}]({{ lnk.url | absolute_url }})
+- [{{ lnk.title }}]({{ lnk.url | relative_url }})
 - Anacondaが既に使えるようになっている
 
 # Anacondaで環境を作る
