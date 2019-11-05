@@ -138,6 +138,8 @@ C言語と同様に、Pythonにもif文やfor文がありますが、書き方�
 {% include_relative sample.py %}
 ```
 
+[pyファイル]({{ "python/sample.py" | relative_url }})
+
 # Python Documentation
 
 Pythonは優れた[ドキュメンテーション](https://docs.python.org/3.7/)（マニュアルみたいなもの）がネットに上がっています。全て読むのは無理なので、必要に応じて参考していきましょう。ただし、自分のPythonと同じバージョンを見るようにしましょう。このリンクはバージョン3.7のものです。
