@@ -1,0 +1,202 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Python即入門</title>
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+    <script async type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  </head>
+  <body>
+    <nav>
+  <a class="" href="/saidai-deep-learning/">Home</a>
+
+  
+  
+  <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
+  
+  <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
+  
+</nav>
+
+    
+    <main>
+      <header>
+        <h1>
+          Pythonについて - Python即入門
+        </h1>
+        <div id="table-of-contents">
+          <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#事前知識準備">事前知識・準備</a></li>
+<li class="toc-entry toc-h1"><a href="#cとpythonの違い">CとPythonの違い</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#コンパイラvsインタープリタ">コンパイラvsインタープリタ</a></li>
+<li class="toc-entry toc-h2"><a href="#低級言語vs高級言語">低級言語vs高級言語</a></li>
+<li class="toc-entry toc-h2"><a href="#静的型と動的型">静的型と動的型</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#pythonを動かしてみる">Pythonを動かしてみる</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#ファイル実行">ファイル実行</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#リファレンスのためのサンプルコード">リファレンスのためのサンプルコード</a></li>
+<li class="toc-entry toc-h1"><a href="#python-documentation">Python Documentation</a></li>
+</ul>
+        </div>
+      </header>
+      <section>
+        <h1 id="事前知識準備">事前知識・準備</h1>
+
+<ul>
+  <li><a href="/saidai-deep-learning/python/anaconda_env.html">Anacondaで環境を作る</a></li>
+  <li>Anacondaが既に使えるようになっている</li>
+  <li>ユーザー名が<code class="highlighter-rouge">michael</code>だと仮定する</li>
+</ul>
+
+<h1 id="cとpythonの違い">CとPythonの違い</h1>
+
+<p>CとPythonは基本的に全く違うものです。その違いについて、以下2つの観点から説明します。</p>
+
+<h2 id="コンパイラvsインタープリタ">コンパイラvsインタープリタ</h2>
+
+<p>C言語は<code class="highlighter-rouge">gcc</code>でコンパイルしますよね。具体的に言うと、<code class="highlighter-rouge">.c</code>フィアルから<code class="highlighter-rouge">gcc</code>を使って実行ファイルを作ります。この動作が何故必要なのかというと、実行ファイルに書いてある内容はCPUが直接解釈・実行する命令なので、C言語からその命令を生成するのにコンパイラが必要です。</p>
+
+<p>一方、pythonはコンパイルする必要がありません。しかし、pythonコードを実行する時、<code class="highlighter-rouge">python foo.py</code>というように実行することに注目してください。この時、「実行」されているのはファイルではなく、<code class="highlighter-rouge">python</code>プログラムです。そして<code class="highlighter-rouge">python</code>プログラムに<code class="highlighter-rouge">foo.py</code>という引数が渡されています。ここで何が起こっているのかというと、<code class="highlighter-rouge">python</code>プログラムが<code class="highlighter-rouge">foo.py</code>に書いている内容を臨時的にその場で命令を解釈して、それに対応した動作を行います。</p>
+
+<p>他の言い方をすると、<code class="highlighter-rouge">python</code>プログラムはコンパイルされた実行ファイルであり、その入力として<code class="highlighter-rouge">foo.py</code>に書いてある内容が渡され、入力に対して<code class="highlighter-rouge">python</code>プログラムが何かをして、結果を出力します。このような挙動で動くものを<strong>interpreter</strong> (和：通訳者）と言い、インタープリタが命令を<strong>evaluate （評価）</strong>すると言います。</p>
+
+<h2 id="低級言語vs高級言語">低級言語vs高級言語</h2>
+
+<p>次の問題を考えます。</p>
+
+<blockquote>
+  <p>あるアルファベットの文字列が与えられた時、その中にある全ての<code class="highlighter-rouge">a</code>文字を<code class="highlighter-rouge">bc</code>で置き換えたい。つまり<code class="highlighter-rouge">abc</code>という入力に対して<code class="highlighter-rouge">bcbc</code>を出力したい。</p>
+</blockquote>
+
+<p>さて、これをC言語で実装するとどうなるでしょうか。ここでぜひ各自で答えを見る前に自分で考えてみてください。</p>
+
+<hr />
+
+<p>大まかな流れを書くと、恐らく以下のような手順になります。</p>
+
+<ol>
+  <li>メモリを確保し、配列を作っておく。</li>
+  <li>配列に入力された文字列を格納する。</li>
+  <li><code class="highlighter-rouge">a</code>文字が出てくるインデックスを格納するためのメモリを確保し、配列を作っておく。</li>
+  <li>入力文字列を辿り、<code class="highlighter-rouge">a</code>文字が出てくる所インデックスをインデックス配列に保存する。</li>
+  <li>出力が保存される配列の必要メモリを計算し（文字が増える為）、確保し、配列を作っておく。</li>
+  <li>入力文字列を辿り、<code class="highlighter-rouge">a</code>以外の文字を出力配列に保存し、<code class="highlighter-rouge">a</code>の代わりに<code class="highlighter-rouge">bc</code>文字列を保存する。</li>
+  <li>出力文字列を出力する。</li>
+</ol>
+
+<p>かなりめんどくさい手順になっています。メモリの確保や配列の管理等が特にめんどくさいですね。</p>
+
+<p>では、<code class="highlighter-rouge">python</code>で書くとどうなるでしょうか。答えは：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span> <span class="nb">input</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"a"</span><span class="p">,</span> <span class="s">"bc"</span><span class="p">)</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<p>以上です。簡単といえば簡単ですね。</p>
+
+<hr />
+
+<p>上の問題で見たように、C言語とPython言語は<strong>抽象度</strong>、簡単に言えば<strong>コードの細かさ</strong>が違います。C言語だと一々細かく動作を書かなければいけないのに対し、Pythonでは色々な作業が予め用意されているし、メモリ管理などはしなくていいです。Pythonのように、<strong>抽象度の高い</strong>言語のことを<strong>High-level language （高級言語）</strong>と呼び、Cのように<strong>抽象度の低い</strong>（細かい）言語のことを<strong>Low-level language（低級言語）</strong>と呼びます。この高級とか低級というのは、決まった基準は特に無く、スペクトルみたいなものだと思ってください。Cが1だとして、Pythonが9ぐらいで、Javaは4、という風に捉えると良いででしょう。</p>
+
+<h2 id="静的型と動的型">静的型と動的型</h2>
+
+<p>C言語では変数や関数を定義するときに、その型を必ず定義しますよね。整数であれば<code class="highlighter-rouge">int</code>、実数であれば<code class="highlighter-rouge">double</code>等、型を定義して、違う型同士を足したり引いたりしようとすると、コンパイラが文句を言います。このような言語のことを<strong>statically-typed language（静的型付け言語）</strong>と言います。</p>
+
+<p>一方、Pythonでは型を定義しません*。というのは、変数をそのまま<code class="highlighter-rouge">x = 3</code>とだけ書いて、関数も<code class="highlighter-rouge">def f(x, y)</code>とだけ書きます。しかし、例えば文字列と文字列を割り算しようとすると、エラーが出ます。このような言語のことを<strong>dynamically-typed language（動的型付け言語）</strong>と言います。</p>
+
+<p>では、PythonもCも型のミスでエラーが出るなら、何が違うの？と聞きたくなるでしょう。答えは、静的型付け言語は、プログラムを作る（コードをCPUへの命令に直す）時点で型をチェックし、文句を言います。一方Pythonのような動的型付け言語は、コードを実行する時点で文句を言います。一般的に静的型の方が安全でバグが少なくなるのですが、動的型の方が（インタプリタやコンパイラを作る人から見て）実装しやすくてシンプルです。</p>
+
+<div class="footnote">* 最近（[Python 3.8](https://docs.python.org/3/library/typing.html)）では定義できるようになってはいますが、あくまでも可読性を上げるためのものだけであり、守らないと文句を言われるようなものではありません。</div>
+
+<h1 id="pythonを動かしてみる">Pythonを動かしてみる</h1>
+
+<p>Pythonはインタープリタ型言語（interpreted language）なので、先程言ったように、<code class="highlighter-rouge">python</code>プログラムが命令を解釈し実行します。インタープリタ型言語は多くの場合、わざわざプログラムをファイルに書き込んで、ファイルごと実行するという手順を追わなくても、1命令ずつ実行することができます。Pythonの場合、ターミナルで<code class="highlighter-rouge">python</code>とだけ打つと、インタープリタが起動します。インタープリタを起動してみて、以下の文を入力して、ENTERキーで実行してみましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span>
+</code></pre></div></div>
+
+<p>結果は4になるはずです。C言語と同じように<code class="highlighter-rouge">+</code>, <code class="highlighter-rouge">-</code>, <code class="highlighter-rouge">*</code>, <code class="highlighter-rouge">/</code>, <code class="highlighter-rouge">%</code>演算が使えます。そして、Cとは違って、文字列に対してもいくつかの演算子が定義されています。以下のコマンドを打って、結果を確認しましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">"Saitama"</span> <span class="o">+</span> <span class="s">"-ken"</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">"bun"</span> <span class="o">*</span> <span class="mi">10</span>
+</code></pre></div></div>
+
+<p>また、変数を定義して、変数で演算やその他の処理等もできます。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; x = 3
+&gt;&gt;&gt; x * 20
+</code></pre></div></div>
+
+<p>では、次の処理を行って見ましょう。ユーザー（入力）から名前（文字列）を受け取って、それに<code class="highlighter-rouge">-san</code>を付けたものを出力しましょう。Pythonでの入力は、<code class="highlighter-rouge">input()</code>関数で一行を読み取るようにできます。これを使うと：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">Valeri</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">name</span> <span class="o">+</span> <span class="s">'-san'</span>
+</code></pre></div></div>
+
+<h2 id="ファイル実行">ファイル実行</h2>
+
+<p>これで基礎的な動作はひとまず以上ですが、インタプリタで一々命令をその場で書くだけでは、話になりませんね。では、ファイルを作成して実行してみましょう。Pythonで実行するファイルは、<code class="highlighter-rouge">.py</code>拡張子で保存します。</p>
+
+<p>では、上で書いた手順をファイルに保存してみましょう（ここでは<code class="highlighter-rouge">program.py</code>だと仮定します）。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">name</span> <span class="o">+</span> <span class="s">'-san'</span>
+</code></pre></div></div>
+
+<p>では、実行して、入力してみましょう。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python program.py
+Valeri
+</code></pre></div></div>
+
+<p>結果は出ましたか？恐らく出ていませんよね。上のように、インタプリタで直接命令を実行すると、その結果が自動的に表示されるようになっています。しかし、ファイルでは、自分から出力をしないと何も表示されません。つまり、所謂<code class="highlighter-rouge">printf</code>らしきものを使わないと、出力が出ません。Pythonでは、<code class="highlighter-rouge">print</code>関数で出力をします。では、上のプログラムを書き直すと：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">'-san'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>こう書くと結果が出るでしょう。</p>
+
+<h1 id="リファレンスのためのサンプルコード">リファレンスのためのサンプルコード</h1>
+
+<p>C言語と同様に、Pythonにもif文やfor文がありますが、書き方が少し違います。とはいえ、大して変わることはないので、以下のサンプルコードを読んで、使い方を覚えてください。</p>
+
+<p>以下のプログラムは、Nまでの素数を順番にもとめて行くためのプログラムです。入力から整数Nを受け取って、素数を出力していきます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># これはコメントです
+</span>
+<span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span> <span class="c1"># input()で帰ってきた文字列をintに直す
+</span>
+<span class="n">primes</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># 空リスト（配列）。要素ある場合は[1, 2, 3]
+</span>
+<span class="c1"># range(x, y)はx &lt;= i &lt; yの数字が入っている配列を返します。
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="c1"># for 変数 in 配列 - 要素を「変数」に代入して、「配列」を走査します。
+</span>
+    <span class="n">isPrime</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">isPrime</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="k">break</span>
+    <span class="k">if</span> <span class="n">isPrime</span><span class="p">:</span>
+        <span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1">#配列の後ろに要素を追加
+</span>        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h1 id="python-documentation">Python Documentation</h1>
+
+<p>Pythonは優れた<a href="https://docs.python.org/3.7/">ドキュメンテーション</a>（マニュアルみたいなもの）がネットに上がっています。全て読むのは無理なので、必要に応じて参考していきましょう。ただし、自分のPythonと同じバージョンを見るようにしましょう。このリンクはバージョン3.7のものです。</p>
+
+<p>全てを読むのは無理ですが、一旦<a href="https://docs.python.org/3.7/library/stdtypes.html#text-sequence-type-str">文字列</a>に関するところをサラッと目を通しましょう。特に、<code class="highlighter-rouge">str.join()</code>や<code class="highlighter-rouge">str.find()</code>等、<code class="highlighter-rouge">str.&lt;function&gt;()</code>のような関数を軽く見てみてください（全部理解しなくてもいいです）。</p>
+
+      </section>
+    </main>
+  </body>
+</html>
