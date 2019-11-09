@@ -3,3 +3,4 @@ vendor
 .jekyll-cache
 _site
 .sass-cache
+.ipynb_checkpoints
