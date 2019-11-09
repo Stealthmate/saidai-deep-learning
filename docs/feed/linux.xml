@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="stealthmate.github.io/saidai-deep-learning/feed/linux.xml" rel="self" type="application/atom+xml" /><link href="stealthmate.github.io/saidai-deep-learning/" rel="alternate" type="text/html" /><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/feed/linux.xml</id><title type="html"> | Linux</title><entry><title type="html">Telegramの入れ方</title><link href="stealthmate.github.io/saidai-deep-learning/linux/telegram.html" rel="alternate" type="text/html" title="Telegramの入れ方" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/telegram</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/telegram.html">&lt;h2 id=&quot;事前準備&quot;&gt;事前準備&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;以下の手順で、ユーザーが&lt;code class=&quot;highlighter-rouge&quot;&gt;michael&lt;/code&gt;だと仮定し、ホームディレクトリを&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael&lt;/code&gt;とします。各自自分のユーザーネームに合わせてください。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;telegramをダウンロード&quot;&gt;Telegramをダウンロード&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://desktop.telegram.org/&quot;&gt;ここ&lt;/a&gt;からTelegramをダウンロード（Linux 64-bit版）。以下の手順は&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael/Downloads/tsetup.1.8.15.tar.xz&lt;/code&gt;にダウンロードしたと仮定しますが、ファイル名が異なる場合は変えて適宜変更してください。&lt;/p&gt;
+
+&lt;h2 id=&quot;telegramのファイルを決まった場所に置く&quot;&gt;Telegramのファイルを決まった場所に置く&lt;/h2&gt;
+
+&lt;p&gt;Linuxでは、パッケージマネージャー（Mintは&lt;code class=&quot;highlighter-rouge&quot;&gt;apt&lt;/code&gt;）以外の方法で取得したソフトは&lt;code class=&quot;highlighter-rouge&quot;&gt;/opt&lt;/code&gt;に置くことが習慣です*。なので、Telegramもそこに置きましょう。
+ただし、&lt;code class=&quot;highlighter-rouge&quot;&gt;/opt&lt;/code&gt;はHOMEディレクトリの外にあるので、特別な権限が必要です。そのために&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt;を使います。以下はダウンロードしてからの手順です。なお、#はコメントで、コマンドの動作には関係ありません。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; /opt/Telegram                                                                          &lt;span class=&quot;c&quot;&gt;# ディレクトリを作る&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xvf&lt;/span&gt; /home/michael/Downloads/tsetup.1.8.15.tar.xz &lt;span class=&quot;nt&quot;&gt;-C&lt;/span&gt; /opt/Telegram &lt;span class=&quot;nt&quot;&gt;--strip-components&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1  &lt;span class=&quot;c&quot;&gt;# .tar.xzというのは圧縮ファイルなので、/opt/Telegramで解凍します&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sudo ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; /opt/Telegram/Telegram /usr/bin/Telegram                                               &lt;span class=&quot;c&quot;&gt;# /usr/binはPATHに入っているので、/opt/Telegram/Telegramを指すリンクを/usr/binに置きます&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;最後の1行に注目してください。&lt;code class=&quot;highlighter-rouge&quot;&gt;ln&lt;/code&gt;というプログラムはリンクを作るためのものです。リンクというのは、プログラムのように見せかけたものですが、実際はプログラムの場所を指しているだけです。大事なのは、&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/bin/Telegram&lt;/code&gt;というリンクを実行すると、結果は&lt;code class=&quot;highlighter-rouge&quot;&gt;/opt/Telegram/Telegram&lt;/code&gt;を実行したのと同じです。&lt;/p&gt;
+
+&lt;div class=&quot;footnote&quot;&gt;
+* ソースコードからビルドした物はまた別のところに置きます。
+&lt;/div&gt;
+
+&lt;h2 id=&quot;telegramをmenuで表示できるようにする&quot;&gt;TelegramをMenuで表示できるようにする&lt;/h2&gt;
+
+&lt;p&gt;このままでもTerminalでTelegramを打てば使えますが、タスクバーのMenuに入れると起動しやすいですよね。&lt;/p&gt;
+
+&lt;p&gt;そのために、まずアイコンが必要ですね。Telegramから落としたものに残念ながらアイコンが入っていなかったので、自分達で落とす必要があります。幸い、ネットにはアイコンがあったので、&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://i.stack.imgur.com/OO565.png&quot; alt=&quot;telegram image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;以下のコマンドでネットから画像を落とすことができます。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;curl https://i.stack.imgur.com/OO565.png &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; /opt/Telegram/telegram128.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;curl&lt;/code&gt;というプログラムは、あるインターネットへのリンクから内容を落とします。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;TelegramをMenuで表示するためには、&lt;code class=&quot;highlighter-rouge&quot;&gt;/usr/share/applications/&lt;/code&gt;で新しいファイルを作らなければなりません。書式の説明は省略しますが、以下の内容のファイルを&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael/telegram.desktop&lt;/code&gt;という場所と名前で作りましょう。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;[Desktop Entry]
+Name=Telegram
+Exec=/usr/bin/Telegram -- %u
+GenericName=Messenger
+Comment=Message your friends
+Type=Application
+Terminal=false
+StartupNotify=false
+Icon=/opt/Telegram/telegram128.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;これでほぼ完成です。後はファイルを指定した場所に移動するだけなので、以下のコマンドで終わらせましょう。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo mv /home/michael/telegram.desktop /usr/share/applications/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;MenuでTelegramを打って見ましょう！&lt;/p&gt;</content><author><name></name></author><summary type="html">事前準備</summary></entry><entry><title type="html">.profileと.bashrcの初期設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/profile.html" rel="alternate" type="text/html" title=".profileと.bashrcの初期設定" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/profile</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/profile.html">&lt;h2 id=&quot;必要な知識&quot;&gt;必要な知識&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html&quot;&gt;PATHとその他環境変数&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;初期設定の意義&quot;&gt;初期設定の意義&lt;/h2&gt;
+
+&lt;p&gt;以下は、一般的に良く使われるプロフィール設定で、このブログではほぼ前提として扱うので、入れてしておきましょう。なお、随時更新していく予定なので、定期的に確認してください。&lt;/p&gt;
+
+&lt;h2 id=&quot;profileの設定&quot;&gt;.profileの設定&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;:&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/bin:&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;/.local/bin
+&lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;ssh-agent &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;bashrcの設定&quot;&gt;.bashrcの設定&lt;/h2&gt;</content><author><name></name></author><summary type="html">必要な知識</summary></entry><entry><title type="html">日本語入力の設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html" rel="alternate" type="text/html" title="日本語入力の設定" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/jp_input</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html">&lt;h2 id=&quot;必要なパッケージをインストールする&quot;&gt;必要なパッケージをインストールする&lt;/h2&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;fcitx fcitx-mozc fcitx-tools
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;言語パッケージをインストールする&quot;&gt;言語パッケージをインストールする&lt;/h2&gt;
+
+&lt;p&gt;タスクバーのMenuから&lt;code class=&quot;highlighter-rouge&quot;&gt;Input Method -&amp;gt; Input Method -&amp;gt; Japanese -&amp;gt; Install&lt;/code&gt;をクリックする。&lt;/p&gt;
+
+&lt;h2 id=&quot;ログアウトし再びログインする&quot;&gt;ログアウトし、再びログインする&lt;/h2&gt;
+
+&lt;h2 id=&quot;mozcを設定する&quot;&gt;mozcを設定する&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;タスクバーのMenuから&lt;code class=&quot;highlighter-rouge&quot;&gt;Fcitx Configuration -&amp;gt; Input Method -&amp;gt; +&lt;/code&gt;をクリックする&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Only Show Current Language&lt;/code&gt;を外す&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;mozc&lt;/code&gt;を探して、選択する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;日本語入力の使い方&quot;&gt;日本語入力の使い方&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;CTRL-Space&lt;/code&gt;で英語・日本語に切り替えができます。ひらがなで文字を打ち、スペースで変換できます。&lt;/p&gt;
+
+&lt;h2 id=&quot;その他設定&quot;&gt;その他設定&lt;/h2&gt;
+
+&lt;h3 id=&quot;全角半角キーで切り替える&quot;&gt;全角半角キーで切り替える&lt;/h3&gt;
+
+&lt;p&gt;タスクバーMenuから、&lt;code class=&quot;highlighter-rouge&quot;&gt;Fcitx Configuration -&amp;gt; Global Config&lt;/code&gt;に行き、&lt;code class=&quot;highlighter-rouge&quot;&gt;Trigger Input Method&lt;/code&gt;で&lt;code class=&quot;highlighter-rouge&quot;&gt;CTRL-Space&lt;/code&gt;をクリックし、全角半角キーを押す。&lt;/p&gt;</content><author><name></name></author><summary type="html">必要なパッケージをインストールする</summary></entry><entry><title type="html">Home</title><link href="stealthmate.github.io/saidai-deep-learning/linux/home.html" rel="alternate" type="text/html" title="Home" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/home</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/home.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">よくある質問</title><link href="stealthmate.github.io/saidai-deep-learning/linux/faq.html" rel="alternate" type="text/html" title="よくある質問" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/faq</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/faq.html">&lt;h2 id=&quot;linuxのインストールについて&quot;&gt;Linuxのインストールについて&lt;/h2&gt;
+
+&lt;h3 id=&quot;linux入れるのに必要な準備はありますか&quot;&gt;Linux入れるのに必要な準備はありますか？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;ソフトウェア以外、消されたら困るデータ（写真、資料、動画、音楽など）をどこか一箇所にまとめること。例えば、 &lt;code class=&quot;highlighter-rouge&quot;&gt;C:\my-data\&lt;/code&gt; 。心配な人はUSBにバックアップすると良い。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;生協のパソコン&lt;/strong&gt; を使っている人は、保証の詳細を確認すること。特に、OSのインストールで保証が無効になったりすることはあり得るので注意すること。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;linuxとwindowsは併用できますか&quot;&gt;LinuxとWindowsは併用できますか？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;できます。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;linuxを入れた後windows上の動作が重くなることはありますか&quot;&gt;Linuxを入れた後、Windows上の動作が重くなることはありますか？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;基本的に重くなることはありません。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;linuxを入れるのにどれぐらい時間かかりますか&quot;&gt;Linuxを入れるのにどれぐらい時間かかりますか？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;準備が万端で、途中で問題が発生しなければ1時間程で終わります。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;linuxの使用について&quot;&gt;Linuxの使用について&lt;/h2&gt;
+
+&lt;h3 id=&quot;linuxでwordexcelpowerpointは使えますか&quot;&gt;LinuxでWord、Excel、PowerPointは使えますか？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;Word・Excel・PowerPointそのものではないが、LibreOfficeという互換可能なソフトがあるので、安心してください。高度な機能を使っている人は、LibreOfficeでその機能が存在するかどうかを調べると良い。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;windowsで使っているソフトはlinuxで使えますか&quot;&gt;Windowsで使っているソフトはLinuxで使えますか？&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;使えません。WindowsとLinuxは根本が違うので、Windowsで動くものは基本Linuxで動きません（反対も然り）。ただし、ソースコードがあるもの（pythonやJavaで書いたスクリプト、C/C++で書いたプログラム等）は、Linuxで動かすことができます。&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Linuxのインストールについて</summary></entry><entry><title type="html">PATHとその他環境変数</title><link href="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html" rel="alternate" type="text/html" title="PATHとその他環境変数" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/environment_vars</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html">&lt;h2 id=&quot;環境変数とは&quot;&gt;環境変数とは&lt;/h2&gt;
+
+&lt;p&gt;プログラムを実行するというのは、ある&lt;strong&gt;文脈&lt;/strong&gt;で行われることなので、その文脈をプログラムに知らせるために&lt;strong&gt;環境変数&lt;/strong&gt;があります。例えば、LinuxでTerminalを起動したときに、&lt;code class=&quot;highlighter-rouge&quot;&gt;michael@michael-pc&lt;/code&gt;という文字が出てくるのは、michaelというユーザーがTerminalを起動しているからです。つまり、「ユーザーがmichaelである」という文脈の中でTerminalが動いています。そして、「ユーザーがmichaelである」ということをTerminalに知らせるのは、&lt;code class=&quot;highlighter-rouge&quot;&gt;USER&lt;/code&gt;という環境変数です。&lt;/p&gt;
+
+&lt;p&gt;Terminalで&lt;code class=&quot;highlighter-rouge&quot;&gt;env&lt;/code&gt;というコマンドを打つと、そのTerminalに見えている全ての環境変数とその値が表示されます。そこで&lt;code class=&quot;highlighter-rouge&quot;&gt;USER&lt;/code&gt;変数を探してみてください。値はあなたのユーザーネームになっているはずです。他にも&lt;code class=&quot;highlighter-rouge&quot;&gt;HOME&lt;/code&gt;変数（現ユーザーのHOMEディレクトリの場所）や、&lt;code class=&quot;highlighter-rouge&quot;&gt;LANG&lt;/code&gt;変数（現ユーザーが設定しているシステム言語）などもぜひ確認してみてください。&lt;/p&gt;
+
+&lt;h2 id=&quot;path変数&quot;&gt;PATH変数&lt;/h2&gt;
+
+&lt;p&gt;Terminalで&lt;code class=&quot;highlighter-rouge&quot;&gt;gcc&lt;/code&gt;や&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;など、様々なコマンドを実行できますよね。厳密に言えば、これらはコマンドではなくプログラムです*。つまり、パソコンのどこかに&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;というファイルがあり、そのファイルを実行すると、pythonのインタープリタが起動します。しかし、Terminalはどうやって&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;ファイルの居場所が分かるのでしょう？&lt;/p&gt;
+
+&lt;p&gt;答えはPATH環境変数です。PATHの値はディレクトリのリストです。Terminalで&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;と打ったときに、shellはPATH変数のディレクトリを順番に見て、その中にpythonというファイルが存在すれば、それを実行します。&lt;/p&gt;
+
+&lt;div class=&quot;footnote&quot;&gt;* コマンドはshell（Terminalでの入力を解釈しているもの）の中に組み込まれているものであり、プログラムはshellに関係なく存在するものである。例えば、lsはコマンドである（どこにlsというファイルが存在するわけではない）のに対し、pythonはプログラムである。&lt;/div&gt;
+
+&lt;h2 id=&quot;環境変数の設定&quot;&gt;環境変数の設定&lt;/h2&gt;
+
+&lt;p&gt;Linuxでは様々なところで環境変数が設定されます。その中で一番身近にあるのが.profileファイルと.bashrcファイルです。この二つのファイルで環境変数を設定したり、その他の設定等もできます。.profileも.bashrcも全く同じように書式で書くものですが、違いがあります。&lt;/p&gt;
+
+&lt;p&gt;.profileは、システムにログインした時（電源を入れて起動したときや、SSHで接続した時など）だけに実行されます。つまり、最初にパソコンの電源を入れた時点で1回だけ実行され、そこで行った設定はその後で実行されたあらゆるプログラムで受け継げられます。&lt;/p&gt;
+
+&lt;p&gt;一方で.bashrcは、Terminalを起動した時点で実行されます。つまり、パソコンの電源を入れてから、例えば10個のTerminalを起動したら、それぞれの中で.bashrcが実行されます。そして、そのTerminalの中では.bashrcで行った設定が適用されます。&lt;/p&gt;
+
+&lt;h2 id=&quot;profileとbashrcの書き方&quot;&gt;.profileと.bashrcの書き方&lt;/h2&gt;
+
+&lt;p&gt;.profileと.bashrcはshell scriptなので、shellの言語で書きます。ここでshellの言語について詳しくは説明しませんが、環境変数を設定したいときは以下のような書き方で書けます。&lt;/p&gt;
+
+&lt;h3 id=&quot;環境変数を新しく作る&quot;&gt;環境変数を新しく作る&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;MY_VARIABLE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;value&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;これで&lt;code class=&quot;highlighter-rouge&quot;&gt;MY_VARIABLE&lt;/code&gt;という変数に&lt;code class=&quot;highlighter-rouge&quot;&gt;value&lt;/code&gt;という値が保存されます。&lt;/p&gt;
+
+&lt;h3 id=&quot;環境変数に値をくっつける&quot;&gt;環境変数に値をくっつける&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;export &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;PATH&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$PATH&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:/my/directory&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;これで、仮に&lt;code class=&quot;highlighter-rouge&quot;&gt;PATH&lt;/code&gt;の値が&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael&lt;/code&gt;だった場合、新しくなった値は&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael:/my/directory&lt;/code&gt;になります。一般的に、&lt;code class=&quot;highlighter-rouge&quot;&gt;$VARIABLE&lt;/code&gt;と書くと、&lt;code class=&quot;highlighter-rouge&quot;&gt;VARIABLE&lt;/code&gt;の値を意味するので、どこに値をくっつけたいかによっては&lt;code class=&quot;highlighter-rouge&quot;&gt;export VARIABLE=&quot;value $VARIABLE&quot;&lt;/code&gt;や、&lt;code class=&quot;highlighter-rouge&quot;&gt;export VARIABLE=value1 $VARIABLE value2&lt;/code&gt;などの書き方ができます。&lt;/p&gt;
+
+&lt;h3 id=&quot;環境変数を削除する&quot;&gt;環境変数を削除する&lt;/h3&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;unset &lt;/span&gt;BAD_VARIABLE
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;これで&lt;code class=&quot;highlighter-rouge&quot;&gt;BAD_VARIABLE&lt;/code&gt;は文脈から消え、元々なかったのと同じです。&lt;/p&gt;
+
+&lt;h2 id=&quot;path変数を設定するときの注意点&quot;&gt;PATH変数を設定するときの注意点&lt;/h2&gt;
+
+&lt;p&gt;PATH変数の値を自分で更新する時は多くありますが、そこで気をつけなければいけないところが何個かあります。&lt;/p&gt;
+
+&lt;h3 id=&quot;pathにディレクトリを追加する時後ろに追加すること&quot;&gt;PATHにディレクトリを追加する時、後ろに追加すること&lt;/h3&gt;
+
+&lt;p&gt;shellがPATHでプログラムを探す時、左から順番に探して行きます。そして、最初にプログラムが見つかったディレクトリからプログラムを実行します。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;date&lt;/code&gt;という、現在の日付を表示するプログラムを実行したとします。もし、あなたがPATHの頭にディレクトリを追加していて、たまたまそこに&lt;code class=&quot;highlighter-rouge&quot;&gt;date&lt;/code&gt;というプログラムがあり、それが全く違うことをするプログラムだったら、求めている結果と違いますよね。パソコンでは、自分から実行しなくても、裏にあるソフトが色々なプログラムを実行したりします。その場合も同じくPATHが参照されるので、そこでこのような齟齬が起きたら、パソコンの動作が正しくなくなります。&lt;/p&gt;
+
+&lt;h3 id=&quot;pathの前の値を無視しないこと&quot;&gt;PATHの前の値を無視しないこと&lt;/h3&gt;
+
+&lt;p&gt;PATHには予め様々なディレクトリが設定されています。それらはシステムが正しく動くためのものなので、PATHから無くなると、パソコンが動かなくなります。なので、PATHを変更する時は、常に前の値を維持したまま、&lt;code class=&quot;highlighter-rouge&quot;&gt;export PATH=$PATH:something&lt;/code&gt;という形で後ろへの追加だけ行いましょう。&lt;/p&gt;</content><author><name></name></author><summary type="html">環境変数とは</summary></entry></feed>

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="stealthmate.github.io/saidai-deep-learning/feed/python.xml" rel="self" type="application/atom+xml" /><link href="stealthmate.github.io/saidai-deep-learning/" rel="alternate" type="text/html" /><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/feed/python.xml</id><title type="html"> | Python</title><entry><title type="html">Python即入門</title><link href="stealthmate.github.io/saidai-deep-learning/python/python_intro.html" rel="alternate" type="text/html" title="Python即入門" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/python_intro</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/python_intro.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/python/anaconda_env.html&quot;&gt;Anacondaで環境を作る&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Anacondaが既に使えるようになっている&lt;/li&gt;
+  &lt;li&gt;ユーザー名が&lt;code class=&quot;highlighter-rouge&quot;&gt;michael&lt;/code&gt;だと仮定する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;cとpythonの違い&quot;&gt;CとPythonの違い&lt;/h1&gt;
+
+&lt;p&gt;CとPythonは基本的に全く違うものです。その違いについて、以下2つの観点から説明します。&lt;/p&gt;
+
+&lt;h2 id=&quot;コンパイラvsインタープリタ&quot;&gt;コンパイラvsインタープリタ&lt;/h2&gt;
+
+&lt;p&gt;C言語は&lt;code class=&quot;highlighter-rouge&quot;&gt;gcc&lt;/code&gt;でコンパイルしますよね。具体的に言うと、&lt;code class=&quot;highlighter-rouge&quot;&gt;.c&lt;/code&gt;フィアルから&lt;code class=&quot;highlighter-rouge&quot;&gt;gcc&lt;/code&gt;を使って実行ファイルを作ります。この動作が何故必要なのかというと、実行ファイルに書いてある内容はCPUが直接解釈・実行する命令なので、C言語からその命令を生成するのにコンパイラが必要です。&lt;/p&gt;
+
+&lt;p&gt;一方、pythonはコンパイルする必要がありません。しかし、pythonコードを実行する時、&lt;code class=&quot;highlighter-rouge&quot;&gt;python foo.py&lt;/code&gt;というように実行することに注目してください。この時、「実行」されているのはファイルではなく、&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;プログラムです。そして&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;プログラムに&lt;code class=&quot;highlighter-rouge&quot;&gt;foo.py&lt;/code&gt;という引数が渡されています。ここで何が起こっているのかというと、&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;プログラムが&lt;code class=&quot;highlighter-rouge&quot;&gt;foo.py&lt;/code&gt;に書いている内容を臨時的にその場で命令を解釈して、それに対応した動作を行います。&lt;/p&gt;
+
+&lt;p&gt;他の言い方をすると、&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;プログラムはコンパイルされた実行ファイルであり、その入力として&lt;code class=&quot;highlighter-rouge&quot;&gt;foo.py&lt;/code&gt;に書いてある内容が渡され、入力に対して&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;プログラムが何かをして、結果を出力します。このような挙動で動くものを&lt;strong&gt;interpreter&lt;/strong&gt; (和：通訳者）と言い、インタープリタが命令を&lt;strong&gt;evaluate （評価）&lt;/strong&gt;すると言います。&lt;/p&gt;
+
+&lt;h2 id=&quot;低級言語vs高級言語&quot;&gt;低級言語vs高級言語&lt;/h2&gt;
+
+&lt;p&gt;次の問題を考えます。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;あるアルファベットの文字列が与えられた時、その中にある全ての&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;文字を&lt;code class=&quot;highlighter-rouge&quot;&gt;bc&lt;/code&gt;で置き換えたい。つまり&lt;code class=&quot;highlighter-rouge&quot;&gt;abc&lt;/code&gt;という入力に対して&lt;code class=&quot;highlighter-rouge&quot;&gt;bcbc&lt;/code&gt;を出力したい。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;さて、これをC言語で実装するとどうなるでしょうか。ここでぜひ各自で答えを見る前に自分で考えてみてください。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;大まかな流れを書くと、恐らく以下のような手順になります。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;メモリを確保し、配列を作っておく。&lt;/li&gt;
+  &lt;li&gt;配列に入力された文字列を格納する。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;文字が出てくるインデックスを格納するためのメモリを確保し、配列を作っておく。&lt;/li&gt;
+  &lt;li&gt;入力文字列を辿り、&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;文字が出てくる所インデックスをインデックス配列に保存する。&lt;/li&gt;
+  &lt;li&gt;出力が保存される配列の必要メモリを計算し（文字が増える為）、確保し、配列を作っておく。&lt;/li&gt;
+  &lt;li&gt;入力文字列を辿り、&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;以外の文字を出力配列に保存し、&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;の代わりに&lt;code class=&quot;highlighter-rouge&quot;&gt;bc&lt;/code&gt;文字列を保存する。&lt;/li&gt;
+  &lt;li&gt;出力文字列を出力する。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;かなりめんどくさい手順になっています。メモリの確保や配列の管理等が特にめんどくさいですね。&lt;/p&gt;
+
+&lt;p&gt;では、&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;で書くとどうなるでしょうか。答えは：&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;a&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bc&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;以上です。簡単といえば簡単ですね。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;上の問題で見たように、C言語とPython言語は&lt;strong&gt;抽象度&lt;/strong&gt;、簡単に言えば&lt;strong&gt;コードの細かさ&lt;/strong&gt;が違います。C言語だと一々細かく動作を書かなければいけないのに対し、Pythonでは色々な作業が予め用意されているし、メモリ管理などはしなくていいです。Pythonのように、&lt;strong&gt;抽象度の高い&lt;/strong&gt;言語のことを&lt;strong&gt;High-level language （高級言語）&lt;/strong&gt;と呼び、Cのように&lt;strong&gt;抽象度の低い&lt;/strong&gt;（細かい）言語のことを&lt;strong&gt;Low-level language（低級言語）&lt;/strong&gt;と呼びます。この高級とか低級というのは、決まった基準は特に無く、スペクトルみたいなものだと思ってください。Cが1だとして、Pythonが9ぐらいで、Javaは4、という風に捉えると良いででしょう。&lt;/p&gt;
+
+&lt;h2 id=&quot;静的型と動的型&quot;&gt;静的型と動的型&lt;/h2&gt;
+
+&lt;p&gt;C言語では変数や関数を定義するときに、その型を必ず定義しますよね。整数であれば&lt;code class=&quot;highlighter-rouge&quot;&gt;int&lt;/code&gt;、実数であれば&lt;code class=&quot;highlighter-rouge&quot;&gt;double&lt;/code&gt;等、型を定義して、違う型同士を足したり引いたりしようとすると、コンパイラが文句を言います。このような言語のことを&lt;strong&gt;statically-typed language（静的型付け言語）&lt;/strong&gt;と言います。&lt;/p&gt;
+
+&lt;p&gt;一方、Pythonでは型を定義しません*。というのは、変数をそのまま&lt;code class=&quot;highlighter-rouge&quot;&gt;x = 3&lt;/code&gt;とだけ書いて、関数も&lt;code class=&quot;highlighter-rouge&quot;&gt;def f(x, y)&lt;/code&gt;とだけ書きます。しかし、例えば文字列と文字列を割り算しようとすると、エラーが出ます。このような言語のことを&lt;strong&gt;dynamically-typed language（動的型付け言語）&lt;/strong&gt;と言います。&lt;/p&gt;
+
+&lt;p&gt;では、PythonもCも型のミスでエラーが出るなら、何が違うの？と聞きたくなるでしょう。答えは、静的型付け言語は、プログラムを作る（コードをCPUへの命令に直す）時点で型をチェックし、文句を言います。一方Pythonのような動的型付け言語は、コードを実行する時点で文句を言います。一般的に静的型の方が安全でバグが少なくなるのですが、動的型の方が（インタプリタやコンパイラを作る人から見て）実装しやすくてシンプルです。&lt;/p&gt;
+
+&lt;div class=&quot;footnote&quot;&gt;* 最近（[Python 3.8](https://docs.python.org/3/library/typing.html)）では定義できるようになってはいますが、あくまでも可読性を上げるためのものだけであり、守らないと文句を言われるようなものではありません。&lt;/div&gt;
+
+&lt;h1 id=&quot;pythonを動かしてみる&quot;&gt;Pythonを動かしてみる&lt;/h1&gt;
+
+&lt;p&gt;Pythonはインタープリタ型言語（interpreted language）なので、先程言ったように、&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;プログラムが命令を解釈し実行します。インタープリタ型言語は多くの場合、わざわざプログラムをファイルに書き込んで、ファイルごと実行するという手順を追わなくても、1命令ずつ実行することができます。Pythonの場合、ターミナルで&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;とだけ打つと、インタープリタが起動します。インタープリタを起動してみて、以下の文を入力して、ENTERキーで実行してみましょう。&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;結果は4になるはずです。C言語と同じように&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;/&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;演算が使えます。そして、Cとは違って、文字列に対してもいくつかの演算子が定義されています。以下のコマンドを打って、結果を確認しましょう。&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Saitama&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;-ken&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bun&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;また、変数を定義して、変数で演算やその他の処理等もできます。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; x = 3
+&amp;gt;&amp;gt;&amp;gt; x * 20
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;では、次の処理を行って見ましょう。ユーザー（入力）から名前（文字列）を受け取って、それに&lt;code class=&quot;highlighter-rouge&quot;&gt;-san&lt;/code&gt;を付けたものを出力しましょう。Pythonでの入力は、&lt;code class=&quot;highlighter-rouge&quot;&gt;input()&lt;/code&gt;関数で一行を読み取るようにできます。これを使うと：&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;Valeri&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-san'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;ファイル実行&quot;&gt;ファイル実行&lt;/h2&gt;
+
+&lt;p&gt;これで基礎的な動作はひとまず以上ですが、インタプリタで一々命令をその場で書くだけでは、話になりませんね。では、ファイルを作成して実行してみましょう。Pythonで実行するファイルは、&lt;code class=&quot;highlighter-rouge&quot;&gt;.py&lt;/code&gt;拡張子で保存します。&lt;/p&gt;
+
+&lt;p&gt;では、上で書いた手順をファイルに保存してみましょう（ここでは&lt;code class=&quot;highlighter-rouge&quot;&gt;program.py&lt;/code&gt;だと仮定します）。&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-san'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;では、実行して、入力してみましょう。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python program.py
+Valeri
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;結果は出ましたか？恐らく出ていませんよね。上のように、インタプリタで直接命令を実行すると、その結果が自動的に表示されるようになっています。しかし、ファイルでは、自分から出力をしないと何も表示されません。つまり、所謂&lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;らしきものを使わないと、出力が出ません。Pythonでは、&lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt;関数で出力をします。では、上のプログラムを書き直すと：&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-san'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;こう書くと結果が出るでしょう。&lt;/p&gt;
+
+&lt;h1 id=&quot;リファレンスのためのサンプルコード&quot;&gt;リファレンスのためのサンプルコード&lt;/h1&gt;
+
+&lt;p&gt;C言語と同様に、Pythonにもif文やfor文がありますが、書き方が少し違います。とはいえ、大して変わることはないので、以下のサンプルコードを読んで、使い方を覚えてください。&lt;/p&gt;
+
+&lt;p&gt;以下のプログラムは、Nまでの素数を順番にもとめて行くためのプログラムです。入力から整数Nを受け取って、素数を出力していきます。&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# これはコメントです
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# input()で帰ってきた文字列をintに直す
+&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 空リスト（配列）。要素ある場合は[1, 2, 3]
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# range(x, y)はx &amp;lt;= i &amp;lt; yの数字が入っている配列を返します。
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;range&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;# for 変数 in 配列 - 要素を「変数」に代入して、「配列」を走査します。
+&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;isPrime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;isPrime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isPrime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#配列の後ろに要素を追加
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;/saidai-deep-learning/python/sample.py&quot;&gt;pyファイル&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;python-documentation&quot;&gt;Python Documentation&lt;/h1&gt;
+
+&lt;p&gt;Pythonは優れた&lt;a href=&quot;https://docs.python.org/3.7/&quot;&gt;ドキュメンテーション&lt;/a&gt;（マニュアルみたいなもの）がネットに上がっています。全て読むのは無理なので、必要に応じて参考していきましょう。ただし、自分のPythonと同じバージョンを見るようにしましょう。このリンクはバージョン3.7のものです。&lt;/p&gt;
+
+&lt;p&gt;全てを読むのは無理ですが、一旦&lt;a href=&quot;https://docs.python.org/3.7/library/stdtypes.html#text-sequence-type-str&quot;&gt;文字列&lt;/a&gt;に関するところをサラッと目を通しましょう。特に、&lt;code class=&quot;highlighter-rouge&quot;&gt;str.join()&lt;/code&gt;や&lt;code class=&quot;highlighter-rouge&quot;&gt;str.find()&lt;/code&gt;等、&lt;code class=&quot;highlighter-rouge&quot;&gt;str.&amp;lt;function&amp;gt;()&lt;/code&gt;のような関数を軽く見てみてください（全部理解しなくてもいいです）。&lt;/p&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry><entry><title type="html">Jupyter</title><link href="stealthmate.github.io/saidai-deep-learning/python/jupyter.html" rel="alternate" type="text/html" title="Jupyter" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/jupyter</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/jupyter.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/python/anaconda_env.html&quot;&gt;Anacondaで環境を作る&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/python/python_intro.html&quot;&gt;Python即入門&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;ユーザー名が&lt;code class=&quot;highlighter-rouge&quot;&gt;michael&lt;/code&gt;だと仮定する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;jupyterって何&quot;&gt;Jupyterって何？&lt;/h1&gt;
+
+&lt;p&gt;簡単に言うと、Jupyterはブラウザーで&lt;a href=&quot;https://ja.wikipedia.org/wiki/%E6%96%87%E8%8A%B8%E7%9A%84%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0&quot;&gt;Literate Programming&lt;/a&gt;をするためのものです。Pythonコードの間に説明文や画像を挟んだり、変数の値などを出力したりできるエディターです。Jupyterで書いたものは生のPythonスクリプトとは違うので、&lt;code class=&quot;highlighter-rouge&quot;&gt;.py&lt;/code&gt;ではなく、&lt;code class=&quot;highlighter-rouge&quot;&gt;.ipynb&lt;/code&gt;（&lt;strong&gt;iPy&lt;/strong&gt;thon &lt;strong&gt;N&lt;/strong&gt;ote&lt;strong&gt;B&lt;/strong&gt;ook）として保存され、中身もただのコードではなく、いろいろなものが入っています。&lt;/p&gt;
+
+&lt;h1 id=&quot;jupyterの起動と使い方&quot;&gt;Jupyterの起動と使い方&lt;/h1&gt;
+
+&lt;p&gt;Jupyterは、起動されたディレクトリーの中身しか見れないので、Terminalで自分が書いたものを保存したいところに行って、&lt;code class=&quot;highlighter-rouge&quot;&gt;jupyter notebook&lt;/code&gt;と書きます。そうすると、恐らく自動的にブラウザーが開かれます。&lt;/p&gt;
+
+&lt;p&gt;ブラウザーのURLを良く見てみると、&lt;code class=&quot;highlighter-rouge&quot;&gt;localhost:8888/tree&lt;/code&gt;のような形になっていることに気づきます。実は、Jupyterは自分のパソコン上に建っている、ごく普通のウエブサイトです。というのは、どのブラウザーでも使うことができます。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;localhost&lt;/code&gt;というのは、&lt;code class=&quot;highlighter-rouge&quot;&gt;google.com&lt;/code&gt;と同じ&lt;strong&gt;Domain Name&lt;/strong&gt;ですが、常に「このパソコン」を指します。つまり、私のパソコンで&lt;code class=&quot;highlighter-rouge&quot;&gt;localhost&lt;/code&gt;と書けば、それが私のパソコンを指し、あなたのパソコンで&lt;code class=&quot;highlighter-rouge&quot;&gt;localhost&lt;/code&gt;と書けば、あなたのパソコンを指します。&lt;/p&gt;
+
+&lt;p&gt;次に、&lt;code class=&quot;highlighter-rouge&quot;&gt;:8888&lt;/code&gt;という部分は&lt;strong&gt;Port&lt;/strong&gt;を指します。ポートとは、簡単に言うとネットワーク通信が通る出入り口のことです。パソコンは常にいろいろなサイトやサーバーと接続しているので、出入り口がいっぱいあります。その中で、デフォルトの設定としてJupyterはポート8888を使います。また、Domain Nameにポートを指定したいときに、&lt;code class=&quot;highlighter-rouge&quot;&gt;domain.com:&amp;lt;port&amp;gt;&lt;/code&gt;と書けばできますが、ほとんどのウェブサイトは1つのポートでしか受付をしないので、&lt;code class=&quot;highlighter-rouge&quot;&gt;localhost&lt;/code&gt;以外で使うことは普段ありません。最後に、&lt;code class=&quot;highlighter-rouge&quot;&gt;google.com&lt;/code&gt;のポートをどうやって知っているかというと、インターネットの決まりごととして、ウェブサイトはHTTPの場合はポート80、HTTPSの場合はポート443を使うことが決まっています。&lt;/p&gt;
+
+&lt;p&gt;では、Jupyterを開くと、ディレクトリー内のファイルの一覧が最初に表示されます。そこで、右上にある&lt;code class=&quot;highlighter-rouge&quot;&gt;New&lt;/code&gt;ボタンから、新しいPython3のノートブックを作りましょう。箱の中に&lt;code class=&quot;highlighter-rouge&quot;&gt;3 + 2&lt;/code&gt;を書いて、&lt;code class=&quot;highlighter-rouge&quot;&gt;Run&lt;/code&gt;（あるいは&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+ENTER&lt;/code&gt;）を押すと、結果が表示されます。&lt;/p&gt;
+
+&lt;h1 id=&quot;セルの役割&quot;&gt;セルの役割&lt;/h1&gt;
+
+&lt;p&gt;メニューから&lt;code class=&quot;highlighter-rouge&quot;&gt;Cell -&amp;gt; Insert Cell Below/Above&lt;/code&gt;（&lt;code class=&quot;highlighter-rouge&quot;&gt;Shift+ENTER&lt;/code&gt;）を押すと、新しい&lt;strong&gt;Cell&lt;/strong&gt;が追加されます。セルというのは、簡単に言うとコードのひと塊で、Jupyterの実行単位です。つまり極端な話をすると、一行毎にセルを切ると、一行ずつコードを実行できます。&lt;/p&gt;
+
+&lt;h2 id=&quot;pythonセルとmarkdownセル&quot;&gt;PythonセルとMarkdownセル&lt;/h2&gt;
+
+&lt;p&gt;JupyterではPythonセルとMarkdownセルという2種類のセルがデフォルトで使えます。PythonセルはPythonコードで先程述べたように、一つの実行単位です。一方MarkdownセルはMarkdownで書かれた文章を表示します。新しいセルを追加する時、デフォルトではPythonセルになりますが、メニューで&lt;code class=&quot;highlighter-rouge&quot;&gt;Cell -&amp;gt; Cell Type -&amp;gt; Markdown&lt;/code&gt;を押すと、Markdownセルに変わります。Markdownセルの中にMarkdownを書いて、&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+ENTER&lt;/code&gt;を押すと、フォーマットが適用された文章が表示されます。&lt;/p&gt;
+
+&lt;h2 id=&quot;markdownについて&quot;&gt;Markdownについて&lt;/h2&gt;
+
+&lt;p&gt;Markdownとは、Github等で良く使う、テキストに簡単なフォーマットを与えるためのmarkup言語（upをdownにしたのが名前の由来）です。この記事も実はMarkdownで書かれています。書き方については&lt;a href=&quot;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&quot;&gt;ここに&lt;/a&gt;一覧がありますが、例えばこの記事の見出しは以下のように書いています：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# セルの役割
+## PythonセルとMarkdownセル
+## Markdownについて
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#&lt;/code&gt;は大きな見出し、&lt;code class=&quot;highlighter-rouge&quot;&gt;##&lt;/code&gt;はそれより小さめな見出し、&lt;code class=&quot;highlighter-rouge&quot;&gt;###&lt;/code&gt;は更に小さな見出し等、様々なフォーマットがあるので、ぜひ上のリンクを参照してください。&lt;/p&gt;
+
+&lt;h2 id=&quot;数式を表示する方法&quot;&gt;数式を表示する方法&lt;/h2&gt;
+
+&lt;p&gt;MarkdownセルではMarkdownだけではなく、&lt;a href=&quot;https://www.mathjax.org/&quot;&gt;MathJax&lt;/a&gt;という、$\LaTeX$の構文で書かれた数式を表示してくれるものも使えます。数式コードを\$\$ … \$\$で括ると、数式が表示されます。$\LaTeX$の数式構文についてはいろいろなところで書いてありますが、簡単な例として次のコードとその成果物を載せておきます。&lt;/p&gt;
+
+&lt;p&gt;以下を書けば：&lt;/p&gt;
+&lt;div class=&quot;language-latex highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\frac&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\partial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\partial&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt; x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt; f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;x, y&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\sum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;N&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\sqrt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;i &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;\beta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}}&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;$$&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;この結果になります：&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\frac{\partial}{\partial x} f(x, y) = \sum_i^N{\sqrt{x_i + \beta^2}}&lt;/script&gt;
+
+&lt;h1 id=&quot;セルの実行順番とプログラムの状態&quot;&gt;セルの実行順番とプログラムの状態&lt;/h1&gt;
+
+&lt;p&gt;JupyterがPythonコードを実行するときに、少し特殊な処理をします。まず最初に、Pythonのkernel（カーネル）と呼ばれるものを起動します。カーネルとは要するにPythonのインタプリタみたいなものだと思ってください。JupyterはこのカーネルにセルAの内容を渡して、実行してもらい、結果を出力します。しかし、その時、もしセルAの中で変数や関数を定義したら、それらの情報はカーネルに保存され、次にセルBが実行されたときに、セルAで定義したものが使えます。&lt;/p&gt;
+
+&lt;p&gt;これを以下の例を用いて説明しましょう。&lt;/p&gt;
+
+&lt;p&gt;まず、Notebookの頭にセルAを作り、中に以下を書いたとします。&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;セルAを実行すると、結果が&lt;code class=&quot;highlighter-rouge&quot;&gt;3&lt;/code&gt;が出力されます。次に下にセルBを作り、以下を書きます：&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ここでセルBを実行すると、結果が&lt;code class=&quot;highlighter-rouge&quot;&gt;3, 5&lt;/code&gt;になります。セルAを先に実行したので、カーネルに&lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt;変数とその値が保存されています。次に、セルCを作ります。&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;セルCを実行すると、結果が&lt;code class=&quot;highlighter-rouge&quot;&gt;10, 5&lt;/code&gt;になります。&lt;/p&gt;
+
+&lt;p&gt;さて、ここで再度セルBを実行するとどうなるでしょうか。答えは&lt;code class=&quot;highlighter-rouge&quot;&gt;10, 5&lt;/code&gt;です。なぜかと言うと、最後にセルCを実行したとき、&lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt;の値が変わり、それがカーネルの中に保存されたからです。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;上の例から分かるように、Jupyterでコードを実行するとき、実行順番に気をつけなければいけません。そのために、セルの&lt;code class=&quot;highlighter-rouge&quot;&gt;In&lt;/code&gt;と&lt;code class=&quot;highlighter-rouge&quot;&gt;Out&lt;/code&gt;のところに番号が書かれています。その番号は、カーネルを起動してから何番目のセル実行であるか、つまりどのセルをどのタイミングで最後実行したのかを教えてくれます。&lt;/p&gt;
+
+&lt;h1 id=&quot;jupyterで頻繁に使うショートカットの一覧&quot;&gt;Jupyterで頻繁に使うショートカットの一覧&lt;/h1&gt;
+
+&lt;p&gt;以下は、セルでカーソルが表示されていない（フォーカスが無いと言います）状態でそのキーを押すと、動作します。&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;キー&lt;/th&gt;
+      &lt;th&gt;動作&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;a&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;今いるセルの上に新しくセルが作られます（&lt;strong&gt;a&lt;/strong&gt;boveから）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;b&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;今いるセルの下に新しくセルが作られます（&lt;strong&gt;b&lt;/strong&gt;elowから）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;dd&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;今いるセルが消されます(&lt;strong&gt;d&lt;/strong&gt;eleteから）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Ctrl&amp;gt;+&amp;lt;ENTER&amp;gt;&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;今いるセルが実行されます（Markdownの場合はMarkdownコードからフォーマット付きテキストに変わります）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;ENTER&amp;gt;&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;今いるセルがMarkdownセルで、フォーマット付き状態であれば、Markdownコードが表示される状態に変わります。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;ESC&amp;gt;&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;今いるセルでカーソルが表示されている状態から表示されていない状態に変わります（「フォーカスを失う」と言います）。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;UP&amp;gt;&lt;/code&gt;または&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;DOWN&amp;gt;&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;フォーカス無しの状態で上下のセルへの移動&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Shift&amp;gt;+&amp;lt;ENTER&amp;gt;&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Ctrl&amp;gt;+&amp;lt;ENTER&amp;gt;&lt;/code&gt;の次に&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;DOWN&amp;gt;&lt;/code&gt;を押したのに等しい。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry><entry><title type="html">Home</title><link href="stealthmate.github.io/saidai-deep-learning/python/home.html" rel="alternate" type="text/html" title="Home" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/home</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/home.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Anacondaで環境を作る</title><link href="stealthmate.github.io/saidai-deep-learning/python/anaconda_env.html" rel="alternate" type="text/html" title="Anacondaで環境を作る" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/anaconda_env</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/anaconda_env.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/python/anaconda.html&quot;&gt;Anacondaの役割と入れ方&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Anacondaが既に使えるようになっている&lt;/li&gt;
+  &lt;li&gt;ユーザー名が&lt;code class=&quot;highlighter-rouge&quot;&gt;michael&lt;/code&gt;だと仮定する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;anacondaで環境を作る&quot;&gt;Anacondaで環境を作る&lt;/h1&gt;
+
+&lt;p&gt;Anacondaで環境を作る時、以下のコマンドを使います。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda create &lt;span class=&quot;nt&quot;&gt;--name&lt;/span&gt; &amp;lt;env_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ここで、&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;env_name&amp;gt;&lt;/code&gt;は環境を識別するための名前で、半角英数からなる文字列です。以下、環境名が&lt;code class=&quot;highlighter-rouge&quot;&gt;myenv&lt;/code&gt;だと仮定して行きますが、どうぞ好きな名前にしてください。&lt;/p&gt;
+
+&lt;p&gt;ターミナルでは現在恐らく以下のようなprompt（コマンドの前にくる部分）が表示されています。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;base&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; michael@michael-pc:
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;ここにある&lt;code class=&quot;highlighter-rouge&quot;&gt;(base)&lt;/code&gt;というのは、今使っている環境の名前を指しています。Anacondaがデフォルトで使う環境の名前が&lt;code class=&quot;highlighter-rouge&quot;&gt;base&lt;/code&gt;なので、今&lt;code class=&quot;highlighter-rouge&quot;&gt;base&lt;/code&gt;環境にいることがわかります。&lt;/p&gt;
+
+&lt;p&gt;では、&lt;code class=&quot;highlighter-rouge&quot;&gt;myenv&lt;/code&gt;に切り替えるのにどうすればいいでしょう？答えは、以下のコマンドです：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda activate myenv
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;これで、promptの頭が&lt;code class=&quot;highlighter-rouge&quot;&gt;(myenv)&lt;/code&gt;に変わるはずです。また、もし&lt;code class=&quot;highlighter-rouge&quot;&gt;base&lt;/code&gt;に戻りたかったら、以下のコマンドでできます。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda deactivate
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;anacondaのパッケージについて&quot;&gt;Anacondaのパッケージについて&lt;/h1&gt;
+
+&lt;p&gt;Anacondaからは、&lt;strong&gt;パッケージ&lt;/strong&gt;という、ライブラリやプログラム等をインストールすることができます。Anacondaのサイトでは、パッケージは&lt;strong&gt;channel&lt;/strong&gt;（チャンネル）という、供給源で分類されます。チャンネルを特に指定しない場合は、&lt;code class=&quot;highlighter-rouge&quot;&gt;anaconda&lt;/code&gt;というチャンネルが使われますが、ライブラリやプログラムによっては、&lt;code class=&quot;highlighter-rouge&quot;&gt;anaconda&lt;/code&gt;にはない物もあります。何がどこにあるかを知るためには、&lt;a href=&quot;https://anaconda.org/anaconda/repo&quot; target=&quot;_blank&quot;&gt;Anacondaのrepository&lt;/a&gt;のサイトを検索すると良いでしょう。&lt;/p&gt;
+
+&lt;h1 id=&quot;pythonパッケージをインストールする&quot;&gt;pythonパッケージをインストールする&lt;/h1&gt;
+
+&lt;p&gt;Anacondaでパッケージをインストールしたい時は以下を使います:&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &amp;lt;channel&amp;gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &amp;lt;package&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;では、pythonをインストールしてみましょう。&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;は&lt;code class=&quot;highlighter-rouge&quot;&gt;anaconda&lt;/code&gt;チャンネルにあるので、チャンネルを指定しなくても問題ありません。以下のいずれかのコマンドでインストールできます。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;python
+conda &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; anaconda python
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;これを実行すると、Anacondaはいくつかのリストを表示してくれます。文字がいっぱいあって凄まじいと思うかもしれませんが、良くみてみると、以下の行があります：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;The following packages will be DOWNLOADED&lt;/code&gt; - これは、Anacondaがパッケージをインストールするためにダウンロードするもの&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;The following packages will be INSTALLED&lt;/code&gt; - これは、Anacondaがパッケージをインストールするために、追加でインストールしなければいけないもの&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;The following packages will be DOWNGRADED&lt;/code&gt; - これは、Anacondaがバッケージを古いバージョンに戻すもの&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;The following packages will be UPGRADED&lt;/code&gt; - これは、Anacondaがパッケージを新しいバージョンに更新するもの&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;では、何故&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;だけをインストールしたいのに、こんなにも色々入れたり更新したりしなければいけないのでしょう？実は、ライブラリというのも、他のライブラリの力を借りています。なので、一つのパッケージをインストールしようとすると、ほとんどの場合は他にもインストールしなければいけないことが多いです。更には、パッケージAがパッケージBの力を借りているとき、パッケージBのバージョンを厳密に指定しなければいけないのです。場合によっては、バージョンを調整しなければいけないこともあるので、古いものに戻したり更新したりする必要も出てきます。&lt;/p&gt;
+
+&lt;h1 id=&quot;心想学習のためのパッケージをインストールする&quot;&gt;心想学習のためのパッケージをインストールする&lt;/h1&gt;
+
+&lt;p&gt;心想学習などで良く使うパッケージをここで列挙しておきますので、各自でインストールしてみましょう。&lt;a href=&quot;https://anaconda.org/anaconda/repo&quot; target=&quot;_blank&quot;&gt;Anacondaのrepository&lt;/a&gt;でチャンネルの確認を忘れないよに。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;numpy&lt;/code&gt; - ベクトルや行列計算用のライブラリ&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;pandas&lt;/code&gt; - 表データを扱うためのライブラリ&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scipy&lt;/code&gt; - 数学や科学のためのライブラリ*&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;matplotlib&lt;/code&gt; - 図を描くためのライブラリ&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;seaborn&lt;/code&gt; - 図を綺麗に描くためのライブラリ&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scikit-learn&lt;/code&gt; - 機械学習やディープラーニングを行うためのライブラリ&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;keras&lt;/code&gt; - （GPUで）ディープラーニングを行うためのライブラリ&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry><entry><title type="html">Anacondaの役割と入れ方</title><link href="stealthmate.github.io/saidai-deep-learning/python/anaconda.html" rel="alternate" type="text/html" title="Anacondaの役割と入れ方" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/anaconda</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/anaconda.html">&lt;h1 id=&quot;予め入っているpythonでは何故だめなのか&quot;&gt;予め入っているpythonでは何故だめなのか&lt;/h1&gt;
+
+&lt;p&gt;Terminalで普通&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;と打つと、システムに予めインストールされたpythonプログラムを起動します。pythonプログラムだけを使うのであれば、それでいいのですが、ほとんどの場合、pythonそのものの他に、&lt;strong&gt;library&lt;/strong&gt;（ライブラリー）が必要になります。libraryとは、pythonプログラムには無い、他の人が書いた良く使うコードです。例えば、numpyというlibraryは、ベクトルや行列の計算などを行うためのものですし、pandasというのは、表データを扱うためのライブラリです。しかし、ライブラリーというのは常に変わっていくもので、新しい機能が追加されたり、古びた機能が削除されたりします。そのため、OSなどのシステムを作るとき、ライブラリーの必要な&lt;strong&gt;version&lt;/strong&gt;を固定にすることが望ましいです。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;さて、仮にOSに予めnumpyのバージョン1.0（略してv1.0）が入っているとします。OSでは動画を再生するために、numpyの中にある&lt;code class=&quot;highlighter-rouge&quot;&gt;addVectors&lt;/code&gt;という関数があるとします。この関数を&lt;code class=&quot;highlighter-rouge&quot;&gt;addVectors([1, 2], [3, 4])&lt;/code&gt;で呼ぶと、ベクトル&lt;script type=&quot;math/tex&quot;&gt;(1, 2)&lt;/script&gt;とベクトル&lt;script type=&quot;math/tex&quot;&gt;(3, 4)&lt;/script&gt;を足し算し、ベクトル&lt;script type=&quot;math/tex&quot;&gt;(4, 6)&lt;/script&gt;が得られます。&lt;/p&gt;
+
+&lt;p&gt;では、あなたは今心想学習の勉強をしているのですが、2つのベクトルだけではなく、10個、あるいは100個のベクトルを一気に足し算したいです。numpyの機能を調べてみたら、&lt;code class=&quot;highlighter-rouge&quot;&gt;addVectors([[1, 2], [3, 4], [5, 6], ...])&lt;/code&gt;というように、リストの中で任意の数のベクトルを入れて、リストそのものを関数に渡すと、全部足してくれる機能がありました。しかし、この関数はv2.0にしかなく、それどころかv1.0とは使い方が違いますね。&lt;/p&gt;
+
+&lt;p&gt;さて、ここでどうすればいいでしょうか？OSに入っているnumpyを最新版にすると、OSが動画再生できなくなります。一方でv1.0を使うと、自分が使いたい機能が使えません。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;答えは、システムのpythonとは全く違うところで、自分の好きなpythonとそのライブラリーのバージョンをインストールすることです。そうすれば、システムはシステムに必要なものが使えて、あなたはあなたが必要としているものが使えますね。&lt;/p&gt;
+
+&lt;p&gt;このように、pythonやそのパッケージ等が存在する環境を分けるために、Anacondaというものがあります。&lt;/p&gt;
+
+&lt;h1 id=&quot;anacondaの役割&quot;&gt;Anacondaの役割&lt;/h1&gt;
+
+&lt;p&gt;Anacondaは、簡単に言うと&lt;strong&gt;開発環境&lt;/strong&gt;を管理するためのツールです。Anacondaを使うと、&lt;strong&gt;環境&lt;/strong&gt;という、大雑把に言えばディレクトリのようなものを作ることができ、その中に好きなpythonとそのライブラリを入れ、必要なときに必要な環境に切り替えることが簡単にできます。例えば、心想学習の勉強は最新のpythonと最新のライブラリでやりたいから、それらが入っている環境&lt;code class=&quot;highlighter-rouge&quot;&gt;machine_learning&lt;/code&gt;を作ります。一方、会社の仕事で開発しているプログラムでpython2.7を使って、特定のnumpyのバージョンを使わなければいけないのであれば、それらが入っている&lt;code class=&quot;highlighter-rouge&quot;&gt;work&lt;/code&gt;環境を作ると良いでしょう。&lt;/p&gt;
+
+&lt;h1 id=&quot;anacondaの入れ方&quot;&gt;Anacondaの入れ方&lt;/h1&gt;
+
+&lt;h2 id=&quot;事前準備&quot;&gt;事前準備&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ユーザー名が&lt;code class=&quot;highlighter-rouge&quot;&gt;michael&lt;/code&gt;であり、HOMEディレクトリが&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael&lt;/code&gt;だと仮定します。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;手順&quot;&gt;手順&lt;/h2&gt;
+
+&lt;h3 id=&quot;ダウンロード&quot;&gt;ダウンロード&lt;/h3&gt;
+
+&lt;p&gt;まず、&lt;a href=&quot;https://www.anaconda.com/distribution/&quot;&gt;ここ&lt;/a&gt;からAnacondaのインストーラーをダウンロードします。python3.7の、64bit(x86)インストーラをダウンロードしてください。普段は&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael/Downloads/Anaconda3-YYYY-MM-Linux-x86-64.sh&lt;/code&gt;に保存されます。（ここで&lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM&lt;/code&gt;はダウンロードした時期によるので注意してください）。&lt;/p&gt;
+
+&lt;h3 id=&quot;インストール&quot;&gt;インストール&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Terminalで&lt;code class=&quot;highlighter-rouge&quot;&gt;cd ~/Downloads&lt;/code&gt;でDownloadsに移動して、&lt;code class=&quot;highlighter-rouge&quot;&gt;sh Anaconda3-YYYY-MM-Linux-x86-64.sh&lt;/code&gt;を実行します（&lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM&lt;/code&gt;を適宜埋めてください）。&lt;/li&gt;
+  &lt;li&gt;TerminalでAnacondaがインストール仮定について丁寧に教えてくれるので、それに従えば良い。&lt;/li&gt;
+  &lt;li&gt;インストールが終わったあっと、&lt;code class=&quot;highlighter-rouge&quot;&gt;.bashrc&lt;/code&gt;に新たにAnacondaの環境設定が入っているので、それを適用するためにTerminalを再起動します。&lt;a href=&quot;/saidai-deep-learning/linux/environment_vars.html&quot;&gt;.bashrcについてはここ&lt;/a&gt;を参照してください。&lt;/li&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">予め入っているpythonでは何故だめなのか</summary></entry></feed>
