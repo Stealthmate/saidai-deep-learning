@@ -247,6 +247,7 @@ PLATFORMS
 DEPENDENCIES
   github-pages
   jekyll
+  jekyll-feed
   jekyll-toc
   kramdown
   minima
