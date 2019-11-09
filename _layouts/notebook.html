@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    {% include head.html %}
+    <title>{{ page.title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ "/assets/css/notebook.css" | relative_url }}">
+  </head>
+  <body>
+    {% include navigation.html %}
+    {% assign collection = site.collections | where:"label", page.collection | first %}
+    <main>
+      <header>
+        <h1>
+          {{ collection.title }} - {{ page.title }}
+        </h1>
+        <div id="table-of-contents">
+          {{ content | toc_only }}
+        </div>
+
+        <br />
+        <a href="https://github.com/Stealthmate/saidai-deep-learning/tree/master/notebooks{{ page.url | split: '.html' }}">このNotebookへのリンク</a>
+      </header>
+      <hr>
+      <section>
+        {{ content }}
+      </section>
+    </main>
+  </body>
+</html>

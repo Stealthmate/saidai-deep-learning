@@ -1,0 +1,9 @@
+#!/bin/sh
+
+NB="notebooks/$1/$2/notebook.ipynb"
+jupyter nbconvert --to markdown $NB --output-dir="_$1"
+mv "_$1/notebook.md" "_$1/$2.md"
+# mkdir -p "assets/$1/$2/"
+# mv "_$1/notebook_files/"* "assets/$1/$2"
+# rmdir "_$1/notebook_files"
+# sed "s/notebook_files/\/assets\/$1\/$2/g" -i "_$1/$2.md"
