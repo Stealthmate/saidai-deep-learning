@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/syntax.css">
+<script async type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+    <title>Jupyter</title>
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+  </head>
+  <body>
+    <nav>
+  <a class="" href="/saidai-deep-learning/">Home</a>
+
+  
+  
+  <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
+  
+  <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
+  
+  <a href="/saidai-deep-learning/machine_learning/home.html">機械学習</a>
+  
+</nav>
+
+    
+    <main>
+      <header>
+        <h1>
+          Pythonについて - Jupyter
+        </h1>
+        <div id="table-of-contents">
+          <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#事前知識準備">事前知識・準備</a></li>
+<li class="toc-entry toc-h1"><a href="#jupyterって何">Jupyterって何？</a></li>
+<li class="toc-entry toc-h1"><a href="#jupyterの起動と使い方">Jupyterの起動と使い方</a></li>
+<li class="toc-entry toc-h1"><a href="#セルの役割">セルの役割</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#pythonセルとmarkdownセル">PythonセルとMarkdownセル</a></li>
+<li class="toc-entry toc-h2"><a href="#markdownについて">Markdownについて</a></li>
+<li class="toc-entry toc-h2"><a href="#数式を表示する方法">数式を表示する方法</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#セルの実行順番とプログラムの状態">セルの実行順番とプログラムの状態</a></li>
+<li class="toc-entry toc-h1"><a href="#jupyterで頻繁に使うショートカットの一覧">Jupyterで頻繁に使うショートカットの一覧</a></li>
+</ul>
+        </div>
+      </header>
+      <section>
+        <h1 id="事前知識準備">事前知識・準備</h1>
+
+<ul>
+  <li><a href="/saidai-deep-learning/python/anaconda_env.html">Anacondaで環境を作る</a></li>
+  <li><a href="/saidai-deep-learning/python/python_intro.html">Python即入門</a></li>
+  <li>ユーザー名が<code class="highlighter-rouge">michael</code>だと仮定する</li>
+</ul>
+
+<h1 id="jupyterって何">Jupyterって何？</h1>
+
+<p>簡単に言うと、Jupyterはブラウザーで<a href="https://ja.wikipedia.org/wiki/%E6%96%87%E8%8A%B8%E7%9A%84%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%9F%E3%83%B3%E3%82%B0">Literate Programming</a>をするためのものです。Pythonコードの間に説明文や画像を挟んだり、変数の値などを出力したりできるエディターです。Jupyterで書いたものは生のPythonスクリプトとは違うので、<code class="highlighter-rouge">.py</code>ではなく、<code class="highlighter-rouge">.ipynb</code>（<strong>iPy</strong>thon <strong>N</strong>ote<strong>B</strong>ook）として保存され、中身もただのコードではなく、いろいろなものが入っています。</p>
+
+<h1 id="jupyterの起動と使い方">Jupyterの起動と使い方</h1>
+
+<p>Jupyterは、起動されたディレクトリーの中身しか見れないので、Terminalで自分が書いたものを保存したいところに行って、<code class="highlighter-rouge">jupyter notebook</code>と書きます。そうすると、恐らく自動的にブラウザーが開かれます。</p>
+
+<p>ブラウザーのURLを良く見てみると、<code class="highlighter-rouge">localhost:8888/tree</code>のような形になっていることに気づきます。実は、Jupyterは自分のパソコン上に建っている、ごく普通のウエブサイトです。というのは、どのブラウザーでも使うことができます。</p>
+
+<p><code class="highlighter-rouge">localhost</code>というのは、<code class="highlighter-rouge">google.com</code>と同じ<strong>Domain Name</strong>ですが、常に「このパソコン」を指します。つまり、私のパソコンで<code class="highlighter-rouge">localhost</code>と書けば、それが私のパソコンを指し、あなたのパソコンで<code class="highlighter-rouge">localhost</code>と書けば、あなたのパソコンを指します。</p>
+
+<p>次に、<code class="highlighter-rouge">:8888</code>という部分は<strong>Port</strong>を指します。ポートとは、簡単に言うとネットワーク通信が通る出入り口のことです。パソコンは常にいろいろなサイトやサーバーと接続しているので、出入り口がいっぱいあります。その中で、デフォルトの設定としてJupyterはポート8888を使います。また、Domain Nameにポートを指定したいときに、<code class="highlighter-rouge">domain.com:&lt;port&gt;</code>と書けばできますが、ほとんどのウェブサイトは1つのポートでしか受付をしないので、<code class="highlighter-rouge">localhost</code>以外で使うことは普段ありません。最後に、<code class="highlighter-rouge">google.com</code>のポートをどうやって知っているかというと、インターネットの決まりごととして、ウェブサイトはHTTPの場合はポート80、HTTPSの場合はポート443を使うことが決まっています。</p>
+
+<p>では、Jupyterを開くと、ディレクトリー内のファイルの一覧が最初に表示されます。そこで、右上にある<code class="highlighter-rouge">New</code>ボタンから、新しいPython3のノートブックを作りましょう。箱の中に<code class="highlighter-rouge">3 + 2</code>を書いて、<code class="highlighter-rouge">Run</code>（あるいは<code class="highlighter-rouge">Ctrl+ENTER</code>）を押すと、結果が表示されます。</p>
+
+<h1 id="セルの役割">セルの役割</h1>
+
+<p>メニューから<code class="highlighter-rouge">Cell -&gt; Insert Cell Below/Above</code>（<code class="highlighter-rouge">Shift+ENTER</code>）を押すと、新しい<strong>Cell</strong>が追加されます。セルというのは、簡単に言うとコードのひと塊で、Jupyterの実行単位です。つまり極端な話をすると、一行毎にセルを切ると、一行ずつコードを実行できます。</p>
+
+<h2 id="pythonセルとmarkdownセル">PythonセルとMarkdownセル</h2>
+
+<p>JupyterではPythonセルとMarkdownセルという2種類のセルがデフォルトで使えます。PythonセルはPythonコードで先程述べたように、一つの実行単位です。一方MarkdownセルはMarkdownで書かれた文章を表示します。新しいセルを追加する時、デフォルトではPythonセルになりますが、メニューで<code class="highlighter-rouge">Cell -&gt; Cell Type -&gt; Markdown</code>を押すと、Markdownセルに変わります。Markdownセルの中にMarkdownを書いて、<code class="highlighter-rouge">Ctrl+ENTER</code>を押すと、フォーマットが適用された文章が表示されます。</p>
+
+<h2 id="markdownについて">Markdownについて</h2>
+
+<p>Markdownとは、Github等で良く使う、テキストに簡単なフォーマットを与えるためのmarkup言語（upをdownにしたのが名前の由来）です。この記事も実はMarkdownで書かれています。書き方については<a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">ここに</a>一覧がありますが、例えばこの記事の見出しは以下のように書いています：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code># セルの役割
+## PythonセルとMarkdownセル
+## Markdownについて
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">#</code>は大きな見出し、<code class="highlighter-rouge">##</code>はそれより小さめな見出し、<code class="highlighter-rouge">###</code>は更に小さな見出し等、様々なフォーマットがあるので、ぜひ上のリンクを参照してください。</p>
+
+<h2 id="数式を表示する方法">数式を表示する方法</h2>
+
+<p>MarkdownセルではMarkdownだけではなく、<a href="https://www.mathjax.org/">MathJax</a>という、$\LaTeX$の構文で書かれた数式を表示してくれるものも使えます。数式コードを\$\$ … \$\$で括ると、数式が表示されます。$\LaTeX$の数式構文についてはいろいろなところで書いてありますが、簡単な例として次のコードとその成果物を載せておきます。</p>
+
+<p>以下を書けば：</p>
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">$$</span><span class="nb">
+</span><span class="nv">\frac</span><span class="p">{</span><span class="nv">\partial</span><span class="p">}{</span><span class="nv">\partial</span><span class="nb"> x</span><span class="p">}</span><span class="nb"> f</span><span class="o">(</span><span class="nb">x, y</span><span class="o">)</span><span class="nb"> </span><span class="o">=</span><span class="nb"> </span><span class="nv">\sum</span><span class="p">_</span><span class="nb">i</span><span class="p">^</span><span class="nb">N</span><span class="p">{</span><span class="nv">\sqrt</span><span class="p">{</span><span class="nb">x</span><span class="p">_</span><span class="nb">i </span><span class="o">+</span><span class="nb"> </span><span class="nv">\beta</span><span class="p">^</span><span class="m">2</span><span class="p">}}</span><span class="nb">
+</span><span class="p">$$</span>
+</code></pre></div></div>
+
+<p>この結果になります：</p>
+
+<script type="math/tex; mode=display">\frac{\partial}{\partial x} f(x, y) = \sum_i^N{\sqrt{x_i + \beta^2}}</script>
+
+<h1 id="セルの実行順番とプログラムの状態">セルの実行順番とプログラムの状態</h1>
+
+<p>JupyterがPythonコードを実行するときに、少し特殊な処理をします。まず最初に、Pythonのkernel（カーネル）と呼ばれるものを起動します。カーネルとは要するにPythonのインタプリタみたいなものだと思ってください。JupyterはこのカーネルにセルAの内容を渡して、実行してもらい、結果を出力します。しかし、その時、もしセルAの中で変数や関数を定義したら、それらの情報はカーネルに保存され、次にセルBが実行されたときに、セルAで定義したものが使えます。</p>
+
+<p>これを以下の例を用いて説明しましょう。</p>
+
+<p>まず、Notebookの頭にセルAを作り、中に以下を書いたとします。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>セルAを実行すると、結果が<code class="highlighter-rouge">3</code>が出力されます。次に下にセルBを作り、以下を書きます：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">y</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>ここでセルBを実行すると、結果が<code class="highlighter-rouge">3, 5</code>になります。セルAを先に実行したので、カーネルに<code class="highlighter-rouge">x</code>変数とその値が保存されています。次に、セルCを作ります。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+<p>セルCを実行すると、結果が<code class="highlighter-rouge">10, 5</code>になります。</p>
+
+<p>さて、ここで再度セルBを実行するとどうなるでしょうか。答えは<code class="highlighter-rouge">10, 5</code>です。なぜかと言うと、最後にセルCを実行したとき、<code class="highlighter-rouge">x</code>の値が変わり、それがカーネルの中に保存されたからです。</p>
+
+<hr />
+
+<p>上の例から分かるように、Jupyterでコードを実行するとき、実行順番に気をつけなければいけません。そのために、セルの<code class="highlighter-rouge">In</code>と<code class="highlighter-rouge">Out</code>のところに番号が書かれています。その番号は、カーネルを起動してから何番目のセル実行であるか、つまりどのセルをどのタイミングで最後実行したのかを教えてくれます。</p>
+
+<h1 id="jupyterで頻繁に使うショートカットの一覧">Jupyterで頻繁に使うショートカットの一覧</h1>
+
+<p>以下は、セルでカーソルが表示されていない（フォーカスが無いと言います）状態でそのキーを押すと、動作します。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>キー</th>
+      <th>動作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">a</code></td>
+      <td>今いるセルの上に新しくセルが作られます（<strong>a</strong>boveから）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">b</code></td>
+      <td>今いるセルの下に新しくセルが作られます（<strong>b</strong>elowから）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">dd</code></td>
+      <td>今いるセルが消されます(<strong>d</strong>eleteから）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">&lt;Ctrl&gt;+&lt;ENTER&gt;</code></td>
+      <td>今いるセルが実行されます（Markdownの場合はMarkdownコードからフォーマット付きテキストに変わります）</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">&lt;ENTER&gt;</code></td>
+      <td>今いるセルがMarkdownセルで、フォーマット付き状態であれば、Markdownコードが表示される状態に変わります。</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">&lt;ESC&gt;</code></td>
+      <td>今いるセルでカーソルが表示されている状態から表示されていない状態に変わります（「フォーカスを失う」と言います）。</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">&lt;UP&gt;</code>または<code class="highlighter-rouge">&lt;DOWN&gt;</code></td>
+      <td>フォーカス無しの状態で上下のセルへの移動</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">&lt;Shift&gt;+&lt;ENTER&gt;</code></td>
+      <td><code class="highlighter-rouge">&lt;Ctrl&gt;+&lt;ENTER&gt;</code>の次に<code class="highlighter-rouge">&lt;DOWN&gt;</code>を押したのに等しい。</td>
+    </tr>
+  </tbody>
+</table>
+
+      </section>
+    </main>
+  </body>
+</html>
