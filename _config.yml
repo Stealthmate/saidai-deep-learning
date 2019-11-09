@@ -19,8 +19,16 @@ collections:
     output: True
     title: Pythonについて
     order: 1
+  machine_learning:
+    output: True
+    title: 機械学習
+    order: 2
 
 destination: docs
 
 markdown: kramdown
 mathjax: true
+highlighter: rouge
+kramdown:
+  syntax_highlighter: rouge
+  input: GFM
