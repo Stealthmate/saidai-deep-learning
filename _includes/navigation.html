@@ -1,8 +1,3 @@
 <nav>
   <a class="{% if "/" == page.url %} here-now {% endif %}" href="{{ "/" | relative_url }}">Home</a>
-
-  {% assign collections = site.collections | where_exp: "x", "x.label != 'posts'" | sort: "order" %}
-  {% for collection in collections %}
-  <a href="{{ collection.label | relative_url }}/home.html">{{ collection.title }}</a>
-  {% endfor %}
 </nav>

@@ -6,17 +6,28 @@
     <link rel="stylesheet" type="text/css" href="{{ "/assets/css/style.css" | relative_url }}">
   </head>
   <body>
-    {% include navigation.html %}
     {% assign collection = site.collections | where:"label", page.collection | first %}
+    <nav>
+      <a href="{{ "/" | relative_url }}">Home</a>
+    </nav>
     <main>
       <header>
+        <h2>
+          <a href="{{ collection.label | relative_url }}/home.html">{{ collection.title }}</a>
+        </h2>
         <h1>
-          {{ collection.title }} - {{ page.title }}
+          {{ page.title }}
         </h1>
-        <div id="table-of-contents">
-          {{ content | toc_only }}
-        </div>
+        <details>
+          <summary>
+            目次
+          </summary>
+          <div id="table-of-contents">
+            {{ content | toc_only }}
+          </div>
+        </details>
       </header>
+      <hr>
       <section>
         {{ content }}
       </section>
