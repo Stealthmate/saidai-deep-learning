@@ -1,6 +1,11 @@
 @import 'colors';
+@import 'common';
 
 .article-list {
     border-top: solid 3px $color-border;
     border-bottom: solid 3px $color-border;
+}
+
+nav {
+    display: block;
 }

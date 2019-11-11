@@ -1,9 +1,6 @@
 ---
 ---
 
-@import 'collection_home';
-@import 'default';
-
 $color-text: #333;
 $color-border: #CCC;
 
@@ -14,29 +11,11 @@ body {
     align-items: stretch;
 }
 
-h2 {
-    color: $color-text;
-    padding: 3px;
-    border-bottom: solid 3px $color-border;
-    border-top: solid 3px $color-border;
-}
-
 nav {
     padding: 10px;
 
     display: flex;
     flex-direction: row;
-
-    a {
-        padding: 3px;
-        padding-left: 10px;
-    }
-
-    .here-now {
-        font-weight: bold;
-        background: #CCCC;
-        border-radius: 10px;
-    }
 }
 
 main {
