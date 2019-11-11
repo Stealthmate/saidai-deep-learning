@@ -16,6 +16,9 @@
           <a href="{{ collection.label | relative_url }}/home.html">{{ collection.title }}</a>
         </h2>
         <h1>
+	  {% if page.series != '' %}
+	  {{ page.series }} 第{{ page.series_part }}講:&nbsp;
+	  {% endif %}
           {{ page.title }}
         </h1>
         {% include toc.html %}
