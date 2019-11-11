@@ -3,15 +3,27 @@
   <head>
     <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
 <script async type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/x-mathjax-config">
+  var isMobile = window.matchMedia('(max-width: 600px)').matches
+  console.log(isMobile)
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
+      processEscapes: true,
+    },
+    "HTML-CSS": {
+      scale: isMobile ? 70 : 100,
+      styles: {
+        ".MathJax_Display": {
+          width: isMobile ? "95%" : "100%"
+        }
+      }
+    },
   });
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>心想学習勉強会</title>
     <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
@@ -19,15 +31,6 @@
   <body>
     <nav>
   <a class=" here-now " href="/saidai-deep-learning/">Home</a>
-
-  
-  
-  <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
-  
-  <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
-  
-  <a href="/saidai-deep-learning/machine_learning/home.html">機械学習</a>
-  
 </nav>
 
     <main>
@@ -41,7 +44,13 @@
       </header>
       <section>
         
-
+        
+        <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
+        
+        <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
+        
+        <a href="/saidai-deep-learning/machine_learning/home.html">機械学習</a>
+        
       </section>
     </main>
   </body>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="stealthmate.github.io/saidai-deep-learning/feed/python.xml" rel="self" type="application/atom+xml" /><link href="stealthmate.github.io/saidai-deep-learning/" rel="alternate" type="text/html" /><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/feed/python.xml</id><title type="html"> | Python</title><entry><title type="html">Python即入門</title><link href="stealthmate.github.io/saidai-deep-learning/python/python_intro.html" rel="alternate" type="text/html" title="Python即入門" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/python_intro</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/python_intro.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="stealthmate.github.io/saidai-deep-learning/feed/python.xml" rel="self" type="application/atom+xml" /><link href="stealthmate.github.io/saidai-deep-learning/" rel="alternate" type="text/html" /><updated>2019-11-11T10:41:31+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/feed/python.xml</id><title type="html"> | Python</title><entry><title type="html">Python即入門</title><link href="stealthmate.github.io/saidai-deep-learning/python/python_intro.html" rel="alternate" type="text/html" title="Python即入門" /><published>2019-11-11T10:41:31+09:00</published><updated>2019-11-11T10:41:31+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/python_intro</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/python_intro.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/python/anaconda_env.html&quot;&gt;Anacondaで環境を作る&lt;/a&gt;&lt;/li&gt;
@@ -63,66 +63,67 @@
 
 &lt;p&gt;では、PythonもCも型のミスでエラーが出るなら、何が違うの？と聞きたくなるでしょう。答えは、静的型付け言語は、プログラムを作る（コードをCPUへの命令に直す）時点で型をチェックし、文句を言います。一方Pythonのような動的型付け言語は、コードを実行する時点で文句を言います。一般的に静的型の方が安全でバグが少なくなるのですが、動的型の方が（インタプリタやコンパイラを作る人から見て）実装しやすくてシンプルです。&lt;/p&gt;
 
-&lt;div class=&quot;footnote&quot;&gt;* 最近（[Python 3.8](https://docs.python.org/3/library/typing.html)）では定義できるようになってはいますが、あくまでも可読性を上げるためのものだけであり、守らないと文句を言われるようなものではありません。&lt;/div&gt;
+&lt;div class=&quot;footnote&quot;&gt;
+  &lt;p&gt;* 最近（ &lt;a href=&quot;https://docs.python.org/3/library/typing.html&quot;&gt;Python 3.8&lt;/a&gt; ）では定義できるようになってはいますが、あくまでも可読性を上げるためのものだけであり、守らないと文句を言われるようなものではありません。&amp;lt;/div&amp;gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;pythonを動かしてみる&quot;&gt;Pythonを動かしてみる&lt;/h1&gt;
+  &lt;h1 id=&quot;python&quot;&gt;Pythonを動かしてみる&lt;/h1&gt;
 
-&lt;p&gt;Pythonはインタープリタ型言語（interpreted language）なので、先程言ったように、&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;プログラムが命令を解釈し実行します。インタープリタ型言語は多くの場合、わざわざプログラムをファイルに書き込んで、ファイルごと実行するという手順を追わなくても、1命令ずつ実行することができます。Pythonの場合、ターミナルで&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;とだけ打つと、インタープリタが起動します。インタープリタを起動してみて、以下の文を入力して、ENTERキーで実行してみましょう。&lt;/p&gt;
+  &lt;p&gt;Pythonはインタープリタ型言語（interpreted language）なので、先程言ったように、&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;プログラムが命令を解釈し実行します。インタープリタ型言語は多くの場合、わざわざプログラムをファイルに書き込んで、ファイルごと実行するという手順を追わなくても、1命令ずつ実行することができます。Pythonの場合、ターミナルで&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;とだけ打つと、インタープリタが起動します。インタープリタを起動してみて、以下の文を入力して、ENTERキーで実行してみましょう。&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 
-&lt;p&gt;結果は4になるはずです。C言語と同じように&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;/&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;演算が使えます。そして、Cとは違って、文字列に対してもいくつかの演算子が定義されています。以下のコマンドを打って、結果を確認しましょう。&lt;/p&gt;
+  &lt;p&gt;結果は4になるはずです。C言語と同じように&lt;code class=&quot;highlighter-rouge&quot;&gt;+&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;*&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;/&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;%&lt;/code&gt;演算が使えます。そして、Cとは違って、文字列に対してもいくつかの演算子が定義されています。以下のコマンドを打って、結果を確認しましょう。&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Saitama&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;-ken&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Saitama&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;-ken&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bun&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bun&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 
-&lt;p&gt;また、変数を定義して、変数で演算やその他の処理等もできます。&lt;/p&gt;
+  &lt;p&gt;また、変数を定義して、変数で演算やその他の処理等もできます。&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; x = 3
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; x = 3
 &amp;gt;&amp;gt;&amp;gt; x * 20
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 
-&lt;p&gt;では、次の処理を行って見ましょう。ユーザー（入力）から名前（文字列）を受け取って、それに&lt;code class=&quot;highlighter-rouge&quot;&gt;-san&lt;/code&gt;を付けたものを出力しましょう。Pythonでの入力は、&lt;code class=&quot;highlighter-rouge&quot;&gt;input()&lt;/code&gt;関数で一行を読み取るようにできます。これを使うと：&lt;/p&gt;
+  &lt;p&gt;では、次の処理を行って見ましょう。ユーザー（入力）から名前（文字列）を受け取って、それに&lt;code class=&quot;highlighter-rouge&quot;&gt;-san&lt;/code&gt;を付けたものを出力しましょう。Pythonでの入力は、&lt;code class=&quot;highlighter-rouge&quot;&gt;input()&lt;/code&gt;関数で一行を読み取るようにできます。これを使うと：&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;Valeri&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-san'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 
-&lt;h2 id=&quot;ファイル実行&quot;&gt;ファイル実行&lt;/h2&gt;
+  &lt;h2 id=&quot;section&quot;&gt;ファイル実行&lt;/h2&gt;
 
-&lt;p&gt;これで基礎的な動作はひとまず以上ですが、インタプリタで一々命令をその場で書くだけでは、話になりませんね。では、ファイルを作成して実行してみましょう。Pythonで実行するファイルは、&lt;code class=&quot;highlighter-rouge&quot;&gt;.py&lt;/code&gt;拡張子で保存します。&lt;/p&gt;
+  &lt;p&gt;これで基礎的な動作はひとまず以上ですが、インタプリタで一々命令をその場で書くだけでは、話になりませんね。では、ファイルを作成して実行してみましょう。Pythonで実行するファイルは、&lt;code class=&quot;highlighter-rouge&quot;&gt;.py&lt;/code&gt;拡張子で保存します。&lt;/p&gt;
 
-&lt;p&gt;では、上で書いた手順をファイルに保存してみましょう（ここでは&lt;code class=&quot;highlighter-rouge&quot;&gt;program.py&lt;/code&gt;だと仮定します）。&lt;/p&gt;
+  &lt;p&gt;では、上で書いた手順をファイルに保存してみましょう（ここでは&lt;code class=&quot;highlighter-rouge&quot;&gt;program.py&lt;/code&gt;だと仮定します）。&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-san'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 
-&lt;p&gt;では、実行して、入力してみましょう。&lt;/p&gt;
+  &lt;p&gt;では、実行して、入力してみましょう。&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python program.py
+  &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python program.py
 Valeri
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 
-&lt;p&gt;結果は出ましたか？恐らく出ていませんよね。上のように、インタプリタで直接命令を実行すると、その結果が自動的に表示されるようになっています。しかし、ファイルでは、自分から出力をしないと何も表示されません。つまり、所謂&lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;らしきものを使わないと、出力が出ません。Pythonでは、&lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt;関数で出力をします。では、上のプログラムを書き直すと：&lt;/p&gt;
+  &lt;p&gt;結果は出ましたか？恐らく出ていませんよね。上のように、インタプリタで直接命令を実行すると、その結果が自動的に表示されるようになっています。しかし、ファイルでは、自分から出力をしないと何も表示されません。つまり、所謂&lt;code class=&quot;highlighter-rouge&quot;&gt;printf&lt;/code&gt;らしきものを使わないと、出力が出ません。Pythonでは、&lt;code class=&quot;highlighter-rouge&quot;&gt;print&lt;/code&gt;関数で出力をします。では、上のプログラムを書き直すと：&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'-san'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;こう書くと結果が出るでしょう。&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
+  &lt;p&gt;こう書くと結果が出るでしょう。&lt;/p&gt;
 
-&lt;h1 id=&quot;リファレンスのためのサンプルコード&quot;&gt;リファレンスのためのサンプルコード&lt;/h1&gt;
+  &lt;h1 id=&quot;section-1&quot;&gt;リファレンスのためのサンプルコード&lt;/h1&gt;
 
-&lt;p&gt;C言語と同様に、Pythonにもif文やfor文がありますが、書き方が少し違います。とはいえ、大して変わることはないので、以下のサンプルコードを読んで、使い方を覚えてください。&lt;/p&gt;
+  &lt;p&gt;C言語と同様に、Pythonにもif文やfor文がありますが、書き方が少し違います。とはいえ、大して変わることはないので、以下のサンプルコードを読んで、使い方を覚えてください。&lt;/p&gt;
 
-&lt;p&gt;以下のプログラムは、Nまでの素数を順番にもとめて行くためのプログラムです。入力から整数Nを受け取って、素数を出力していきます。&lt;/p&gt;
+  &lt;p&gt;以下のプログラムは、Nまでの素数を順番にもとめて行くためのプログラムです。入力から整数Nを受け取って、素数を出力していきます。&lt;/p&gt;
 
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# これはコメントです
+  &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# これはコメントです
 &lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;N&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# input()で帰ってきた文字列をintに直す
 &lt;/span&gt;
@@ -141,15 +142,16 @@ Valeri
         &lt;span class=&quot;n&quot;&gt;primes&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;#配列の後ろに要素を追加
 &lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;  &lt;/div&gt;
 
-&lt;p&gt;&lt;a href=&quot;/saidai-deep-learning/python/sample.py&quot;&gt;pyファイル&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href=&quot;/saidai-deep-learning/python/sample.py&quot;&gt;pyファイル&lt;/a&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;python-documentation&quot;&gt;Python Documentation&lt;/h1&gt;
+  &lt;h1 id=&quot;python-documentation&quot;&gt;Python Documentation&lt;/h1&gt;
 
-&lt;p&gt;Pythonは優れた&lt;a href=&quot;https://docs.python.org/3.7/&quot;&gt;ドキュメンテーション&lt;/a&gt;（マニュアルみたいなもの）がネットに上がっています。全て読むのは無理なので、必要に応じて参考していきましょう。ただし、自分のPythonと同じバージョンを見るようにしましょう。このリンクはバージョン3.7のものです。&lt;/p&gt;
+  &lt;p&gt;Pythonは優れた&lt;a href=&quot;https://docs.python.org/3.7/&quot;&gt;ドキュメンテーション&lt;/a&gt;（マニュアルみたいなもの）がネットに上がっています。全て読むのは無理なので、必要に応じて参考していきましょう。ただし、自分のPythonと同じバージョンを見るようにしましょう。このリンクはバージョン3.7のものです。&lt;/p&gt;
 
-&lt;p&gt;全てを読むのは無理ですが、一旦&lt;a href=&quot;https://docs.python.org/3.7/library/stdtypes.html#text-sequence-type-str&quot;&gt;文字列&lt;/a&gt;に関するところをサラッと目を通しましょう。特に、&lt;code class=&quot;highlighter-rouge&quot;&gt;str.join()&lt;/code&gt;や&lt;code class=&quot;highlighter-rouge&quot;&gt;str.find()&lt;/code&gt;等、&lt;code class=&quot;highlighter-rouge&quot;&gt;str.&amp;lt;function&amp;gt;()&lt;/code&gt;のような関数を軽く見てみてください（全部理解しなくてもいいです）。&lt;/p&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry><entry><title type="html">Jupyter</title><link href="stealthmate.github.io/saidai-deep-learning/python/jupyter.html" rel="alternate" type="text/html" title="Jupyter" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/jupyter</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/jupyter.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
+  &lt;p&gt;全てを読むのは無理ですが、一旦&lt;a href=&quot;https://docs.python.org/3.7/library/stdtypes.html#text-sequence-type-str&quot;&gt;文字列&lt;/a&gt;に関するところをサラッと目を通しましょう。特に、&lt;code class=&quot;highlighter-rouge&quot;&gt;str.join()&lt;/code&gt;や&lt;code class=&quot;highlighter-rouge&quot;&gt;str.find()&lt;/code&gt;等、&lt;code class=&quot;highlighter-rouge&quot;&gt;str.&amp;lt;function&amp;gt;()&lt;/code&gt;のような関数を軽く見てみてください（全部理解しなくてもいいです）。&lt;/p&gt;
+&lt;/div&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry><entry><title type="html">Jupyter</title><link href="stealthmate.github.io/saidai-deep-learning/python/jupyter.html" rel="alternate" type="text/html" title="Jupyter" /><published>2019-11-11T10:41:31+09:00</published><updated>2019-11-11T10:41:31+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/jupyter</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/jupyter.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/python/anaconda_env.html&quot;&gt;Anacondaで環境を作る&lt;/a&gt;&lt;/li&gt;
@@ -286,7 +288,7 @@ Valeri
       &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;Ctrl&amp;gt;+&amp;lt;ENTER&amp;gt;&lt;/code&gt;の次に&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;DOWN&amp;gt;&lt;/code&gt;を押したのに等しい。&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
-&lt;/table&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry><entry><title type="html">Home</title><link href="stealthmate.github.io/saidai-deep-learning/python/home.html" rel="alternate" type="text/html" title="Home" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/home</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/home.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Anacondaで環境を作る</title><link href="stealthmate.github.io/saidai-deep-learning/python/anaconda_env.html" rel="alternate" type="text/html" title="Anacondaで環境を作る" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/anaconda_env</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/anaconda_env.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
+&lt;/table&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry><entry><title type="html">Home</title><link href="stealthmate.github.io/saidai-deep-learning/python/home.html" rel="alternate" type="text/html" title="Home" /><published>2019-11-11T10:41:31+09:00</published><updated>2019-11-11T10:41:31+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/home</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/home.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Anacondaで環境を作る</title><link href="stealthmate.github.io/saidai-deep-learning/python/anaconda_env.html" rel="alternate" type="text/html" title="Anacondaで環境を作る" /><published>2019-11-11T10:41:31+09:00</published><updated>2019-11-11T10:41:31+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/anaconda_env</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/anaconda_env.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/python/anaconda.html&quot;&gt;Anacondaの役割と入れ方&lt;/a&gt;&lt;/li&gt;
@@ -360,7 +362,7 @@ conda &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;seaborn&lt;/code&gt; - 図を綺麗に描くためのライブラリ&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;scikit-learn&lt;/code&gt; - 機械学習やディープラーニングを行うためのライブラリ&lt;/li&gt;
   &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;keras&lt;/code&gt; - （GPUで）ディープラーニングを行うためのライブラリ&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry><entry><title type="html">Anacondaの役割と入れ方</title><link href="stealthmate.github.io/saidai-deep-learning/python/anaconda.html" rel="alternate" type="text/html" title="Anacondaの役割と入れ方" /><published>2019-11-10T03:13:03+09:00</published><updated>2019-11-10T03:13:03+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/anaconda</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/anaconda.html">&lt;h1 id=&quot;予め入っているpythonでは何故だめなのか&quot;&gt;予め入っているpythonでは何故だめなのか&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry><entry><title type="html">Anacondaの役割と入れ方</title><link href="stealthmate.github.io/saidai-deep-learning/python/anaconda.html" rel="alternate" type="text/html" title="Anacondaの役割と入れ方" /><published>2019-11-11T10:41:31+09:00</published><updated>2019-11-11T10:41:31+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/python/anaconda</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/python/anaconda.html">&lt;h1 id=&quot;予め入っているpythonでは何故だめなのか&quot;&gt;予め入っているpythonでは何故だめなのか&lt;/h1&gt;
 
 &lt;p&gt;Terminalで普通&lt;code class=&quot;highlighter-rouge&quot;&gt;python&lt;/code&gt;と打つと、システムに予めインストールされたpythonプログラムを起動します。pythonプログラムだけを使うのであれば、それでいいのですが、ほとんどの場合、pythonそのものの他に、&lt;strong&gt;library&lt;/strong&gt;（ライブラリー）が必要になります。libraryとは、pythonプログラムには無い、他の人が書いた良く使うコードです。例えば、numpyというlibraryは、ベクトルや行列の計算などを行うためのものですし、pandasというのは、表データを扱うためのライブラリです。しかし、ライブラリーというのは常に変わっていくもので、新しい機能が追加されたり、古びた機能が削除されたりします。そのため、OSなどのシステムを作るとき、ライブラリーの必要な&lt;strong&gt;version&lt;/strong&gt;を固定にすることが望ましいです。&lt;/p&gt;
 

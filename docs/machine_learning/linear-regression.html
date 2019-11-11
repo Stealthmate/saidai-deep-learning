@@ -3,15 +3,27 @@
   <head>
     <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
 <script async type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/x-mathjax-config">
+  var isMobile = window.matchMedia('(max-width: 600px)').matches
+  console.log(isMobile)
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
+      processEscapes: true,
+    },
+    "HTML-CSS": {
+      scale: isMobile ? 70 : 100,
+      styles: {
+        ".MathJax_Display": {
+          width: isMobile ? "95%" : "100%"
+        }
+      }
+    },
   });
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>線形回帰</title>
     <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/notebook.css">
@@ -19,15 +31,6 @@
   <body>
     <nav>
   <a class="" href="/saidai-deep-learning/">Home</a>
-
-  
-  
-  <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
-  
-  <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
-  
-  <a href="/saidai-deep-learning/machine_learning/home.html">機械学習</a>
-  
 </nav>
 
     
@@ -36,8 +39,11 @@
         <h1>
           機械学習 - 線形回帰
         </h1>
-        <div id="table-of-contents">
-          <ul class="section-nav">
+        <details class="toc">
+  <summary>
+    目次
+  </summary>
+  <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#線形単回帰">線形単回帰</a></li>
 <li class="toc-entry toc-h1"><a href="#具体的な問題">具体的な問題</a></li>
 <li class="toc-entry toc-h1"><a href="#モデルを定義する">モデルを定義する</a></li>
@@ -46,7 +52,8 @@
 <li class="toc-entry toc-h1"><a href="#計算の一般性">計算の一般性</a></li>
 <li class="toc-entry toc-h1"><a href="#正規方程式の問題点">正規方程式の問題点</a></li>
 </ul>
-        </div>
+</details>
+
 
         <br />
         <a href="https://github.com/Stealthmate/saidai-deep-learning/tree/master/notebooks/machine_learning/linear-regression">このNotebookへのリンク</a>

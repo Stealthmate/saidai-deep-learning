@@ -3,41 +3,49 @@
   <head>
     <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
 <script async type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/x-mathjax-config">
+  var isMobile = window.matchMedia('(max-width: 600px)').matches
+  console.log(isMobile)
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
+      processEscapes: true,
+    },
+    "HTML-CSS": {
+      scale: isMobile ? 70 : 100,
+      styles: {
+        ".MathJax_Display": {
+          width: isMobile ? "95%" : "100%"
+        }
+      }
+    },
   });
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>PATHとその他環境変数</title>
-    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/default.css">
   </head>
   <body>
-    <nav>
-  <a class="" href="/saidai-deep-learning/">Home</a>
-
-  
-  
-  <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
-  
-  <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
-  
-  <a href="/saidai-deep-learning/machine_learning/home.html">機械学習</a>
-  
-</nav>
-
     
+    <nav>
+      <a href="/saidai-deep-learning/">Home</a>
+    </nav>
     <main>
       <header>
+        <h2>
+          <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
+        </h2>
         <h1>
-          Linuxについて - PATHとその他環境変数
+          PATHとその他環境変数
         </h1>
-        <div id="table-of-contents">
-          <ul class="section-nav">
+        <details class="toc">
+  <summary>
+    目次
+  </summary>
+  <ul class="section-nav">
 <li class="toc-entry toc-h2"><a href="#環境変数とは">環境変数とは</a></li>
 <li class="toc-entry toc-h2"><a href="#path変数">PATH変数</a></li>
 <li class="toc-entry toc-h2"><a href="#環境変数の設定">環境変数の設定</a></li>
@@ -55,8 +63,10 @@
 </ul>
 </li>
 </ul>
-        </div>
+</details>
+
       </header>
+      <hr>
       <section>
         <h2 id="環境変数とは">環境変数とは</h2>
 

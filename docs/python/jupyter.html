@@ -3,41 +3,49 @@
   <head>
     <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
 <script async type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/x-mathjax-config">
+  var isMobile = window.matchMedia('(max-width: 600px)').matches
+  console.log(isMobile)
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
+      processEscapes: true,
+    },
+    "HTML-CSS": {
+      scale: isMobile ? 70 : 100,
+      styles: {
+        ".MathJax_Display": {
+          width: isMobile ? "95%" : "100%"
+        }
+      }
+    },
   });
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Jupyter</title>
-    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/default.css">
   </head>
   <body>
-    <nav>
-  <a class="" href="/saidai-deep-learning/">Home</a>
-
-  
-  
-  <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
-  
-  <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
-  
-  <a href="/saidai-deep-learning/machine_learning/home.html">機械学習</a>
-  
-</nav>
-
     
+    <nav>
+      <a href="/saidai-deep-learning/">Home</a>
+    </nav>
     <main>
       <header>
+        <h2>
+          <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
+        </h2>
         <h1>
-          Pythonについて - Jupyter
+          Jupyter
         </h1>
-        <div id="table-of-contents">
-          <ul class="section-nav">
+        <details class="toc">
+  <summary>
+    目次
+  </summary>
+  <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#事前知識準備">事前知識・準備</a></li>
 <li class="toc-entry toc-h1"><a href="#jupyterって何">Jupyterって何？</a></li>
 <li class="toc-entry toc-h1"><a href="#jupyterの起動と使い方">Jupyterの起動と使い方</a></li>
@@ -51,8 +59,10 @@
 <li class="toc-entry toc-h1"><a href="#セルの実行順番とプログラムの状態">セルの実行順番とプログラムの状態</a></li>
 <li class="toc-entry toc-h1"><a href="#jupyterで頻繁に使うショートカットの一覧">Jupyterで頻繁に使うショートカットの一覧</a></li>
 </ul>
-        </div>
+</details>
+
       </header>
+      <hr>
       <section>
         <h1 id="事前知識準備">事前知識・準備</h1>
 

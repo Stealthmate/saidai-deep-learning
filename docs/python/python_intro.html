@@ -3,41 +3,49 @@
   <head>
     <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
 <script async type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <script type="text/x-mathjax-config">
+  var isMobile = window.matchMedia('(max-width: 600px)').matches
+  console.log(isMobile)
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
-      processEscapes: true
-    }
+      processEscapes: true,
+    },
+    "HTML-CSS": {
+      scale: isMobile ? 70 : 100,
+      styles: {
+        ".MathJax_Display": {
+          width: isMobile ? "95%" : "100%"
+        }
+      }
+    },
   });
 </script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Python即入門</title>
-    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/default.css">
   </head>
   <body>
-    <nav>
-  <a class="" href="/saidai-deep-learning/">Home</a>
-
-  
-  
-  <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
-  
-  <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
-  
-  <a href="/saidai-deep-learning/machine_learning/home.html">機械学習</a>
-  
-</nav>
-
     
+    <nav>
+      <a href="/saidai-deep-learning/">Home</a>
+    </nav>
     <main>
       <header>
+        <h2>
+          <a href="/saidai-deep-learning/python/home.html">Pythonについて</a>
+        </h2>
         <h1>
-          Pythonについて - Python即入門
+          Python即入門
         </h1>
-        <div id="table-of-contents">
-          <ul class="section-nav">
+        <details class="toc">
+  <summary>
+    目次
+  </summary>
+  <ul class="section-nav">
 <li class="toc-entry toc-h1"><a href="#事前知識準備">事前知識・準備</a></li>
 <li class="toc-entry toc-h1"><a href="#cとpythonの違い">CとPythonの違い</a>
 <ul>
@@ -46,16 +54,18 @@
 <li class="toc-entry toc-h2"><a href="#静的型と動的型">静的型と動的型</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#pythonを動かしてみる">Pythonを動かしてみる</a>
+<li class="toc-entry toc-h1"><a href="#python">Pythonを動かしてみる</a>
 <ul>
-<li class="toc-entry toc-h2"><a href="#ファイル実行">ファイル実行</a></li>
+<li class="toc-entry toc-h2"><a href="#section">ファイル実行</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h1"><a href="#リファレンスのためのサンプルコード">リファレンスのためのサンプルコード</a></li>
+<li class="toc-entry toc-h1"><a href="#section-1">リファレンスのためのサンプルコード</a></li>
 <li class="toc-entry toc-h1"><a href="#python-documentation">Python Documentation</a></li>
 </ul>
-        </div>
+</details>
+
       </header>
+      <hr>
       <section>
         <h1 id="事前知識準備">事前知識・準備</h1>
 
@@ -122,66 +132,67 @@
 
 <p>では、PythonもCも型のミスでエラーが出るなら、何が違うの？と聞きたくなるでしょう。答えは、静的型付け言語は、プログラムを作る（コードをCPUへの命令に直す）時点で型をチェックし、文句を言います。一方Pythonのような動的型付け言語は、コードを実行する時点で文句を言います。一般的に静的型の方が安全でバグが少なくなるのですが、動的型の方が（インタプリタやコンパイラを作る人から見て）実装しやすくてシンプルです。</p>
 
-<div class="footnote">* 最近（[Python 3.8](https://docs.python.org/3/library/typing.html)）では定義できるようになってはいますが、あくまでも可読性を上げるためのものだけであり、守らないと文句を言われるようなものではありません。</div>
+<div class="footnote">
+  <p>* 最近（ <a href="https://docs.python.org/3/library/typing.html">Python 3.8</a> ）では定義できるようになってはいますが、あくまでも可読性を上げるためのものだけであり、守らないと文句を言われるようなものではありません。&lt;/div&gt;</p>
 
-<h1 id="pythonを動かしてみる">Pythonを動かしてみる</h1>
+  <h1 id="python">Pythonを動かしてみる</h1>
 
-<p>Pythonはインタープリタ型言語（interpreted language）なので、先程言ったように、<code class="highlighter-rouge">python</code>プログラムが命令を解釈し実行します。インタープリタ型言語は多くの場合、わざわざプログラムをファイルに書き込んで、ファイルごと実行するという手順を追わなくても、1命令ずつ実行することができます。Pythonの場合、ターミナルで<code class="highlighter-rouge">python</code>とだけ打つと、インタープリタが起動します。インタープリタを起動してみて、以下の文を入力して、ENTERキーで実行してみましょう。</p>
+  <p>Pythonはインタープリタ型言語（interpreted language）なので、先程言ったように、<code class="highlighter-rouge">python</code>プログラムが命令を解釈し実行します。インタープリタ型言語は多くの場合、わざわざプログラムをファイルに書き込んで、ファイルごと実行するという手順を追わなくても、1命令ずつ実行することができます。Pythonの場合、ターミナルで<code class="highlighter-rouge">python</code>とだけ打つと、インタープリタが起動します。インタープリタを起動してみて、以下の文を入力して、ENTERキーで実行してみましょう。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span>
-</code></pre></div></div>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span>
+</code></pre></div>  </div>
 
-<p>結果は4になるはずです。C言語と同じように<code class="highlighter-rouge">+</code>, <code class="highlighter-rouge">-</code>, <code class="highlighter-rouge">*</code>, <code class="highlighter-rouge">/</code>, <code class="highlighter-rouge">%</code>演算が使えます。そして、Cとは違って、文字列に対してもいくつかの演算子が定義されています。以下のコマンドを打って、結果を確認しましょう。</p>
+  <p>結果は4になるはずです。C言語と同じように<code class="highlighter-rouge">+</code>, <code class="highlighter-rouge">-</code>, <code class="highlighter-rouge">*</code>, <code class="highlighter-rouge">/</code>, <code class="highlighter-rouge">%</code>演算が使えます。そして、Cとは違って、文字列に対してもいくつかの演算子が定義されています。以下のコマンドを打って、結果を確認しましょう。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">"Saitama"</span> <span class="o">+</span> <span class="s">"-ken"</span>
-</code></pre></div></div>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">"Saitama"</span> <span class="o">+</span> <span class="s">"-ken"</span>
+</code></pre></div>  </div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">"bun"</span> <span class="o">*</span> <span class="mi">10</span>
-</code></pre></div></div>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">"bun"</span> <span class="o">*</span> <span class="mi">10</span>
+</code></pre></div>  </div>
 
-<p>また、変数を定義して、変数で演算やその他の処理等もできます。</p>
+  <p>また、変数を定義して、変数で演算やその他の処理等もできます。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; x = 3
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt;&gt;&gt; x = 3
 &gt;&gt;&gt; x * 20
-</code></pre></div></div>
+</code></pre></div>  </div>
 
-<p>では、次の処理を行って見ましょう。ユーザー（入力）から名前（文字列）を受け取って、それに<code class="highlighter-rouge">-san</code>を付けたものを出力しましょう。Pythonでの入力は、<code class="highlighter-rouge">input()</code>関数で一行を読み取るようにできます。これを使うと：</p>
+  <p>では、次の処理を行って見ましょう。ユーザー（入力）から名前（文字列）を受け取って、それに<code class="highlighter-rouge">-san</code>を付けたものを出力しましょう。Pythonでの入力は、<code class="highlighter-rouge">input()</code>関数で一行を読み取るようにできます。これを使うと：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
 <span class="n">Valeri</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">name</span> <span class="o">+</span> <span class="s">'-san'</span>
-</code></pre></div></div>
+</code></pre></div>  </div>
 
-<h2 id="ファイル実行">ファイル実行</h2>
+  <h2 id="section">ファイル実行</h2>
 
-<p>これで基礎的な動作はひとまず以上ですが、インタプリタで一々命令をその場で書くだけでは、話になりませんね。では、ファイルを作成して実行してみましょう。Pythonで実行するファイルは、<code class="highlighter-rouge">.py</code>拡張子で保存します。</p>
+  <p>これで基礎的な動作はひとまず以上ですが、インタプリタで一々命令をその場で書くだけでは、話になりませんね。では、ファイルを作成して実行してみましょう。Pythonで実行するファイルは、<code class="highlighter-rouge">.py</code>拡張子で保存します。</p>
 
-<p>では、上で書いた手順をファイルに保存してみましょう（ここでは<code class="highlighter-rouge">program.py</code>だと仮定します）。</p>
+  <p>では、上で書いた手順をファイルに保存してみましょう（ここでは<code class="highlighter-rouge">program.py</code>だと仮定します）。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
 <span class="n">name</span> <span class="o">+</span> <span class="s">'-san'</span>
-</code></pre></div></div>
+</code></pre></div>  </div>
 
-<p>では、実行して、入力してみましょう。</p>
+  <p>では、実行して、入力してみましょう。</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python program.py
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python program.py
 Valeri
-</code></pre></div></div>
+</code></pre></div>  </div>
 
-<p>結果は出ましたか？恐らく出ていませんよね。上のように、インタプリタで直接命令を実行すると、その結果が自動的に表示されるようになっています。しかし、ファイルでは、自分から出力をしないと何も表示されません。つまり、所謂<code class="highlighter-rouge">printf</code>らしきものを使わないと、出力が出ません。Pythonでは、<code class="highlighter-rouge">print</code>関数で出力をします。では、上のプログラムを書き直すと：</p>
+  <p>結果は出ましたか？恐らく出ていませんよね。上のように、インタプリタで直接命令を実行すると、その結果が自動的に表示されるようになっています。しかし、ファイルでは、自分から出力をしないと何も表示されません。つまり、所謂<code class="highlighter-rouge">printf</code>らしきものを使わないと、出力が出ません。Pythonでは、<code class="highlighter-rouge">print</code>関数で出力をします。では、上のプログラムを書き直すと：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
 <span class="k">print</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s">'-san'</span><span class="p">)</span>
-</code></pre></div></div>
-<p>こう書くと結果が出るでしょう。</p>
+</code></pre></div>  </div>
+  <p>こう書くと結果が出るでしょう。</p>
 
-<h1 id="リファレンスのためのサンプルコード">リファレンスのためのサンプルコード</h1>
+  <h1 id="section-1">リファレンスのためのサンプルコード</h1>
 
-<p>C言語と同様に、Pythonにもif文やfor文がありますが、書き方が少し違います。とはいえ、大して変わることはないので、以下のサンプルコードを読んで、使い方を覚えてください。</p>
+  <p>C言語と同様に、Pythonにもif文やfor文がありますが、書き方が少し違います。とはいえ、大して変わることはないので、以下のサンプルコードを読んで、使い方を覚えてください。</p>
 
-<p>以下のプログラムは、Nまでの素数を順番にもとめて行くためのプログラムです。入力から整数Nを受け取って、素数を出力していきます。</p>
+  <p>以下のプログラムは、Nまでの素数を順番にもとめて行くためのプログラムです。入力から整数Nを受け取って、素数を出力していきます。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># これはコメントです
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># これはコメントです
 </span>
 <span class="n">N</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">())</span> <span class="c1"># input()で帰ってきた文字列をintに直す
 </span>
@@ -200,15 +211,16 @@ Valeri
         <span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c1">#配列の後ろに要素を追加
 </span>        <span class="k">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
 
-</code></pre></div></div>
+</code></pre></div>  </div>
 
-<p><a href="/saidai-deep-learning/python/sample.py">pyファイル</a></p>
+  <p><a href="/saidai-deep-learning/python/sample.py">pyファイル</a></p>
 
-<h1 id="python-documentation">Python Documentation</h1>
+  <h1 id="python-documentation">Python Documentation</h1>
 
-<p>Pythonは優れた<a href="https://docs.python.org/3.7/">ドキュメンテーション</a>（マニュアルみたいなもの）がネットに上がっています。全て読むのは無理なので、必要に応じて参考していきましょう。ただし、自分のPythonと同じバージョンを見るようにしましょう。このリンクはバージョン3.7のものです。</p>
+  <p>Pythonは優れた<a href="https://docs.python.org/3.7/">ドキュメンテーション</a>（マニュアルみたいなもの）がネットに上がっています。全て読むのは無理なので、必要に応じて参考していきましょう。ただし、自分のPythonと同じバージョンを見るようにしましょう。このリンクはバージョン3.7のものです。</p>
 
-<p>全てを読むのは無理ですが、一旦<a href="https://docs.python.org/3.7/library/stdtypes.html#text-sequence-type-str">文字列</a>に関するところをサラッと目を通しましょう。特に、<code class="highlighter-rouge">str.join()</code>や<code class="highlighter-rouge">str.find()</code>等、<code class="highlighter-rouge">str.&lt;function&gt;()</code>のような関数を軽く見てみてください（全部理解しなくてもいいです）。</p>
+  <p>全てを読むのは無理ですが、一旦<a href="https://docs.python.org/3.7/library/stdtypes.html#text-sequence-type-str">文字列</a>に関するところをサラッと目を通しましょう。特に、<code class="highlighter-rouge">str.join()</code>や<code class="highlighter-rouge">str.find()</code>等、<code class="highlighter-rouge">str.&lt;function&gt;()</code>のような関数を軽く見てみてください（全部理解しなくてもいいです）。</p>
+</div>
 
       </section>
     </main>
