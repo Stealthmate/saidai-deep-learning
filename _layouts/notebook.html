@@ -13,9 +13,7 @@
         <h1>
           {{ collection.title }} - {{ page.title }}
         </h1>
-        <div id="table-of-contents">
-          {{ content | toc_only }}
-        </div>
+        {% include toc.html %}
 
         <br />
         <a href="https://github.com/Stealthmate/saidai-deep-learning/tree/master/notebooks{{ page.url | split: '.html' }}">このNotebookへのリンク</a>

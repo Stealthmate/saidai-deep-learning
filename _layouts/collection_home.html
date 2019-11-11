@@ -1,12 +1,14 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
+    {% include head.html %}
     <title>{{ page.title }}</title>
     <link rel="stylesheet" type="text/css" href="{{ "/assets/css/style.css" | relative_url }}">
   </head>
   <body>
-    {% include navigation.html %}
+    <nav>
+      <a href="{{ "/" | relative_url }}">Home</a>
+    </nav>
     {% assign collection = site.collections | where:"label", page.collection | first %}
     <main>
       <header>
@@ -15,8 +17,8 @@
         </h1>
       </header>
       <section>
-        <div class="article-list">
-          <h1>記事一覧</h1>
+        <h1>記事一覧</h1>
+        <nav class="article-list">
           <ul>
             {% assign posts = site[collection.label] | where_exp: "x", "x.title != 'Home' "%}
             {% for post in posts %}
@@ -28,7 +30,7 @@
             {% endfor %}
           </ul>
           {{ content }}
-        </div>
+        </nav>
       </section>
     </main>
   </body>
