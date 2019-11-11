@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="stealthmate.github.io/saidai-deep-learning/feed/linux.xml" rel="self" type="application/atom+xml" /><link href="stealthmate.github.io/saidai-deep-learning/" rel="alternate" type="text/html" /><updated>2019-11-11T10:49:24+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/feed/linux.xml</id><title type="html"> | Linux</title><entry><title type="html">Telegramの入れ方</title><link href="stealthmate.github.io/saidai-deep-learning/linux/telegram.html" rel="alternate" type="text/html" title="Telegramの入れ方" /><published>2019-11-11T10:49:24+09:00</published><updated>2019-11-11T10:49:24+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/telegram</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/telegram.html">&lt;h2 id=&quot;事前準備&quot;&gt;事前準備&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="stealthmate.github.io/saidai-deep-learning/feed/linux.xml" rel="self" type="application/atom+xml" /><link href="stealthmate.github.io/saidai-deep-learning/" rel="alternate" type="text/html" /><updated>2019-11-12T03:05:30+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/feed/linux.xml</id><title type="html"> | Linux</title><entry><title type="html">Telegramの入れ方</title><link href="stealthmate.github.io/saidai-deep-learning/linux/telegram.html" rel="alternate" type="text/html" title="Telegramの入れ方" /><published>2019-11-12T03:05:30+09:00</published><updated>2019-11-12T03:05:30+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/telegram</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/telegram.html">&lt;h2 id=&quot;事前準備&quot;&gt;事前準備&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;以下の手順で、ユーザーが&lt;code class=&quot;highlighter-rouge&quot;&gt;michael&lt;/code&gt;だと仮定し、ホームディレクトリを&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael&lt;/code&gt;とします。各自自分のユーザーネームに合わせてください。&lt;/li&gt;
@@ -59,7 +59,7 @@ Icon=/opt/Telegram/telegram128.png
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo mv /home/michael/telegram.desktop /usr/share/applications/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;MenuでTelegramを打って見ましょう！&lt;/p&gt;</content><author><name></name></author><summary type="html">事前準備</summary></entry><entry><title type="html">.profileと.bashrcの初期設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/profile.html" rel="alternate" type="text/html" title=".profileと.bashrcの初期設定" /><published>2019-11-11T10:49:24+09:00</published><updated>2019-11-11T10:49:24+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/profile</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/profile.html">&lt;h2 id=&quot;必要な知識&quot;&gt;必要な知識&lt;/h2&gt;
+&lt;p&gt;MenuでTelegramを打って見ましょう！&lt;/p&gt;</content><author><name></name></author><summary type="html">事前準備</summary></entry><entry><title type="html">.profileと.bashrcの初期設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/profile.html" rel="alternate" type="text/html" title=".profileと.bashrcの初期設定" /><published>2019-11-12T03:05:30+09:00</published><updated>2019-11-12T03:05:30+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/profile</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/profile.html">&lt;h2 id=&quot;必要な知識&quot;&gt;必要な知識&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html&quot;&gt;PATHとその他環境変数&lt;/a&gt;&lt;/li&gt;
@@ -75,7 +75,7 @@ Icon=/opt/Telegram/telegram128.png
 &lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;ssh-agent &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;bashrcの設定&quot;&gt;.bashrcの設定&lt;/h2&gt;</content><author><name></name></author><summary type="html">必要な知識</summary></entry><entry><title type="html">日本語入力の設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html" rel="alternate" type="text/html" title="日本語入力の設定" /><published>2019-11-11T10:49:24+09:00</published><updated>2019-11-11T10:49:24+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/jp_input</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html">&lt;h2 id=&quot;必要なパッケージをインストールする&quot;&gt;必要なパッケージをインストールする&lt;/h2&gt;
+&lt;h2 id=&quot;bashrcの設定&quot;&gt;.bashrcの設定&lt;/h2&gt;</content><author><name></name></author><summary type="html">必要な知識</summary></entry><entry><title type="html">日本語入力の設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html" rel="alternate" type="text/html" title="日本語入力の設定" /><published>2019-11-12T03:05:30+09:00</published><updated>2019-11-12T03:05:30+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/jp_input</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html">&lt;h2 id=&quot;必要なパッケージをインストールする&quot;&gt;必要なパッケージをインストールする&lt;/h2&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;fcitx fcitx-mozc fcitx-tools
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -102,7 +102,7 @@ Icon=/opt/Telegram/telegram128.png
 
 &lt;h3 id=&quot;全角半角キーで切り替える&quot;&gt;全角半角キーで切り替える&lt;/h3&gt;
 
-&lt;p&gt;タスクバーMenuから、&lt;code class=&quot;highlighter-rouge&quot;&gt;Fcitx Configuration -&amp;gt; Global Config&lt;/code&gt;に行き、&lt;code class=&quot;highlighter-rouge&quot;&gt;Trigger Input Method&lt;/code&gt;で&lt;code class=&quot;highlighter-rouge&quot;&gt;CTRL-Space&lt;/code&gt;をクリックし、全角半角キーを押す。&lt;/p&gt;</content><author><name></name></author><summary type="html">必要なパッケージをインストールする</summary></entry><entry><title type="html">Home</title><link href="stealthmate.github.io/saidai-deep-learning/linux/home.html" rel="alternate" type="text/html" title="Home" /><published>2019-11-11T10:49:24+09:00</published><updated>2019-11-11T10:49:24+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/home</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/home.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">よくある質問</title><link href="stealthmate.github.io/saidai-deep-learning/linux/faq.html" rel="alternate" type="text/html" title="よくある質問" /><published>2019-11-11T10:49:24+09:00</published><updated>2019-11-11T10:49:24+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/faq</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/faq.html">&lt;h2 id=&quot;linuxのインストールについて&quot;&gt;Linuxのインストールについて&lt;/h2&gt;
+&lt;p&gt;タスクバーMenuから、&lt;code class=&quot;highlighter-rouge&quot;&gt;Fcitx Configuration -&amp;gt; Global Config&lt;/code&gt;に行き、&lt;code class=&quot;highlighter-rouge&quot;&gt;Trigger Input Method&lt;/code&gt;で&lt;code class=&quot;highlighter-rouge&quot;&gt;CTRL-Space&lt;/code&gt;をクリックし、全角半角キーを押す。&lt;/p&gt;</content><author><name></name></author><summary type="html">必要なパッケージをインストールする</summary></entry><entry><title type="html">Home</title><link href="stealthmate.github.io/saidai-deep-learning/linux/home.html" rel="alternate" type="text/html" title="Home" /><published>2019-11-12T03:05:30+09:00</published><updated>2019-11-12T03:05:30+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/home</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/home.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">よくある質問</title><link href="stealthmate.github.io/saidai-deep-learning/linux/faq.html" rel="alternate" type="text/html" title="よくある質問" /><published>2019-11-12T03:05:30+09:00</published><updated>2019-11-12T03:05:30+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/faq</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/faq.html">&lt;h2 id=&quot;linuxのインストールについて&quot;&gt;Linuxのインストールについて&lt;/h2&gt;
 
 &lt;h3 id=&quot;linux入れるのに必要な準備はありますか&quot;&gt;Linux入れるのに必要な準備はありますか？&lt;/h3&gt;
 &lt;ul&gt;
@@ -135,7 +135,7 @@ Icon=/opt/Telegram/telegram128.png
 &lt;h3 id=&quot;windowsで使っているソフトはlinuxで使えますか&quot;&gt;Windowsで使っているソフトはLinuxで使えますか？&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;使えません。WindowsとLinuxは根本が違うので、Windowsで動くものは基本Linuxで動きません（反対も然り）。ただし、ソースコードがあるもの（pythonやJavaで書いたスクリプト、C/C++で書いたプログラム等）は、Linuxで動かすことができます。&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Linuxのインストールについて</summary></entry><entry><title type="html">PATHとその他環境変数</title><link href="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html" rel="alternate" type="text/html" title="PATHとその他環境変数" /><published>2019-11-11T10:49:24+09:00</published><updated>2019-11-11T10:49:24+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/environment_vars</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html">&lt;h2 id=&quot;環境変数とは&quot;&gt;環境変数とは&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Linuxのインストールについて</summary></entry><entry><title type="html">PATHとその他環境変数</title><link href="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html" rel="alternate" type="text/html" title="PATHとその他環境変数" /><published>2019-11-12T03:05:30+09:00</published><updated>2019-11-12T03:05:30+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/environment_vars</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html">&lt;h2 id=&quot;環境変数とは&quot;&gt;環境変数とは&lt;/h2&gt;
 
 &lt;p&gt;プログラムを実行するというのは、ある&lt;strong&gt;文脈&lt;/strong&gt;で行われることなので、その文脈をプログラムに知らせるために&lt;strong&gt;環境変数&lt;/strong&gt;があります。例えば、LinuxでTerminalを起動したときに、&lt;code class=&quot;highlighter-rouge&quot;&gt;michael@michael-pc&lt;/code&gt;という文字が出てくるのは、michaelというユーザーがTerminalを起動しているからです。つまり、「ユーザーがmichaelである」という文脈の中でTerminalが動いています。そして、「ユーザーがmichaelである」ということをTerminalに知らせるのは、&lt;code class=&quot;highlighter-rouge&quot;&gt;USER&lt;/code&gt;という環境変数です。&lt;/p&gt;
 
@@ -194,4 +194,162 @@ Icon=/opt/Telegram/telegram128.png
 
 &lt;h3 id=&quot;pathの前の値を無視しないこと&quot;&gt;PATHの前の値を無視しないこと&lt;/h3&gt;
 
-&lt;p&gt;PATHには予め様々なディレクトリが設定されています。それらはシステムが正しく動くためのものなので、PATHから無くなると、パソコンが動かなくなります。なので、PATHを変更する時は、常に前の値を維持したまま、&lt;code class=&quot;highlighter-rouge&quot;&gt;export PATH=$PATH:something&lt;/code&gt;という形で後ろへの追加だけ行いましょう。&lt;/p&gt;</content><author><name></name></author><summary type="html">環境変数とは</summary></entry></feed>
+&lt;p&gt;PATHには予め様々なディレクトリが設定されています。それらはシステムが正しく動くためのものなので、PATHから無くなると、パソコンが動かなくなります。なので、PATHを変更する時は、常に前の値を維持したまま、&lt;code class=&quot;highlighter-rouge&quot;&gt;export PATH=$PATH:something&lt;/code&gt;という形で後ろへの追加だけ行いましょう。&lt;/p&gt;</content><author><name></name></author><summary type="html">環境変数とは</summary></entry><entry><title type="html">Emacs基礎知識</title><link href="stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids.html" rel="alternate" type="text/html" title="Emacs基礎知識" /><published>2019-11-12T03:05:30+09:00</published><updated>2019-11-12T03:05:30+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/linux/profile.html&quot;&gt;.profileと.bashrcの初期設定&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;ユーザー名が&lt;code class=&quot;highlighter-rouge&quot;&gt;michael&lt;/code&gt;だと仮定する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;emacsの入れ方&quot;&gt;Emacsの入れ方&lt;/h1&gt;
+
+&lt;p&gt;まずはインストールしましょう。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt install emacs25
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;日本語入力の設定&quot;&gt;日本語入力の設定&lt;/h2&gt;
+
+&lt;p&gt;Emacsで日本語入力を使うには、Emacs内でのIM (Input Method)か、システムのIMがあります。Emacs内のIMでもいいのですが、私の経験上、止まったり遅かったりするので、システムIMの方が使いやすかったので、ここでシステムIMを使うための設定を記述します。&lt;/p&gt;
+
+&lt;p&gt;結論から言うと、Emacsを起動する際に&lt;code class=&quot;highlighter-rouge&quot;&gt;LC_CTYPE=ja_JP.utf-8 emacs&lt;/code&gt;で起動すればいいだけです。理由は&lt;a href=&quot;https://www.gnu.org/software/emacs/manual/html_node/emacs/Language-Environments.html&quot;&gt;ここ&lt;/a&gt;に書いているはずですが、私にも良く理解できていません。&lt;/p&gt;
+
+&lt;p&gt;それで、上のコマンドを毎回打つのが面倒なので、&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael/bin/bemacs&lt;/code&gt;という実行ファイルを作って、&lt;code class=&quot;highlighter-rouge&quot;&gt;bemacs&lt;/code&gt;で起動できるようにします。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;emacs /home/michael/bin/bemacs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;でまず普通のEmacsを起動して、ファイルの中に以下を書きます：&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;LC_CTYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ja_JP.utf-8 emacs &lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;簡単な説明をすると、&lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;&lt;/code&gt;はこのファイルは&lt;code class=&quot;highlighter-rouge&quot;&gt;shell&lt;/code&gt;で実行しろという意味で、&lt;code class=&quot;highlighter-rouge&quot;&gt;$@&lt;/code&gt;は渡された引数をそのまま&lt;code class=&quot;highlighter-rouge&quot;&gt;emacs&lt;/code&gt;に渡します。ファイルを保存してから、実行権限を与えなければいけません。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /home/michael/bin
+&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x bemacs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;以上で終わりです。今度からTerminalで&lt;code class=&quot;highlighter-rouge&quot;&gt;bemacs&lt;/code&gt;と打てば、上のファイルが実行され、&lt;code class=&quot;highlighter-rouge&quot;&gt;LC_CTYPE&lt;/code&gt;が設定されたEmacsが起動されます。&lt;/p&gt;
+
+&lt;h1 id=&quot;emacsの中身&quot;&gt;Emacsの中身&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Emacs is an OS, disguised as a text editor.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;掲示板などで良くこういうことが言われます。直訳すると、「Emacsはテキストエディタを装ったOSだ」という意味で、ようするにやろうと思えばどんなことでもEmacsでできるという意味です。&lt;/p&gt;
+
+&lt;p&gt;Emacsのコアには&lt;a href=&quot;https://en.wikipedia.org/wiki/Lisp_(programming_language)&quot;&gt;Lisp&lt;/a&gt;というプログラミング言語の方言 - &lt;a href=&quot;https://en.wikipedia.org/wiki/Emacs_Lisp&quot;&gt;Emacs Lisp&lt;/a&gt; (ELisp) - のインタプリタがあります。簡単に言うと、Emacsで行うほぼ全ての処理（移動、テキスト検索、ファイル管理など）はこのElispで書かれたスクリプトの実行結果です。したがって、Emacsの設定を変えるときも当然Elispを書かなければなりません。&lt;/p&gt;
+
+&lt;p&gt;Elisp含めLispという言語はとても面白いので、ぜひ皆さん（私含め）に勉強してほしいですが、Emacsのカスタマイズでは極端に高度なことをしようとしない限り、完全に理解しなくてもいいです。たいてい、他の人が書いたコードを参考にしながら、自分でいろいろ書くだけで済みます。&lt;/p&gt;
+
+&lt;h1 id=&quot;コマンドの実行方法&quot;&gt;コマンドの実行方法&lt;/h1&gt;
+
+&lt;p&gt;Emacsで実際に意味がある作業をする時、必ずコマンドを使います。皆さんは既にいくつかのコマンドを知っているはずです。&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+X Ctrl+F&lt;/code&gt;を打つと、&lt;code class=&quot;highlighter-rouge&quot;&gt;find-file&lt;/code&gt;というコマンドが実行され、編集したいファイルを探すことができます。また、&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+X Ctrl+C&lt;/code&gt;を打つと、&lt;code class=&quot;highlighter-rouge&quot;&gt;save-buffers-kill-terminal&lt;/code&gt;コマンドが実行され、Emacsが終了します。&lt;/p&gt;
+
+&lt;p&gt;コマンドは2つの方法で実行できます。一つは先程言ったように、ショートカットを使って実行する方法です。もう一つは、コマンドの名前を直接指定して実行する方法です。コマンドの名前をしていする時は（皮肉なことに）&lt;code class=&quot;highlighter-rouge&quot;&gt;Alt+X&lt;/code&gt;を打つと、Emacs画面の一番したの&lt;strong&gt;prompt&lt;/strong&gt;で、コマンドの名前を入力できます。なお、途中まで入力し、&lt;code class=&quot;highlighter-rouge&quot;&gt;TAB&lt;/code&gt;キーを押すと、自動補完が使えます。&lt;/p&gt;
+
+&lt;p&gt;試しに&lt;code class=&quot;highlighter-rouge&quot;&gt;Alt+X&lt;/code&gt;を打って、&lt;code class=&quot;highlighter-rouge&quot;&gt;find-file&lt;/code&gt;を実行してみましょう。&lt;/p&gt;
+
+&lt;h1 id=&quot;ショートカットの記述方法&quot;&gt;ショートカットの記述方法&lt;/h1&gt;
+
+&lt;p&gt;先程は&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+X Ctrl+F&lt;/code&gt;のように、ショートカットを記述しましたが、実はEmacsは独自の書式を採用しています。ここではその書式について簡単に説明します。ただし、Macキーボードは仕様が違うので、下の説明は当てはまりません。&lt;/p&gt;
+
+&lt;p&gt;まず、&lt;strong&gt;modifier keys&lt;/strong&gt;（修飾キー）について説明します。ほとんどのショートカットは修飾キーを用いて実行します。キーボードには4つの修飾キーがあります。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl&lt;/code&gt; - 最下行の一番左（或いは左から2番め）と左矢印の左側にあるのボタンです。&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl&lt;/code&gt;と書いてあります。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Meta&lt;/code&gt; - Metaキーは2通りあります。一つは&lt;code class=&quot;highlighter-rouge&quot;&gt;ESC&lt;/code&gt; (&lt;code class=&quot;highlighter-rouge&quot;&gt;Escape&lt;/code&gt;)キーです。もう一つはキーボード最下行のスペースの左右にあるボタンです。&lt;code class=&quot;highlighter-rouge&quot;&gt;Alt&lt;/code&gt;または&lt;code class=&quot;highlighter-rouge&quot;&gt;Alt Gr&lt;/code&gt;と書いてあります。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Super&lt;/code&gt; - これは所謂Windowsキーです。Windowsのロゴが書いてあるキーのことです。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Shift&lt;/code&gt; -&lt;code class=&quot;highlighter-rouge&quot;&gt;Shift&lt;/code&gt;または太い矢印の輪郭が書いてあるキーです。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;さて、修飾キーを定義しましたので、今度は書式自体について説明します。&lt;/p&gt;
+
+&lt;p&gt;まず、修飾キーを使ったショートカットは、修飾キー記号の後ろに&lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;を書き、該当キーを書きます。&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl&lt;/code&gt;キーと&lt;code class=&quot;highlighter-rouge&quot;&gt;Meta&lt;/code&gt;キーはそれぞれの頭文字を使って記述します。例えば&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;C-x C-f
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;これは上に書いた&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+X Ctrl+F&lt;/code&gt;という、&lt;code class=&quot;highlighter-rouge&quot;&gt;find-file&lt;/code&gt;コマンドのショートカットです。また&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;M-x
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;これは上に書いた&lt;code class=&quot;highlighter-rouge&quot;&gt;Alt+X&lt;/code&gt;という、コマンド名を指定して実行するときに使うショートカットです。また、修飾キーを組み合わせたい時、同じく&lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt;でつなげ、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-M-S-s&lt;/code&gt;の順で書きます。ここで、&lt;code class=&quot;highlighter-rouge&quot;&gt;S&lt;/code&gt;は&lt;code class=&quot;highlighter-rouge&quot;&gt;Shift&lt;/code&gt;キー、&lt;code class=&quot;highlighter-rouge&quot;&gt;s&lt;/code&gt;は&lt;code class=&quot;highlighter-rouge&quot;&gt;Super&lt;/code&gt;キーを意味します。例えば、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-M-s k&lt;/code&gt;は&lt;code class=&quot;highlighter-rouge&quot;&gt;Ctrl+Alt+Super+k&lt;/code&gt;を意味します。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;最後に、&lt;code class=&quot;highlighter-rouge&quot;&gt;Shift&lt;/code&gt;キーを使うショートカットについての注意点です。今後ショートカットを定義するときに上記の書式を使いますが、&lt;code class=&quot;highlighter-rouge&quot;&gt;Shift&lt;/code&gt;を使う文字の場合は一般的に&lt;code class=&quot;highlighter-rouge&quot;&gt;C-S-k&lt;/code&gt;のようには書かないで、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-K&lt;/code&gt;と書きます。これはなぜかと言うと、&lt;code class=&quot;highlighter-rouge&quot;&gt;S-k&lt;/code&gt;を打つと&lt;code class=&quot;highlighter-rouge&quot;&gt;K&lt;/code&gt;という文字になるからです。また、記号に関しても同じで、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-S-1&lt;/code&gt;ではなく、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-!&lt;/code&gt;と書きます。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;だがしかし&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;ここでキーボードの&lt;a href=&quot;http://www.nagasaki-gaigo.ac.jp/toguchi/pc/multilingual/keyboard_us_jis.htm&quot;&gt;US配列とJIS配列&lt;/a&gt;が関係して来ます。Emacsはアメリカ人がアメリカ人向けに作ったものなので、当然US配列を使っています。そこで、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-@&lt;/code&gt;というショートカットを考えてみましょう。JIS配列（日本で普及している配列）では特に面白いものではないですね。しかし、US配列で見るとこれは&lt;code class=&quot;highlighter-rouge&quot;&gt;C-S-2&lt;/code&gt;に等しいです。&lt;/p&gt;
+
+&lt;p&gt;この違いによって、US配列では論理性があるショートカットでも、JIS配列では意味不明なことになっていることがありえるので、注意する必要があります。&lt;/p&gt;
+
+&lt;p&gt;個人的な意見ですが、JISキーボードはキーが無駄に多く、スペースが無駄に狭かったり、記号の配置が理不尽なところがあるので、US配列をおすすめします。US配列は、設定すればJISキーボードでも使えますが、当然キーボードに書いている文字が違ってくるので、慣れるまでは大変かもしれません。&lt;/p&gt;
+
+&lt;h2 id=&quot;特別なキーの書き方&quot;&gt;特別なキーの書き方&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;キー名&lt;/th&gt;
+      &lt;th&gt;書き方&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Enter&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RET&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Escape&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ESC&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Tab&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;TAB&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Left Arrow&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;left&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Right Arrow&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;right&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Up Arrow&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;up&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Down Arrow&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;down&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Backspace&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;backspace&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;コマンドについて調べたい時&quot;&gt;コマンドについて調べたい時&lt;/h1&gt;
+
+&lt;h2 id=&quot;あるコマンドの意味やショートカットを調べたい時&quot;&gt;あるコマンドの意味やショートカットを調べたい時&lt;/h2&gt;
+
+&lt;p&gt;あるコマンドが何をするか、どのショートカットで実行できるかを調べたいとき、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h f&lt;/code&gt;を打ち、promptでコマンド名を入力して&lt;code class=&quot;highlighter-rouge&quot;&gt;RET&lt;/code&gt;を打つと、helpが表示されます。helpにはコマンドによっていろいろ書かれていますが、&lt;code class=&quot;highlighter-rouge&quot;&gt;It is bound to&lt;/code&gt;と書いてある文に注目すると、どのショートカットで実行できるかが書いています。例えば、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h f find-file RET&lt;/code&gt;を打つと、&lt;code class=&quot;highlighter-rouge&quot;&gt;find-file&lt;/code&gt;の説明が表示されます。&lt;/p&gt;
+
+&lt;h2 id=&quot;あるショートカットに紐付いているコマンドを調べたい時&quot;&gt;あるショートカットに紐付いているコマンドを調べたい時&lt;/h2&gt;
+
+&lt;p&gt;このショートカットを打つとどうなるんだろう、ということを調べたければ、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h k&lt;/code&gt;を打ち、その次にショートカットを打つと、もしそれにコマンドが紐付いていればhelpが表示されます。例えば、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h k C-x C-f&lt;/code&gt;を打つと、&lt;code class=&quot;highlighter-rouge&quot;&gt;find-file&lt;/code&gt;の説明が表示されます。&lt;/p&gt;
+
+&lt;h1 id=&quot;まとめ&quot;&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;今回はEmacsの基本的なところを把握し、基礎を勉強しました。次回はEmacsの設定の変え方や簡単なカスタマイズについて書きたいと思います。&lt;/p&gt;</content><author><name></name></author><summary type="html">事前知識・準備</summary></entry></feed>

@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+<script async type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  var isMobile = window.matchMedia('(max-width: 600px)').matches
+  console.log(isMobile)
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+    },
+    "HTML-CSS": {
+      scale: isMobile ? 70 : 100,
+      styles: {
+        ".MathJax_Display": {
+          width: isMobile ? "95%" : "100%"
+        }
+      }
+    },
+  });
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Emacs基礎知識</title>
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/default.css">
+  </head>
+  <body>
+    
+    <nav>
+      <a href="/saidai-deep-learning/">Home</a>
+    </nav>
+    <main>
+      <header>
+        <h2>
+          <a href="/saidai-deep-learning/linux/home.html">Linuxについて</a>
+        </h2>
+        <h1>
+	  
+	  Emacs on Steroids 第1講:&nbsp;
+	  
+          Emacs基礎知識
+        </h1>
+        <details class="toc">
+  <summary>
+    目次
+  </summary>
+  <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#事前知識準備">事前知識・準備</a></li>
+<li class="toc-entry toc-h1"><a href="#emacsの入れ方">Emacsの入れ方</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#日本語入力の設定">日本語入力の設定</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#emacsの中身">Emacsの中身</a></li>
+<li class="toc-entry toc-h1"><a href="#コマンドの実行方法">コマンドの実行方法</a></li>
+<li class="toc-entry toc-h1"><a href="#ショートカットの記述方法">ショートカットの記述方法</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#特別なキーの書き方">特別なキーの書き方</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#コマンドについて調べたい時">コマンドについて調べたい時</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#あるコマンドの意味やショートカットを調べたい時">あるコマンドの意味やショートカットを調べたい時</a></li>
+<li class="toc-entry toc-h2"><a href="#あるショートカットに紐付いているコマンドを調べたい時">あるショートカットに紐付いているコマンドを調べたい時</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#まとめ">まとめ</a></li>
+</ul>
+</details>
+
+      </header>
+      <hr>
+      <section>
+        <h1 id="事前知識準備">事前知識・準備</h1>
+
+<ul>
+  <li><a href="/saidai-deep-learning/linux/profile.html">.profileと.bashrcの初期設定</a></li>
+  <li>ユーザー名が<code class="highlighter-rouge">michael</code>だと仮定する</li>
+</ul>
+
+<h1 id="emacsの入れ方">Emacsの入れ方</h1>
+
+<p>まずはインストールしましょう。</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt install emacs25
+</code></pre></div></div>
+
+<h2 id="日本語入力の設定">日本語入力の設定</h2>
+
+<p>Emacsで日本語入力を使うには、Emacs内でのIM (Input Method)か、システムのIMがあります。Emacs内のIMでもいいのですが、私の経験上、止まったり遅かったりするので、システムIMの方が使いやすかったので、ここでシステムIMを使うための設定を記述します。</p>
+
+<p>結論から言うと、Emacsを起動する際に<code class="highlighter-rouge">LC_CTYPE=ja_JP.utf-8 emacs</code>で起動すればいいだけです。理由は<a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Language-Environments.html">ここ</a>に書いているはずですが、私にも良く理解できていません。</p>
+
+<p>それで、上のコマンドを毎回打つのが面倒なので、<code class="highlighter-rouge">/home/michael/bin/bemacs</code>という実行ファイルを作って、<code class="highlighter-rouge">bemacs</code>で起動できるようにします。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>emacs /home/michael/bin/bemacs
+</code></pre></div></div>
+
+<p>でまず普通のEmacsを起動して、ファイルの中に以下を書きます：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+
+<span class="nv">LC_CTYPE</span><span class="o">=</span>ja_JP.utf-8 emacs <span class="nv">$@</span>
+</code></pre></div></div>
+
+<p>簡単な説明をすると、<code class="highlighter-rouge"><span class="c">#!/bin/sh</span></code>はこのファイルは<code class="highlighter-rouge">shell</code>で実行しろという意味で、<code class="highlighter-rouge">$@</code>は渡された引数をそのまま<code class="highlighter-rouge">emacs</code>に渡します。ファイルを保存してから、実行権限を与えなければいけません。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> /home/michael/bin
+<span class="nb">chmod</span> +x bemacs
+</code></pre></div></div>
+
+<p>以上で終わりです。今度からTerminalで<code class="highlighter-rouge">bemacs</code>と打てば、上のファイルが実行され、<code class="highlighter-rouge">LC_CTYPE</code>が設定されたEmacsが起動されます。</p>
+
+<h1 id="emacsの中身">Emacsの中身</h1>
+
+<blockquote>
+  <p>Emacs is an OS, disguised as a text editor.</p>
+</blockquote>
+
+<p>掲示板などで良くこういうことが言われます。直訳すると、「Emacsはテキストエディタを装ったOSだ」という意味で、ようするにやろうと思えばどんなことでもEmacsでできるという意味です。</p>
+
+<p>Emacsのコアには<a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">Lisp</a>というプログラミング言語の方言 - <a href="https://en.wikipedia.org/wiki/Emacs_Lisp">Emacs Lisp</a> (ELisp) - のインタプリタがあります。簡単に言うと、Emacsで行うほぼ全ての処理（移動、テキスト検索、ファイル管理など）はこのElispで書かれたスクリプトの実行結果です。したがって、Emacsの設定を変えるときも当然Elispを書かなければなりません。</p>
+
+<p>Elisp含めLispという言語はとても面白いので、ぜひ皆さん（私含め）に勉強してほしいですが、Emacsのカスタマイズでは極端に高度なことをしようとしない限り、完全に理解しなくてもいいです。たいてい、他の人が書いたコードを参考にしながら、自分でいろいろ書くだけで済みます。</p>
+
+<h1 id="コマンドの実行方法">コマンドの実行方法</h1>
+
+<p>Emacsで実際に意味がある作業をする時、必ずコマンドを使います。皆さんは既にいくつかのコマンドを知っているはずです。<code class="highlighter-rouge">Ctrl+X Ctrl+F</code>を打つと、<code class="highlighter-rouge">find-file</code>というコマンドが実行され、編集したいファイルを探すことができます。また、<code class="highlighter-rouge">Ctrl+X Ctrl+C</code>を打つと、<code class="highlighter-rouge">save-buffers-kill-terminal</code>コマンドが実行され、Emacsが終了します。</p>
+
+<p>コマンドは2つの方法で実行できます。一つは先程言ったように、ショートカットを使って実行する方法です。もう一つは、コマンドの名前を直接指定して実行する方法です。コマンドの名前をしていする時は（皮肉なことに）<code class="highlighter-rouge">Alt+X</code>を打つと、Emacs画面の一番したの<strong>prompt</strong>で、コマンドの名前を入力できます。なお、途中まで入力し、<code class="highlighter-rouge">TAB</code>キーを押すと、自動補完が使えます。</p>
+
+<p>試しに<code class="highlighter-rouge">Alt+X</code>を打って、<code class="highlighter-rouge">find-file</code>を実行してみましょう。</p>
+
+<h1 id="ショートカットの記述方法">ショートカットの記述方法</h1>
+
+<p>先程は<code class="highlighter-rouge">Ctrl+X Ctrl+F</code>のように、ショートカットを記述しましたが、実はEmacsは独自の書式を採用しています。ここではその書式について簡単に説明します。ただし、Macキーボードは仕様が違うので、下の説明は当てはまりません。</p>
+
+<p>まず、<strong>modifier keys</strong>（修飾キー）について説明します。ほとんどのショートカットは修飾キーを用いて実行します。キーボードには4つの修飾キーがあります。</p>
+
+<ul>
+  <li><code class="highlighter-rouge">Ctrl</code> - 最下行の一番左（或いは左から2番め）と左矢印の左側にあるのボタンです。<code class="highlighter-rouge">Ctrl</code>と書いてあります。</li>
+  <li><code class="highlighter-rouge">Meta</code> - Metaキーは2通りあります。一つは<code class="highlighter-rouge">ESC</code> (<code class="highlighter-rouge">Escape</code>)キーです。もう一つはキーボード最下行のスペースの左右にあるボタンです。<code class="highlighter-rouge">Alt</code>または<code class="highlighter-rouge">Alt Gr</code>と書いてあります。</li>
+  <li><code class="highlighter-rouge">Super</code> - これは所謂Windowsキーです。Windowsのロゴが書いてあるキーのことです。</li>
+  <li><code class="highlighter-rouge">Shift</code> -<code class="highlighter-rouge">Shift</code>または太い矢印の輪郭が書いてあるキーです。</li>
+</ul>
+
+<hr />
+
+<p>さて、修飾キーを定義しましたので、今度は書式自体について説明します。</p>
+
+<p>まず、修飾キーを使ったショートカットは、修飾キー記号の後ろに<code class="highlighter-rouge">-</code>を書き、該当キーを書きます。<code class="highlighter-rouge">Ctrl</code>キーと<code class="highlighter-rouge">Meta</code>キーはそれぞれの頭文字を使って記述します。例えば</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>C-x C-f
+</code></pre></div></div>
+
+<p>これは上に書いた<code class="highlighter-rouge">Ctrl+X Ctrl+F</code>という、<code class="highlighter-rouge">find-file</code>コマンドのショートカットです。また</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>M-x
+</code></pre></div></div>
+
+<p>これは上に書いた<code class="highlighter-rouge">Alt+X</code>という、コマンド名を指定して実行するときに使うショートカットです。また、修飾キーを組み合わせたい時、同じく<code class="highlighter-rouge">-</code>でつなげ、<code class="highlighter-rouge">C-M-S-s</code>の順で書きます。ここで、<code class="highlighter-rouge">S</code>は<code class="highlighter-rouge">Shift</code>キー、<code class="highlighter-rouge">s</code>は<code class="highlighter-rouge">Super</code>キーを意味します。例えば、<code class="highlighter-rouge">C-M-s k</code>は<code class="highlighter-rouge">Ctrl+Alt+Super+k</code>を意味します。</p>
+
+<hr />
+
+<p>最後に、<code class="highlighter-rouge">Shift</code>キーを使うショートカットについての注意点です。今後ショートカットを定義するときに上記の書式を使いますが、<code class="highlighter-rouge">Shift</code>を使う文字の場合は一般的に<code class="highlighter-rouge">C-S-k</code>のようには書かないで、<code class="highlighter-rouge">C-K</code>と書きます。これはなぜかと言うと、<code class="highlighter-rouge">S-k</code>を打つと<code class="highlighter-rouge">K</code>という文字になるからです。また、記号に関しても同じで、<code class="highlighter-rouge">C-S-1</code>ではなく、<code class="highlighter-rouge">C-!</code>と書きます。</p>
+
+<p><strong><em>だがしかし</em></strong></p>
+
+<p>ここでキーボードの<a href="http://www.nagasaki-gaigo.ac.jp/toguchi/pc/multilingual/keyboard_us_jis.htm">US配列とJIS配列</a>が関係して来ます。Emacsはアメリカ人がアメリカ人向けに作ったものなので、当然US配列を使っています。そこで、<code class="highlighter-rouge">C-@</code>というショートカットを考えてみましょう。JIS配列（日本で普及している配列）では特に面白いものではないですね。しかし、US配列で見るとこれは<code class="highlighter-rouge">C-S-2</code>に等しいです。</p>
+
+<p>この違いによって、US配列では論理性があるショートカットでも、JIS配列では意味不明なことになっていることがありえるので、注意する必要があります。</p>
+
+<p>個人的な意見ですが、JISキーボードはキーが無駄に多く、スペースが無駄に狭かったり、記号の配置が理不尽なところがあるので、US配列をおすすめします。US配列は、設定すればJISキーボードでも使えますが、当然キーボードに書いている文字が違ってくるので、慣れるまでは大変かもしれません。</p>
+
+<h2 id="特別なキーの書き方">特別なキーの書き方</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>キー名</th>
+      <th>書き方</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Enter</td>
+      <td><code class="highlighter-rouge">RET</code></td>
+    </tr>
+    <tr>
+      <td>Escape</td>
+      <td><code class="highlighter-rouge">ESC</code></td>
+    </tr>
+    <tr>
+      <td>Tab</td>
+      <td><code class="highlighter-rouge">TAB</code></td>
+    </tr>
+    <tr>
+      <td>Left Arrow</td>
+      <td><code class="highlighter-rouge">left</code></td>
+    </tr>
+    <tr>
+      <td>Right Arrow</td>
+      <td><code class="highlighter-rouge">right</code></td>
+    </tr>
+    <tr>
+      <td>Up Arrow</td>
+      <td><code class="highlighter-rouge">up</code></td>
+    </tr>
+    <tr>
+      <td>Down Arrow</td>
+      <td><code class="highlighter-rouge">down</code></td>
+    </tr>
+    <tr>
+      <td>Backspace</td>
+      <td><code class="highlighter-rouge">backspace</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="コマンドについて調べたい時">コマンドについて調べたい時</h1>
+
+<h2 id="あるコマンドの意味やショートカットを調べたい時">あるコマンドの意味やショートカットを調べたい時</h2>
+
+<p>あるコマンドが何をするか、どのショートカットで実行できるかを調べたいとき、<code class="highlighter-rouge">C-h f</code>を打ち、promptでコマンド名を入力して<code class="highlighter-rouge">RET</code>を打つと、helpが表示されます。helpにはコマンドによっていろいろ書かれていますが、<code class="highlighter-rouge">It is bound to</code>と書いてある文に注目すると、どのショートカットで実行できるかが書いています。例えば、<code class="highlighter-rouge">C-h f find-file RET</code>を打つと、<code class="highlighter-rouge">find-file</code>の説明が表示されます。</p>
+
+<h2 id="あるショートカットに紐付いているコマンドを調べたい時">あるショートカットに紐付いているコマンドを調べたい時</h2>
+
+<p>このショートカットを打つとどうなるんだろう、ということを調べたければ、<code class="highlighter-rouge">C-h k</code>を打ち、その次にショートカットを打つと、もしそれにコマンドが紐付いていればhelpが表示されます。例えば、<code class="highlighter-rouge">C-h k C-x C-f</code>を打つと、<code class="highlighter-rouge">find-file</code>の説明が表示されます。</p>
+
+<h1 id="まとめ">まとめ</h1>
+
+<p>今回はEmacsの基本的なところを把握し、基礎を勉強しました。次回はEmacsの設定の変え方や簡単なカスタマイズについて書きたいと思います。</p>
+
+      </section>
+    </main>
+  </body>
+</html>
