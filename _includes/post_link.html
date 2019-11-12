@@ -1,0 +1,6 @@
+<a href="{{ include.post.url | relative_url }}">
+  {{ include.title }}
+</a>
+{% if include.post.last_edit > include.post.published %}
+<span class="edited">(更新日: {{ include.post.last_edit }})</span>
+{% endif %}
