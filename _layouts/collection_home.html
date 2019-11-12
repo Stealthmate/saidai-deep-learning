@@ -3,7 +3,7 @@
   <head>
     {% include head.html %}
     <title>{{ page.title }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ "/assets/css/style.css" | relative_url }}">
+    <link rel="stylesheet" type="text/css" href="{{ "/assets/css/collection_home.css" | relative_url }}">
   </head>
   <body>
     <nav>
@@ -19,7 +19,7 @@
       <section>
         <h1>記事一覧</h1>
 
-	<details open>
+	<details open class="by-published">
 	  <summary>投稿日順</summary>
 	  <ol>
 	    {% assign groups = site[collection.label] | where_exp: "x", "x.title != 'Home' " | group_by: "published" | sort: "name" | reverse %}
@@ -46,7 +46,7 @@
 
 	{% assign groups = site[collection.label] | where_exp: "x", "x.title != 'Home' " | group_by: "series" | where_exp: "x", "x.name != '' " | sort: "name" | reverse %}
 	{% if groups.size > 0 %}
-	<details open>
+	<details open class="by-series">
 	  <summary>シリーズ</summary>
 	  <ul>
 	    {% for g in groups %}
