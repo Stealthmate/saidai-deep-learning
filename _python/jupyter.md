@@ -2,6 +2,7 @@
 layout: default
 title: Jupyter
 toc: true
+published: 2019-11-09
 last_edit: 2019-11-09
 ---
 

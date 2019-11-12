@@ -2,6 +2,7 @@
 layout: default
 title: Telegramの入れ方
 toc: true
+published: 2019-10-29
 last_edit: 2019-10-29
 ---
 

@@ -2,6 +2,7 @@
 layout: notebook
 toc: true
 title: 線形回帰
+published: 2019-11-09
 last_edit: 2019-11-09
 ---
 

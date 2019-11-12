@@ -2,6 +2,7 @@
 layout: default
 title: Python即入門
 toc: true
+published: 2019-11-05
 last_edit: 2019-11-11
 ---
 

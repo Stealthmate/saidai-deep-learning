@@ -2,6 +2,7 @@
 layout: default
 title: よくある質問
 toc: true
+published: 2019-10-27
 last_edit: 2019-10-28
 ---
 

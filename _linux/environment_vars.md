@@ -2,6 +2,7 @@
 layout: default
 title: PATHとその他環境変数
 toc: true
+published: 2019-10-29
 last_edit: 2019-10-29
 ---
 ## 環境変数とは

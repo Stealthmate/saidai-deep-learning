@@ -2,6 +2,7 @@
 title: .profileと.bashrcの初期設定
 layout: default
 toc: true
+published: 2019-10-29
 last_edit: 2019-10-29
 ---
 

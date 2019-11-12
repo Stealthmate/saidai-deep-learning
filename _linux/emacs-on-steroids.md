@@ -3,6 +3,7 @@ layout: default
 title: "Emacs基礎知識"
 series: Emacs on Steroids
 series_part: 1
+published: 2019-11-11
 last_edit: 2019-11-11
 toc: true
 ---
