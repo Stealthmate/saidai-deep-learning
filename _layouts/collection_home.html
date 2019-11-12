@@ -20,7 +20,7 @@
         <h1>記事一覧</h1>
         <nav class="article-list">
           <ul>
-            {% assign posts = site[collection.label] | where_exp: "x", "x.title != 'Home' "%}
+            {% assign posts = site[collection.label] | where_exp: "x", "x.title != 'Home' " | sort: "last_edit" | reverse %}
             {% for post in posts %}
             <li class="{% if post.url == page.url %} here-now {% endif %}">
               <a href="{{ post.url | relative_url }}">

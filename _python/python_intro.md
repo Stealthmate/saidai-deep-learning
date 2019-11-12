@@ -2,6 +2,7 @@
 layout: default
 title: Python即入門
 toc: true
+last_edit: 2019-11-11
 ---
 
 # 事前知識・準備

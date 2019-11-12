@@ -2,6 +2,7 @@
 layout: default
 title: Anacondaで環境を作る
 toc: true
+last_edit: 2019-10-30
 ---
 
 # 事前知識・準備

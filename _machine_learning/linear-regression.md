@@ -2,6 +2,7 @@
 layout: notebook
 toc: true
 title: 線形回帰
+last_edit: 2019-11-09
 ---
 
 
@@ -35,7 +36,7 @@ with open('data.csv') as f:
     for row in reader:
         x.append(float(row[0]))
         y.append(float(row[1]))
-    
+
 x = np.array(x)
 y = np.array(y)
 plt.scatter(x, y)
@@ -198,7 +199,7 @@ $$
 \sum x_2x_1 & \sum x_2x_2 & \sum x_2x_3 & ... & ... \\
 \sum x_3x_1 & \sum x_3x_2 & ... & ... & ... \\
 ... & ... & ... & ... & \sum x_m \\
-\sum x_mx_1 & ... & ... & \sum x_m & \sum x_mx_m 
+\sum x_mx_1 & ... & ... & \sum x_m & \sum x_mx_m
 \end{pmatrix}
 \begin{pmatrix}
 \hat\beta_{11} & \hat\beta_{21} & ... & \hat\beta_{k1} \\
@@ -221,7 +222,7 @@ $$
 次に、説明変数の積和が入っている左辺の行列に注目しましょう。まず、行列$X$を以下のように定義します：
 
 $$
-X = 
+X =
 \begin{pmatrix}
 x_1^{(1)} & x_2^{(1)} & ... & x_m^{(1)} \\
 x_1^{(2)} & ... & ... & ... \\

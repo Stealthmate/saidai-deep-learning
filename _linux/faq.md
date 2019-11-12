@@ -2,6 +2,7 @@
 layout: default
 title: よくある質問
 toc: true
+last_edit: 2019-10-28
 ---
 
 ## Linuxのインストールについて

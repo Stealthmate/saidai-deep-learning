@@ -2,6 +2,7 @@
 layout: default
 title: 日本語入力の設定
 toc: true
+last_edit: 2019-10-29
 ---
 
 ## 必要なパッケージをインストールする

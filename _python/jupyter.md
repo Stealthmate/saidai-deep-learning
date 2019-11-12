@@ -2,6 +2,7 @@
 layout: default
 title: Jupyter
 toc: true
+last_edit: 2019-11-09
 ---
 
 # 事前知識・準備

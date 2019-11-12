@@ -2,6 +2,7 @@
 layout: default
 title: Anacondaの役割と入れ方
 toc: true
+last_edit: 2019-10-29
 ---
 
 # 予め入っているpythonでは何故だめなのか
