@@ -3,8 +3,8 @@ layout: default
 title: "Emacsの設定を変えてみる"
 series: Emacs on Steroids
 series_part: 2
-published: 2019-11-12
-last_edit: 2019-11-12
+published: 2019-11-14
+last_edit: 2019-11-14
 toc: true
 ---
 
