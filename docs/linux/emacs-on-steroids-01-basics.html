@@ -225,15 +225,17 @@
 
 <h2 id="あるコマンドの意味やショートカットを調べたい時">あるコマンドの意味やショートカットを調べたい時</h2>
 
-<p>あるコマンドが何をするか、どのショートカットで実行できるかを調べたいとき、<code class="highlighter-rouge">C-h f</code>を打ち、promptでコマンド名を入力して<code class="highlighter-rouge">RET</code>を打つと、helpが表示されます。helpにはコマンドによっていろいろ書かれていますが、<code class="highlighter-rouge">It is bound to</code>と書いてある文に注目すると、どのショートカットで実行できるかが書いています。例えば、<code class="highlighter-rouge">C-h f find-file RET</code>を打つと、<code class="highlighter-rouge">find-file</code>の説明が表示されます。</p>
+<p>あるコマンドが何をするか、どのショートカットで実行できるかを調べたいときは、<code class="highlighter-rouge">describe-function</code>コマンド（<code class="highlighter-rouge">C-h f</code>）が役に立ちます。<code class="highlighter-rouge">M-x describe-function</code>か<code class="highlighter-rouge">C-h f</code>を打つと、helpが表示されます。helpにはコマンドによっていろいろ書かれていますが、<code class="highlighter-rouge">It is bound to</code>と書いてある文に注目すると、どのショートカットで実行できるかが書いています。例えば、<code class="highlighter-rouge">C-h f find-file RET</code>を打つと、<code class="highlighter-rouge">find-file</code>の説明が表示されます。</p>
 
 <h2 id="あるショートカットに紐付いているコマンドを調べたい時">あるショートカットに紐付いているコマンドを調べたい時</h2>
 
-<p>このショートカットを打つとどうなるんだろう、ということを調べたければ、<code class="highlighter-rouge">C-h k</code>を打ち、その次にショートカットを打つと、もしそれにコマンドが紐付いていればhelpが表示されます。例えば、<code class="highlighter-rouge">C-h k C-x C-f</code>を打つと、<code class="highlighter-rouge">find-file</code>の説明が表示されます。</p>
+<p>このショートカットを打つとどうなるんだろう、ということを調べたければ、<code class="highlighter-rouge">describe-key</code>コマンド（<code class="highlighter-rouge">C-h k</code>）が役に立ちます。<code class="highlighter-rouge">M-x describe-key</code>か<code class="highlighter-rouge">C-h k</code>を打つと、もしそれにコマンドが紐付いていればhelpが表示されます。例えば、<code class="highlighter-rouge">C-h k C-x C-f</code>を打つと、<code class="highlighter-rouge">find-file</code>の説明が表示されます。</p>
+
+<p><em>Pro tip: <code class="highlighter-rouge">C-h f</code>を<strong>h</strong>elp <strong>f</strong>unctionとして、<code class="highlighter-rouge">C-h k</code>を<strong>h</strong>elp <strong>k</strong>eyとして考えれば覚えやすいです！</em></p>
 
 <h1 id="まとめ">まとめ</h1>
 
-<p>今回はEmacsの基本的なところを把握し、基礎を勉強しました。次回はEmacsの設定の変え方や簡単なカスタマイズについて書きたいと思います。</p>
+<p>今回はEmacsの基本的なところを把握し、基礎を勉強しました。<a href="/saidai-deep-learning/linux/emacs-on-steroids-02-init-el.html">次回</a>はEmacsの設定の変え方や簡単なカスタマイズについて書きたいと思います。</p>
 
       </section>
     </main>
