@@ -112,7 +112,7 @@ Emacsを起動するとき、このような画面が出てきますよね
 
 変数に値を代入する方法はこれでわかったと思います。しかし、値を代入している変数がそもそもどのようなものか、どこで使われてどのような値を取らなければいけないかは分からないですよね。そういうときに、`describe-function`とほとんど同じ`describe-variable`関数が役に立ってくれます！文字通り、`describe-variable`はある変数について教えてくれます。そしてショートカットは`C-h v`です。
 
-*Pro Tip: `C-h f`を**h**elp **f**unctionとして、`C-h k`を**h**elp **k**eybindingとして、`C-h v`を**h**elp **v**ariableとして考えれば覚えやすいです！*
+*Pro Tip: `C-h f`や`C-h k`と同様に、`C-h v`を**h**elp **v**ariableとして考えれば覚えやすいです！*
 
 では、`inhibit-startup-message`について調べてみましょう。`C-h v inhibit-startup-message RET`を打つと：
 
