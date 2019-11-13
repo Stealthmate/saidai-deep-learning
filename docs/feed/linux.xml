@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="stealthmate.github.io/saidai-deep-learning/feed/linux.xml" rel="self" type="application/atom+xml" /><link href="stealthmate.github.io/saidai-deep-learning/" rel="alternate" type="text/html" /><updated>2019-11-12T12:58:09+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/feed/linux.xml</id><title type="html"> | Linux</title><entry><title type="html">Telegramの入れ方</title><link href="stealthmate.github.io/saidai-deep-learning/linux/telegram.html" rel="alternate" type="text/html" title="Telegramの入れ方" /><published>2019-11-12T12:58:09+09:00</published><updated>2019-11-12T12:58:09+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/telegram</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/telegram.html">&lt;h2 id=&quot;事前準備&quot;&gt;事前準備&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="stealthmate.github.io/saidai-deep-learning/feed/linux.xml" rel="self" type="application/atom+xml" /><link href="stealthmate.github.io/saidai-deep-learning/" rel="alternate" type="text/html" /><updated>2019-11-14T02:32:38+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/feed/linux.xml</id><title type="html"> | Linux</title><entry><title type="html">Telegramの入れ方</title><link href="stealthmate.github.io/saidai-deep-learning/linux/telegram.html" rel="alternate" type="text/html" title="Telegramの入れ方" /><published>2019-11-14T02:32:38+09:00</published><updated>2019-11-14T02:32:38+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/telegram</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/telegram.html">&lt;h2 id=&quot;事前準備&quot;&gt;事前準備&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;以下の手順で、ユーザーが&lt;code class=&quot;highlighter-rouge&quot;&gt;michael&lt;/code&gt;だと仮定し、ホームディレクトリを&lt;code class=&quot;highlighter-rouge&quot;&gt;/home/michael&lt;/code&gt;とします。各自自分のユーザーネームに合わせてください。&lt;/li&gt;
@@ -59,7 +59,7 @@ Icon=/opt/Telegram/telegram128.png
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo mv /home/michael/telegram.desktop /usr/share/applications/
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;MenuでTelegramを打って見ましょう！&lt;/p&gt;</content><author><name></name></author><summary type="html">事前準備</summary></entry><entry><title type="html">.profileと.bashrcの初期設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/profile.html" rel="alternate" type="text/html" title=".profileと.bashrcの初期設定" /><published>2019-11-12T12:58:09+09:00</published><updated>2019-11-12T12:58:09+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/profile</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/profile.html">&lt;h2 id=&quot;必要な知識&quot;&gt;必要な知識&lt;/h2&gt;
+&lt;p&gt;MenuでTelegramを打って見ましょう！&lt;/p&gt;</content><author><name></name></author><summary type="html">事前準備</summary></entry><entry><title type="html">.profileと.bashrcの初期設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/profile.html" rel="alternate" type="text/html" title=".profileと.bashrcの初期設定" /><published>2019-11-14T02:32:38+09:00</published><updated>2019-11-14T02:32:38+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/profile</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/profile.html">&lt;h2 id=&quot;必要な知識&quot;&gt;必要な知識&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html&quot;&gt;PATHとその他環境変数&lt;/a&gt;&lt;/li&gt;
@@ -75,7 +75,7 @@ Icon=/opt/Telegram/telegram128.png
 &lt;span class=&quot;nb&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;ssh-agent &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;bashrcの設定&quot;&gt;.bashrcの設定&lt;/h2&gt;</content><author><name></name></author><summary type="html">必要な知識</summary></entry><entry><title type="html">日本語入力の設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html" rel="alternate" type="text/html" title="日本語入力の設定" /><published>2019-11-12T12:58:09+09:00</published><updated>2019-11-12T12:58:09+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/jp_input</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html">&lt;h2 id=&quot;必要なパッケージをインストールする&quot;&gt;必要なパッケージをインストールする&lt;/h2&gt;
+&lt;h2 id=&quot;bashrcの設定&quot;&gt;.bashrcの設定&lt;/h2&gt;</content><author><name></name></author><summary type="html">必要な知識</summary></entry><entry><title type="html">日本語入力の設定</title><link href="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html" rel="alternate" type="text/html" title="日本語入力の設定" /><published>2019-11-14T02:32:38+09:00</published><updated>2019-11-14T02:32:38+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/jp_input</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/jp_input.html">&lt;h2 id=&quot;必要なパッケージをインストールする&quot;&gt;必要なパッケージをインストールする&lt;/h2&gt;
 
 &lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;fcitx fcitx-mozc fcitx-tools
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -102,7 +102,7 @@ Icon=/opt/Telegram/telegram128.png
 
 &lt;h3 id=&quot;全角半角キーで切り替える&quot;&gt;全角半角キーで切り替える&lt;/h3&gt;
 
-&lt;p&gt;タスクバーMenuから、&lt;code class=&quot;highlighter-rouge&quot;&gt;Fcitx Configuration -&amp;gt; Global Config&lt;/code&gt;に行き、&lt;code class=&quot;highlighter-rouge&quot;&gt;Trigger Input Method&lt;/code&gt;で&lt;code class=&quot;highlighter-rouge&quot;&gt;CTRL-Space&lt;/code&gt;をクリックし、全角半角キーを押す。&lt;/p&gt;</content><author><name></name></author><summary type="html">必要なパッケージをインストールする</summary></entry><entry><title type="html">Home</title><link href="stealthmate.github.io/saidai-deep-learning/linux/home.html" rel="alternate" type="text/html" title="Home" /><published>2019-11-12T12:58:09+09:00</published><updated>2019-11-12T12:58:09+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/home</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/home.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">よくある質問</title><link href="stealthmate.github.io/saidai-deep-learning/linux/faq.html" rel="alternate" type="text/html" title="よくある質問" /><published>2019-11-12T12:58:09+09:00</published><updated>2019-11-12T12:58:09+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/faq</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/faq.html">&lt;h2 id=&quot;linuxのインストールについて&quot;&gt;Linuxのインストールについて&lt;/h2&gt;
+&lt;p&gt;タスクバーMenuから、&lt;code class=&quot;highlighter-rouge&quot;&gt;Fcitx Configuration -&amp;gt; Global Config&lt;/code&gt;に行き、&lt;code class=&quot;highlighter-rouge&quot;&gt;Trigger Input Method&lt;/code&gt;で&lt;code class=&quot;highlighter-rouge&quot;&gt;CTRL-Space&lt;/code&gt;をクリックし、全角半角キーを押す。&lt;/p&gt;</content><author><name></name></author><summary type="html">必要なパッケージをインストールする</summary></entry><entry><title type="html">Home</title><link href="stealthmate.github.io/saidai-deep-learning/linux/home.html" rel="alternate" type="text/html" title="Home" /><published>2019-11-14T02:32:38+09:00</published><updated>2019-11-14T02:32:38+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/home</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/home.html"></content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">よくある質問</title><link href="stealthmate.github.io/saidai-deep-learning/linux/faq.html" rel="alternate" type="text/html" title="よくある質問" /><published>2019-11-14T02:32:38+09:00</published><updated>2019-11-14T02:32:38+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/faq</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/faq.html">&lt;h2 id=&quot;linuxのインストールについて&quot;&gt;Linuxのインストールについて&lt;/h2&gt;
 
 &lt;h3 id=&quot;linux入れるのに必要な準備はありますか&quot;&gt;Linux入れるのに必要な準備はありますか？&lt;/h3&gt;
 &lt;ul&gt;
@@ -135,7 +135,7 @@ Icon=/opt/Telegram/telegram128.png
 &lt;h3 id=&quot;windowsで使っているソフトはlinuxで使えますか&quot;&gt;Windowsで使っているソフトはLinuxで使えますか？&lt;/h3&gt;
 &lt;ul&gt;
   &lt;li&gt;使えません。WindowsとLinuxは根本が違うので、Windowsで動くものは基本Linuxで動きません（反対も然り）。ただし、ソースコードがあるもの（pythonやJavaで書いたスクリプト、C/C++で書いたプログラム等）は、Linuxで動かすことができます。&lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><summary type="html">Linuxのインストールについて</summary></entry><entry><title type="html">PATHとその他環境変数</title><link href="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html" rel="alternate" type="text/html" title="PATHとその他環境変数" /><published>2019-11-12T12:58:09+09:00</published><updated>2019-11-12T12:58:09+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/environment_vars</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html">&lt;h2 id=&quot;環境変数とは&quot;&gt;環境変数とは&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name></name></author><summary type="html">Linuxのインストールについて</summary></entry><entry><title type="html">PATHとその他環境変数</title><link href="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html" rel="alternate" type="text/html" title="PATHとその他環境変数" /><published>2019-11-14T02:32:38+09:00</published><updated>2019-11-14T02:32:38+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/environment_vars</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/environment_vars.html">&lt;h2 id=&quot;環境変数とは&quot;&gt;環境変数とは&lt;/h2&gt;
 
 &lt;p&gt;プログラムを実行するというのは、ある&lt;strong&gt;文脈&lt;/strong&gt;で行われることなので、その文脈をプログラムに知らせるために&lt;strong&gt;環境変数&lt;/strong&gt;があります。例えば、LinuxでTerminalを起動したときに、&lt;code class=&quot;highlighter-rouge&quot;&gt;michael@michael-pc&lt;/code&gt;という文字が出てくるのは、michaelというユーザーがTerminalを起動しているからです。つまり、「ユーザーがmichaelである」という文脈の中でTerminalが動いています。そして、「ユーザーがmichaelである」ということをTerminalに知らせるのは、&lt;code class=&quot;highlighter-rouge&quot;&gt;USER&lt;/code&gt;という環境変数です。&lt;/p&gt;
 
@@ -194,7 +194,140 @@ Icon=/opt/Telegram/telegram128.png
 
 &lt;h3 id=&quot;pathの前の値を無視しないこと&quot;&gt;PATHの前の値を無視しないこと&lt;/h3&gt;
 
-&lt;p&gt;PATHには予め様々なディレクトリが設定されています。それらはシステムが正しく動くためのものなので、PATHから無くなると、パソコンが動かなくなります。なので、PATHを変更する時は、常に前の値を維持したまま、&lt;code class=&quot;highlighter-rouge&quot;&gt;export PATH=$PATH:something&lt;/code&gt;という形で後ろへの追加だけ行いましょう。&lt;/p&gt;</content><author><name></name></author><summary type="html">環境変数とは</summary></entry><entry><title type="html">Emacs基礎知識</title><link href="stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids.html" rel="alternate" type="text/html" title="Emacs基礎知識" /><published>2019-11-12T12:58:09+09:00</published><updated>2019-11-12T12:58:09+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
+&lt;p&gt;PATHには予め様々なディレクトリが設定されています。それらはシステムが正しく動くためのものなので、PATHから無くなると、パソコンが動かなくなります。なので、PATHを変更する時は、常に前の値を維持したまま、&lt;code class=&quot;highlighter-rouge&quot;&gt;export PATH=$PATH:something&lt;/code&gt;という形で後ろへの追加だけ行いましょう。&lt;/p&gt;</content><author><name></name></author><summary type="html">環境変数とは</summary></entry><entry><title type="html">Emacsの設定を変えてみる</title><link href="stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids-02-init-el.html" rel="alternate" type="text/html" title="Emacsの設定を変えてみる" /><published>2019-11-14T02:32:38+09:00</published><updated>2019-11-14T02:32:38+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids-02-init-el</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids-02-init-el.html">&lt;p&gt;&lt;a href=&quot;/saidai-deep-learning/linux/emacs-on-steroids-01-basics.html&quot;&gt;前回&lt;/a&gt;では、Emacsの中にElispのインタプリタがあり、ほとんどの動作はElispで書かれたスクリプトの実行結果だと述べました。また、ショートカットの書き方や特徴についても述べました。今回は実際にElispを書きながら、Emacsの動作を変えて、新しいショートカットを作ってみます。&lt;/p&gt;
+
+&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/linux/emacs-on-steroids-01-basics.html&quot;&gt;Emacs基礎知識&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;ユーザー名が&lt;code class=&quot;highlighter-rouge&quot;&gt;michael&lt;/code&gt;だと仮定する&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;emacsの設定ファイル&quot;&gt;Emacsの設定ファイル&lt;/h1&gt;
+
+&lt;p&gt;Emacsが起動するとき、&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;というファイルをまず最初にload（ロード・実行）します。&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;は普段、&lt;code class=&quot;highlighter-rouge&quot;&gt;~/.emacs.d/init.el&lt;/code&gt;にあります。もし存在しなければ、作っておきましょう。&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; ~/.emacs.d/
+&lt;span class=&quot;nb&quot;&gt;touch &lt;/span&gt;init.el
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;の拡張子に注目しましょう。&lt;code class=&quot;highlighter-rouge&quot;&gt;.el&lt;/code&gt;というのは予想通りElispから来ています。つまり、&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;はElispで書かれたスクリプトです。&lt;/p&gt;
+
+&lt;h1 id=&quot;initelに書く内容&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;に書く内容&lt;/h1&gt;
+
+&lt;p&gt;では、&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;に一体何を書けばいいでしょうか。簡単に言うと、命令を書きます。Pythonで&lt;code class=&quot;highlighter-rouge&quot;&gt;x = 3&lt;/code&gt;と各のと同じように、Elispでも変数を定義したり、値を変更したり、処理を呼び出したりできます。少し抽象的に言うと、Emacsの&lt;strong&gt;状態&lt;/strong&gt;を&lt;strong&gt;変更&lt;/strong&gt;させます。例えば、文字の色が変数&lt;code class=&quot;highlighter-rouge&quot;&gt;char-color&lt;/code&gt;に保存されているとしたら、その変数の値を&lt;code class=&quot;highlighter-rouge&quot;&gt;yellow&lt;/code&gt;に変えることでEmacsの状態を変え、次に画面を描くときにEmacsがその新しい状態を使って、黄色い文字を描いてくれます。&lt;/p&gt;
+
+&lt;h2 id=&quot;行番号が常に表示されるように設定してみる&quot;&gt;行番号が常に表示されるように設定してみる&lt;/h2&gt;
+
+&lt;p&gt;テキストエディターを使うとき、行番号が表示されると位置を把握しやすいですね。Emacsではデフォルトで行番号が表示されないので、表示されるようにしましょう。そのために、&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;で以下を書きます：&lt;/p&gt;
+
+&lt;div class=&quot;language-elisp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;global-display-line-numbers-mode&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;を保存して、Emacsを再起動してみてまた&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;を開いてみましょう。左側に行番号が表示されているはずです。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;では、上記のコードについて少し解説をしておきましょう。&lt;/p&gt;
+
+&lt;p&gt;まず、Elispでは全ての命令がカッコで囲まれます。なぜかと言うと、Elispのコードは全てリストから成るからです（豆知識：Lispという名前は&lt;strong&gt;Lis&lt;/strong&gt;t &lt;strong&gt;P&lt;/strong&gt;rocessor（列処理機）が由来です）。Elispで各リストはカッコで囲まれ、それぞれの要素をスペース区切りで書きます。なので、上のコードは2つの要素からなるリストで、それぞれ&lt;code class=&quot;highlighter-rouge&quot;&gt;global-display-line-numbers-mode&lt;/code&gt;と&lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt;です。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;global-display-line-numbers-mode&lt;/code&gt;というのは、名前から分かると思いますが、&lt;code class=&quot;highlighter-rouge&quot;&gt;global&lt;/code&gt;で（どこでも）&lt;code class=&quot;highlighter-rouge&quot;&gt;line numbers&lt;/code&gt;（行番号）を&lt;code class=&quot;highlighter-rouge&quot;&gt;display&lt;/code&gt;（表示）するモードです。一方&lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt;というのは&lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;という値を表しています。つまり、&lt;code class=&quot;highlighter-rouge&quot;&gt;global-display-line-numbers-mode&lt;/code&gt;を&lt;code class=&quot;highlighter-rouge&quot;&gt;true&lt;/code&gt;にすることで、常に行番号が見えるようになります。&lt;/p&gt;
+
+&lt;p&gt;さてこれは変数の代入でしょうか。実は違います。変数の代入についてはまた次の節で解説しますが、上記の文は&lt;strong&gt;関数の呼び出し&lt;/strong&gt;です。Elispでは、リストの頭に来る要素は常に関数の名前です。したがって、上記の文は、&lt;code class=&quot;highlighter-rouge&quot;&gt;global-display-line-numbers-mode&lt;/code&gt;という関数を呼び出し、それに&lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt;という値を変数として渡しています。&lt;/p&gt;
+
+&lt;p&gt;では、&lt;code class=&quot;highlighter-rouge&quot;&gt;global-display-line-numbers-mode&lt;/code&gt;はどのような関数でしょうか。&lt;a href=&quot;/saidai-deep-learning/linux/emacs-on-steroids-01-basics.html&quot;&gt;前回&lt;/a&gt;説明した通り、&lt;code class=&quot;highlighter-rouge&quot;&gt;describe-function&lt;/code&gt;（あるいは&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h f&lt;/code&gt;）を使うと、説明が出てきます。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Toggle Display-Line-Numbers mode in all buffers.&lt;/p&gt;
+
+  &lt;p&gt;With prefix &lt;em&gt;ARG&lt;/em&gt;, enable Global Display-Line-Numbers mode if &lt;em&gt;ARG&lt;/em&gt; is positive;&lt;/p&gt;
+
+  &lt;p&gt;otherwise, disable it. If called from Lisp, enable the mode if &lt;em&gt;ARG&lt;/em&gt; is omitted or nil.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;全てのバッファー（開いているファイル）で、&lt;code class=&quot;highlighter-rouge&quot;&gt;Display-Line-Numbers mode&lt;/code&gt;を有功にしてくれるそうです。さらに、もし引数を渡したら、それが正であれば有功にし、それ以外の場合を無効にしてくれるそうですね。なお、もし引数を渡していなければ、デフォルトで有功にしてくれると書いてあります。&lt;/p&gt;
+
+&lt;h2 id=&quot;emacsの起動画面を無くしてみる&quot;&gt;Emacsの起動画面を無くしてみる&lt;/h2&gt;
+
+&lt;p&gt;Emacsを起動するとき、このような画面が出てきますよね&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;stealthmate.github.io/saidai-deep-learning/assets/images//linux/emacs-on-steroids-02-init-el/emacs-startup-screen.png&quot; alt=&quot;Emacs Startup Screen&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;綺麗には見えますが、あまり使いみちがないですね。この画面を表示せずに、即タイピング可能な状態で起動するようにしてみましょう。&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;に以下を書いて、保存して、Emacsを再起動してみましょう：&lt;/p&gt;
+
+&lt;div class=&quot;language-elisp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;setq&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;inhibit-startup-message&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;画面が消えていますね！&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;では、先程と同様に上の文を分析しましょう。今までの知識を使うと以下のことがいえます：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;この文は&lt;code class=&quot;highlighter-rouge&quot;&gt;setq&lt;/code&gt;関数を呼び出している&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;setq&lt;/code&gt;関数に引数&lt;code class=&quot;highlighter-rouge&quot;&gt;inhibit-startup-message&lt;/code&gt;と&lt;code class=&quot;highlighter-rouge&quot;&gt;t&lt;/code&gt;という2つの引数を渡している。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;では、&lt;code class=&quot;highlighter-rouge&quot;&gt;setq&lt;/code&gt;関数について調べてみましょう。&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h f setq RET&lt;/code&gt;を打つと：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;(setq [&lt;em&gt;SYM&lt;/em&gt; &lt;em&gt;VAL&lt;/em&gt;]…)&lt;/p&gt;
+
+  &lt;p&gt;Set each &lt;em&gt;SYM&lt;/em&gt; to the value of its &lt;em&gt;VAL&lt;/em&gt;.&lt;/p&gt;
+
+  &lt;p&gt;The symbols &lt;em&gt;SYM&lt;/em&gt; are variables; they are literal (not evaluated).&lt;/p&gt;
+
+  &lt;p&gt;The values &lt;strong&gt;VAL&lt;/strong&gt; are expressions; they are evaluated.&lt;/p&gt;
+
+  &lt;p&gt;Thus, (setq x (1+ y)) sets ‘x’ to the value of ‘(1+ y)’.&lt;/p&gt;
+
+  &lt;p&gt;The second &lt;em&gt;VAL&lt;/em&gt; is not computed until after the first &lt;em&gt;SYM&lt;/em&gt; is set, and so on;&lt;/p&gt;
+
+  &lt;p&gt;each &lt;em&gt;VAL&lt;/em&gt; can use the new value of variables set earlier in the ‘setq’.&lt;/p&gt;
+
+  &lt;p&gt;The return value of the ‘setq’ form is the value of the last &lt;em&gt;VAL&lt;/em&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;少し複雑ですが、要するに&lt;code class=&quot;highlighter-rouge&quot;&gt;SYM&lt;/code&gt;の値を&lt;code class=&quot;highlighter-rouge&quot;&gt;VAL&lt;/code&gt;に設定するということを言っています。真ん中らへんに書いてる例を見ると、&lt;code class=&quot;highlighter-rouge&quot;&gt;(setq x (1+ y))&lt;/code&gt;は&lt;code class=&quot;highlighter-rouge&quot;&gt;x&lt;/code&gt;に&lt;code class=&quot;highlighter-rouge&quot;&gt;(1+ y)&lt;/code&gt;の値を代入すると書いてあります。&lt;/p&gt;
+
+&lt;p&gt;つまり、変数への代入も関数呼び出しで行っています。&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;変数に値を代入する方法はこれでわかったと思います。しかし、値を代入している変数がそもそもどのようなものか、どこで使われてどのような値を取らなければいけないかは分からないですよね。そういうときに、&lt;code class=&quot;highlighter-rouge&quot;&gt;describe-function&lt;/code&gt;とほとんど同じ&lt;code class=&quot;highlighter-rouge&quot;&gt;describe-variable&lt;/code&gt;関数が役に立ってくれます！文字通り、&lt;code class=&quot;highlighter-rouge&quot;&gt;describe-variable&lt;/code&gt;はある変数について教えてくれます。そしてショートカットは&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h v&lt;/code&gt;です。&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Pro Tip: &lt;code class=&quot;highlighter-rouge&quot;&gt;C-h f&lt;/code&gt;を&lt;strong&gt;h&lt;/strong&gt;elp &lt;strong&gt;f&lt;/strong&gt;unctionとして、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h k&lt;/code&gt;を&lt;strong&gt;h&lt;/strong&gt;elp &lt;strong&gt;k&lt;/strong&gt;eybindingとして、&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h v&lt;/code&gt;を&lt;strong&gt;h&lt;/strong&gt;elp &lt;strong&gt;v&lt;/strong&gt;ariableとして考えれば覚えやすいです！&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;では、&lt;code class=&quot;highlighter-rouge&quot;&gt;inhibit-startup-message&lt;/code&gt;について調べてみましょう。&lt;code class=&quot;highlighter-rouge&quot;&gt;C-h v inhibit-startup-message RET&lt;/code&gt;を打つと：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Documentation:&lt;/p&gt;
+
+  &lt;p&gt;Non-nil inhibits the startup screen.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;簡単ですね。&lt;code class=&quot;highlighter-rouge&quot;&gt;nil&lt;/code&gt;以外の値は起動画面を無効にするそうです。&lt;/p&gt;
+
+&lt;h1 id=&quot;emacsをスッキリさせるための簡単なカスタマイズ&quot;&gt;Emacsをスッキリさせるための簡単なカスタマイズ&lt;/h1&gt;
+
+&lt;p&gt;Emacsを起動すると、上に他のソフトと同じメニュー（ファイル、編集、設定など）がありますね。更にその下に良く使う昨日のボタンがあり、画面の右側にスクロールバーもありますね。Emacsにある程度慣れれば、これらはむしろ邪魔だと思うようになります。なぜかと言うと、ショートカットを使いこなせていれば、わざわざマウスを動かしてボタンを押す動作をする必要がないからです。&lt;/p&gt;
+
+&lt;p&gt;皆さんに是非Emacsにそれぐらい慣れてほしいので、そのきっかけとして、上の3つのものを全部非表示にするためのカスタマイズ設定を載せておきます。それぞれ以下の通りです：&lt;/p&gt;
+
+&lt;div class=&quot;language-elisp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;menu-bar-mode&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;-1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;;; メニューを消す&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;tool-bar-mode&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;-1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;;; ボタンバーを消す&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;scroll-bar-mode&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;-1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;;; スクロールバーを消す&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;em&gt;Pro Tip: Elispでは&lt;code class=&quot;highlighter-rouge&quot;&gt;;;&lt;/code&gt;で行コメントが書けます！&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;上で説明した知識の範囲内なので、ぜひ各自でそれぞれの関数が何をしているか調べてみてください！&lt;/p&gt;
+
+&lt;h1 id=&quot;まとめ&quot;&gt;まとめ&lt;/h1&gt;
+
+&lt;p&gt;今回は&lt;code class=&quot;highlighter-rouge&quot;&gt;init.el&lt;/code&gt;について説明し、簡単なElispの書き方を勉強しました。関数の呼び出しと変数の代入についてやり方を解説しまし、簡単なカスタマイズ設定をいくつか紹介しました。次回は、Emacsの様々な&lt;em&gt;mode&lt;/em&gt;について解説したいと思います。&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry><entry><title type="html">Emacs基礎知識</title><link href="stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids-01-basics.html" rel="alternate" type="text/html" title="Emacs基礎知識" /><published>2019-11-14T02:32:38+09:00</published><updated>2019-11-14T02:32:38+09:00</updated><id>stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids-01-basics</id><content type="html" xml:base="stealthmate.github.io/saidai-deep-learning/linux/emacs-on-steroids-01-basics.html">&lt;h1 id=&quot;事前知識準備&quot;&gt;事前知識・準備&lt;/h1&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;/saidai-deep-learning/linux/profile.html&quot;&gt;.profileと.bashrcの初期設定&lt;/a&gt;&lt;/li&gt;
