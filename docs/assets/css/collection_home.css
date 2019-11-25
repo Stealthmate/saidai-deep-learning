@@ -32,7 +32,7 @@ section {
     width: 100%;
     align-self: center; }
 
-img {
+video, img {
   max-width: 80vw; }
 
 nav {
