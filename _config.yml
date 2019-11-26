@@ -8,8 +8,9 @@ baseurl: /saidai-deep-learning
 exclude:
 - Gemfile
 - Gemfile.lock
-- jtomd
 - excluded
+- makefile
+- deploy.py
 - vendor
 
 toc:
