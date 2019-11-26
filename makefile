@@ -5,4 +5,4 @@ $(NOTEBOOKS): _%.md: notebooks/%.ipynb
 	sed -i -s 's/\.ipynb)/\.html)/g' $@
 
 
-all: _machine_learning/gradient-descent.md
+all: $(NOTEBOOKS)
