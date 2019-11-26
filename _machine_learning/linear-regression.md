@@ -13,7 +13,6 @@ import matplotlib.pyplot as plt
 import csv
 ```
 
-
 ```python
 mpl.rcParams['font.family'] = 'sans-serif'
 mpl.rcParams['font.sans-serif'] = ['Noto Sans CJK JP']
@@ -28,7 +27,6 @@ mpl.rcParams['figure.figsize'] = 10, 6
 # 具体的な問題
 
 100件のマンションの専有面積と家賃が与えられた。
-
 
 ```python
 x = []
@@ -48,9 +46,7 @@ plt.xlabel("専有面積面積 [$m^2$]")
 _ = plt.ylabel("家賃 [円]")
 ```
 
-
 ![png](linear-regression_files/linear-regression_5_0.png)
-
 
 そこで、専有面積と家賃の関係を確かめたいので、専有面積を$x$とし、家賃を$y$とする。そして、新たなマンションについて、専有面積だけが与えられたときに、家賃をどれぐらいに設定すれば良いかを予測してくれるモデルを作りたい。ここで、面積と家賃が線形関係にあると仮定する。つまり、面積の家賃の関係を一本の直線で表せると仮定する。
 
@@ -132,7 +128,6 @@ $$
 
 # 実際に求めてみる
 
-
 ```python
 X = np.array([
     [np.sum(x ** 2), np.sum(x)],
@@ -143,15 +138,9 @@ B = np.linalg.pinv(X) @ Y
 B
 ```
 
-
-
-
     array([1368.81906013, 8042.25140584])
 
-
-
 上で計算をしてみると、$\hat a \approx 1369$が$\hat b \approx 8042$となりました。データ点に合わせ、求まった直線もプロットしてみましょう。
-
 
 ```python
 xr = np.linspace(0, 100)
@@ -166,9 +155,7 @@ plt.legend()
 _ = plt.ylabel("家賃 [円]")
 ```
 
-
 ![png](linear-regression_files/linear-regression_12_0.png)
-
 
 図から分かるように、赤い直線は確かに一番良さそうですね！
 
@@ -191,7 +178,6 @@ y_i = \beta_{i1}x_1 + \beta_{i2}x_2 + ... + \beta_{im}x_m + \epsilon = \Bigg( \s
 $$
 
 これはつまりどういうことかというと、各目的変数をお互いに関係ない別々の線形回帰だと考えているということです。更にここで再度注目すると、$x_m$は常に$1$なので、$w_{im}$は$y_i$におけるバイアス$b_i$に当たる。
-
 
 もちろん、上記と同じく、真の$\beta$は知れないので、推定値$\hat\beta$を考えます。各目的変数に対し、$J_i$を定義すると、その目的変数のコストを考えることができます。ここで偏微分の計算を省略しますが、偏微分で各$J_i$を最小にする$\hat\beta$を計算するには以下を考えれば良いです：
 

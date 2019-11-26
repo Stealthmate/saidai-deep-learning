@@ -16,7 +16,6 @@ from IPython.display import HTML
 import csv
 ```
 
-
 ```python
 mpl.rcParams["figure.figsize"] = 10, 8
 mpl.rcParams['font.family'] = 'sans-serif'
@@ -45,7 +44,6 @@ mpl.rcParams['font.sans-serif'] = ['Noto Sans CJK JP']
 
 これを図で表すと、以下のようなイメージです。
 
-
 ```python
 x = np.linspace(-10, 10, 100) # -10から10までの点を等間隔で100個生成
 y = x ** 2
@@ -55,16 +53,9 @@ vx = np.linspace(-10, 10, 20)
 ax.quiver(vx, vx ** 2, 2 * vx, np.zeros_like(vx), headwidth=4, width=0.005, scale=200) # ベクトル場（矢印）を描く
 ```
 
-
-
-
     <matplotlib.quiver.Quiver at 0x7ffa9d649fd0>
 
-
-
-
 ![png](gradient-descent_files/gradient-descent_7_1.png)
-
 
 この図では、微分関数の値が負の時に矢印が左を指し、正の時は右を指します。そして矢印の長さは、微分関数の絶対値に比例します。みての通り、微分はどこに行けば増加するか、そしてどれぐらい増加するかを教えてくれます。もちろん、最小値（谷の底）では微分がゼロ（に近い）ので、矢印の長さが0になっています。
 
@@ -73,7 +64,6 @@ ax.quiver(vx, vx ** 2, 2 * vx, np.zeros_like(vx), headwidth=4, width=0.005, scal
 上の話をまとめましょう。まず、関数$f(x)$の微分関数$\frac{df}{dx}$は**増加方向**と**増加程度**を教えてくれます。これを最小値の探索にどう使うのかというと、現在見ている$x_1$からその$x_1$での微分関数の値を引き算すれば良いです。そうすると、どこか新しい$x_2$に辿り着くことができ、その$x_2$に対し$f\prime(x_2) \leq f\prime(x_1)$が成り立ちます。この操作を何回も繰り返せば、微分値がどんどん小さくなっていき、無限回繰り返すと微分値が0に収束します。
 
 しかし、これだけでは不十分です。例えば、$f(x) = x^2$を考えます。この時上の過程を5回繰り返し、辿った$x$を出力してみましょう。最初値は$x=0$で得られるので、そこに近づいていけば正しい動作です。
-
 
 ```python
 xs = [-8.0]
@@ -91,11 +81,9 @@ for i in range(5):
     x_4 = x_4 - f'(x_4) = (+8.0) - (+16.0) = -8.0
     x_5 = x_5 - f'(x_5) = (-8.0) - (-16.0) = +8.0
 
-
 $f\prime(x) = 2x$なので、同じ二つの$x$値を交互に辿っているだけです。全く話になりません。
 
 では、$f(x) = 10x^2$はどうなるでしょうか。同じく最小値は$x=0$で得られます。
-
 
 ```python
 xs = [-8.0]
@@ -113,13 +101,11 @@ for i in range(5):
     x_4 = x_4 - f'(x_4) = (+54872.0) - (+1097440.0) = -1042568.0
     x_5 = x_5 - f'(x_5) = (-1042568.0) - (-20851360.0) = +19808792.0
 
-
 最小値に辿り着くどころか、どんどん遠ざかっていってます。どういうことかというと、$f\prime(x_i) = f\prime(-x_i)$なので、もし$|x_{i+1}| > |x_i|$になったら、微分値が前より大きくなり、それが繰り返し起こると$x_i$が発散します。（各自図を描いてみて確認しましょう）
 
 というわけで、微分を引くだけだと、$x$が発散したり、二つの値を往復したりしてしまうことになりえるので、何か工夫をしなければいけません。ここで一番簡単な解決策は、微分値を引く前に係数をかけることです。この係数を$\alpha$だとして、$\alpha$が小さければ小さいほど、$x$が動く「歩幅」が小さくなるので、この二つの問題を防ぐことができます。
 
 改めて$f(x) = 10x^2$の最小値を探してみましょう。今回は、$\alpha = 0.04$に設定しておきます。
-
 
 ```python
 xs = [-8.0]
@@ -137,7 +123,6 @@ for i in range(5):
     x_3 = x_3 - f'(x_3) = (-0.320) - (-0.256) = -0.064
     x_4 = x_4 - f'(x_4) = (-0.064) - (-0.051) = -0.013
     x_5 = x_5 - f'(x_5) = (-0.013) - (-0.010) = -0.003
-
 
 今回はちゃんと収束しますね！残念ながら、$\alpha$の値は最適化したい関数毎に自分で決めなければいけないです。注意しなければいけないのは、大きすぎると発散が起こり、小さすぎると収束に時間がかかります。
 
@@ -174,7 +159,6 @@ $$
 
 勾配の意味をわかりやすくするために、関数$f(x, y) = x^2 + y^2$を考えましょう。この関数のグラフを描くと、以下の曲面ができます。
 
-
 ```python
 r = np.linspace(-10, 10, 100)
 xx, yy = np.meshgrid(r, r)
@@ -184,19 +168,11 @@ ax = fig.add_subplot(projection='3d')
 ax.plot_surface(xx, yy, zz) # 曲面を描く
 ```
 
-
-
-
     <mpl_toolkits.mplot3d.art3d.Poly3DCollection at 0x7ffa9cb07dd0>
-
-
-
 
 ![png](gradient-descent_files/gradient-descent_21_1.png)
 
-
 次に、$f$の勾配を2次平面上に描くとどうなるのでしょうか。勾配の矢印が関数の高いところを指していることを意識して、次の図を描いてみましょう。
-
 
 ```python
 r = np.linspace(-10, 10, 100)
@@ -214,16 +190,9 @@ dfdy = 2 * vy
 ax.quiver(vx, vy, dfdx, dfdy, color='white') # ベクトル場（勾配）を描く
 ```
 
-
-
-
     <matplotlib.quiver.Quiver at 0x7ffa8e42c850>
 
-
-
-
 ![png](gradient-descent_files/gradient-descent_23_1.png)
-
 
 ここで、色は曲面の$z$座標 - $f(x, y)$の値 - を表します。みての通り、$(0, 0$で関数が最小値をとるので、勾配がゼロになるし、そこから遠ざかっていくとどんどん増加が激しくなり、矢印が長くなっていきます。
 
@@ -239,7 +208,6 @@ y_{i+1}
 $$
 
 さて、$f(x, y) = 2x^2 + y^2$を最適化してみましょう。$\alpha$を$0.1$と置いて、10回計算していきます。
-
 
 ```python
 v = np.array([-5.0, -8.0])
@@ -265,9 +233,7 @@ vs = np.array(vs)
     v_9 = [-0.05038848 -1.07374182]
     v_10 = [-0.03023309 -0.85899346]
 
-
 確かに$(0, 0)$に収束していきますね。これで何が起きているかイメージ付けるために、$f$の勾配の図で勾配矢印を逆方法に向け、その上に$v_i$が通った点を図示してみましょう。
-
 
 ```python
 # 上記と同じお絵描き
@@ -289,16 +255,9 @@ ax.plot(vs[:, 0], vs[:, 1], color='red') # 上のセルで計算した最適化�
 ax.scatter(vs[:, 0], vs[:, 1], color='red')
 ```
 
-
-
-
     <matplotlib.collections.PathCollection at 0x7ffa8e230790>
 
-
-
-
 ![png](gradient-descent_files/gradient-descent_28_1.png)
-
 
 確かに勾配に従ってそうですね。
 
@@ -315,7 +274,6 @@ J_k(\mathbf{\beta}) = \frac{1}{2}\sum_i^N{\Big(y_k^{(i)} - \hat y_k^{(i)}\Big)^2
 $$
 
 これは、$k$個目の出力（目的変数）に対するコスト$J_k$が、全てのサンプル（データ点）の目的変数の真の値から推測した値を弾いたものの2乗です。さて、この式の勾配は何になるのでしょうか？式を展開してみましょう。
-
 
 $$
 \begin{aligned}
@@ -339,7 +297,6 @@ $$
 
 かなり綺麗な式になってみましたね！これで$\nabla J_k$の全ての要素が同じように求まります。そして、勾配を求めることができたので、後は勾配降下を適用するだけです！そのために、コスト関数とコスト関数の勾配を計算してくれるpython関数と、勾配降下を行い、最適化した答えを返してくれるpython関数を実装しましょう。
 
-
 ```python
 # コスト関数は勾配降下では使われませんが、あとから使うので今実装しておきます
 def J(B, X, Y):
@@ -360,7 +317,6 @@ def gradientDescent(X, Y, alpha, iterations):
 ```
 
 これで勾配降下を行う準備ができました。では、実際にデータを読み込んで、実行してみましょう。
-
 
 ```python
 X = []
@@ -384,11 +340,9 @@ print(B)
     [[1368.83257951]
      [8041.73159107]]
 
-
 勾配降下の結果は$\mathbf{\beta} = (1369, 8042)$となりました。正規方程式で得た値と同じですね！
 
 次に、実際の勾配降下の軌道を描いてみますが、更にコスト関数のあらゆる値を計算してみて、2次平面で色を使って曲面と勾配を表しましょう。
-
 
 ```python
 # グラフの範囲
@@ -431,19 +385,11 @@ Bs = np.array(Bs)
 plt.scatter(Bs[:, 0, 0], Bs[:, 1, 0], color='red')
 ```
 
-
-
-
     <matplotlib.collections.PathCollection at 0x7ffa8e2305d0>
-
-
-
 
 ![png](gradient-descent_files/gradient-descent_36_1.png)
 
-
 少しわかりにくいですが、勾配降下は徐々に$(1369, 8042)$へ近づいていっていますね。最後に、回帰線を描きながら、勾配降下がどのように動いているかを描いてみましょう。
-
 
 ```python
 fig, ax = plt.subplots(1, 2, figsize=(12, 6))
@@ -469,9 +415,6 @@ anim = FuncAnimation(fig, update, frames=int(np.log(Bs.shape[0]) / np.log(2)), i
 plt.close()
 HTML(anim.to_html5_video())
 ```
-
-
-
 
 <video width="864" height="432" controls autoplay loop>
   <source type="video/mp4" src="data:video/mp4;base64,AAAAHGZ0eXBNNFYgAAACAGlzb21pc28yYXZjMQAAAAhmcmVlAADPUG1kYXQAAAKuBgX//6rcRem9
@@ -1427,8 +1370,6 @@ TGF2ZjU3LjgzLjEwMA==
 ">
   Your browser does not support the video tag.
 </video>
-
-
 
 # まとめ
 
