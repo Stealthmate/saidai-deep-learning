@@ -6,6 +6,10 @@ serve:
 $(NOTEBOOKS): _%.md: notebooks/%.ipynb
 	jupyter nbconvert $< --to markdown --output-dir _$(dir $*)
 	sed -i -s 's/\.ipynb)/\.html)/g' $@
+	python excluded/trunclines.py $@
+	# sed -s 'H;1h;$!d;x; s/\n\n\n*/\n/g' $@.sed > $@
+	# mv $@.sed $@
+	# mv $@.sed $@
 
 build: clean $(NOTEBOOKS)
 	bundle exec jekyll build
