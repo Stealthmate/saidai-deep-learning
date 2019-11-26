@@ -4,3 +4,4 @@ vendor
 _site
 .sass-cache
 .ipynb_checkpoints
+docs_local

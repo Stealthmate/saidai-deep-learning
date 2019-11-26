@@ -28,8 +28,5 @@ if __name__ == '__main__':
         logger.error(f"Changes other than docs/:\n" + '\n'.join(not_docs))
         abort()
 
-    logging.info(run("make all").stdout.decode('utf-8'))
-    logging.info("Removing docs...")
-    shutil.rmtree("docs")
-    logging.info(run("bundle exec jekyll build").stdout.decode('utf-8'))
+    logging.info(run("make build").stdout.decode('utf-8'))
     logging.info(run("git add -A").stdout.decode('utf-8'))

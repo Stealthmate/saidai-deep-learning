@@ -12,6 +12,8 @@ exclude:
 - makefile
 - deploy.py
 - vendor
+- docs
+- docs_local
 
 toc:
   min_level: 1
