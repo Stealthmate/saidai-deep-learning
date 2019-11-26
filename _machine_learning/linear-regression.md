@@ -3,21 +3,22 @@ layout: notebook
 toc: true
 title: 線形回帰
 published: 2019-11-09
-last_edit: 2019-11-12
+last_edit: 2019-11-27
 ---
-
 
 ```python
 import numpy as np
 import matplotlib as mpl
-# 日本語のフォントを設定
+import matplotlib.pyplot as plt
+import csv
+```
+
+
+```python
 mpl.rcParams['font.family'] = 'sans-serif'
 mpl.rcParams['font.sans-serif'] = ['Noto Sans CJK JP']
 mpl.rcParams['font.size'] = 18
-# 図を大きくする
 mpl.rcParams['figure.figsize'] = 10, 6
-import matplotlib.pyplot as plt
-import csv
 ```
 
 # 線形単回帰
@@ -37,7 +38,7 @@ with open('data.csv') as f:
     for row in reader:
         x.append(float(row[0]))
         y.append(float(row[1]))
-
+    
 x = np.array(x)
 y = np.array(y)
 plt.scatter(x, y)
@@ -48,12 +49,12 @@ _ = plt.ylabel("家賃 [円]")
 ```
 
 
-![png](notebook_files/notebook_4_0.png)
+![png](linear-regression_files/linear-regression_5_0.png)
 
 
 そこで、専有面積と家賃の関係を確かめたいので、専有面積を$x$とし、家賃を$y$とする。そして、新たなマンションについて、専有面積だけが与えられたときに、家賃をどれぐらいに設定すれば良いかを予測してくれるモデルを作りたい。ここで、面積と家賃が線形関係にあると仮定する。つまり、面積の家賃の関係を一本の直線で表せると仮定する。
 
-これを解くにはどうすればいいか？
+これを特にはどうすればいいか？
 
 # モデルを定義する
 
@@ -166,7 +167,7 @@ _ = plt.ylabel("家賃 [円]")
 ```
 
 
-![png](notebook_files/notebook_11_0.png)
+![png](linear-regression_files/linear-regression_12_0.png)
 
 
 図から分かるように、赤い直線は確かに一番良さそうですね！
@@ -196,11 +197,11 @@ $$
 
 $$
 \begin{pmatrix}
-\sum x_1x_1 & \sum x_1x_2 & \sum x_1x_3 & ... & \sum x_mx_1 \\
+\sum x_1x_2 & \sum x_1x_2 & \sum x_1x_3 & ... & \sum x_mx_1 \\
 \sum x_2x_1 & \sum x_2x_2 & \sum x_2x_3 & ... & ... \\
 \sum x_3x_1 & \sum x_3x_2 & ... & ... & ... \\
 ... & ... & ... & ... & \sum x_m \\
-\sum x_mx_1 & ... & ... & \sum x_m & \sum x_mx_m
+\sum x_mx_1 & ... & ... & \sum x_m & \sum x_mx_m 
 \end{pmatrix}
 \begin{pmatrix}
 \hat\beta_{11} & \hat\beta_{21} & ... & \hat\beta_{k1} \\
@@ -223,7 +224,7 @@ $$
 次に、説明変数の積和が入っている左辺の行列に注目しましょう。まず、行列$X$を以下のように定義します：
 
 $$
-X =
+X = 
 \begin{pmatrix}
 x_1^{(1)} & x_2^{(1)} & ... & x_m^{(1)} \\
 x_1^{(2)} & ... & ... & ... \\
