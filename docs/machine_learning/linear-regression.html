@@ -62,14 +62,14 @@
       <section>
         <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="n">mpl</span>
-<span class="c1"># 日本語のフォントを設定
-</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'font.family'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sans-serif'</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Noto Sans CJK JP'</span><span class="p">]</span>
-<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'font.size'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
-<span class="c1"># 図を大きくする
-</span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">import</span> <span class="nn">csv</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'font.family'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'sans-serif'</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'font.sans-serif'</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">'Noto Sans CJK JP'</span><span class="p">]</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'font.size'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s">'figure.figsize'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">6</span>
 </code></pre></div></div>
 
 <h1 id="線形単回帰">線形単回帰</h1>
@@ -87,7 +87,7 @@
     <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">reader</span><span class="p">:</span>
         <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
         <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
-
+    
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -97,11 +97,11 @@
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"家賃 [円]"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="notebook_files/notebook_4_0.png" alt="png" /></p>
+<p><img src="linear-regression_files/linear-regression_5_0.png" alt="png" /></p>
 
 <p>そこで、専有面積と家賃の関係を確かめたいので、専有面積を$x$とし、家賃を$y$とする。そして、新たなマンションについて、専有面積だけが与えられたときに、家賃をどれぐらいに設定すれば良いかを予測してくれるモデルを作りたい。ここで、面積と家賃が線形関係にあると仮定する。つまり、面積の家賃の関係を一本の直線で表せると仮定する。</p>
 
-<p>これを解くにはどうすればいいか？</p>
+<p>これを特にはどうすればいいか？</p>
 
 <h1 id="モデルを定義する">モデルを定義する</h1>
 
@@ -192,7 +192,7 @@
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"家賃 [円]"</span><span class="p">)</span>
 </code></pre></div></div>
 
-<p><img src="notebook_files/notebook_11_0.png" alt="png" /></p>
+<p><img src="linear-regression_files/linear-regression_12_0.png" alt="png" /></p>
 
 <p>図から分かるように、赤い直線は確かに一番良さそうですね！</p>
 
@@ -220,11 +220,11 @@
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{pmatrix}
-\sum x_1x_1 & \sum x_1x_2 & \sum x_1x_3 & ... & \sum x_mx_1 \\
+\sum x_1x_2 & \sum x_1x_2 & \sum x_1x_3 & ... & \sum x_mx_1 \\
 \sum x_2x_1 & \sum x_2x_2 & \sum x_2x_3 & ... & ... \\
 \sum x_3x_1 & \sum x_3x_2 & ... & ... & ... \\
 ... & ... & ... & ... & \sum x_m \\
-\sum x_mx_1 & ... & ... & \sum x_m & \sum x_mx_m
+\sum x_mx_1 & ... & ... & \sum x_m & \sum x_mx_m 
 \end{pmatrix}
 \begin{pmatrix}
 \hat\beta_{11} & \hat\beta_{21} & ... & \hat\beta_{k1} \\
@@ -246,7 +246,7 @@
 <p>次に、説明変数の積和が入っている左辺の行列に注目しましょう。まず、行列$X$を以下のように定義します：</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
-X =
+X = 
 \begin{pmatrix}
 x_1^{(1)} & x_2^{(1)} & ... & x_m^{(1)} \\
 x_1^{(2)} & ... & ... & ... \\
