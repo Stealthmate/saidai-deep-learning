@@ -78,7 +78,9 @@
 
 <h1 id="線形単回帰">線形単回帰</h1>
 
-<p>あるXデータとYデータが与えられた時、XとYの線形関係を調べたい。つまり、Xをx軸、Yをy軸にしたとき、データ点の大まかな傾向を表す線$y = ax + b$を当てはめたい。そうするにはどうすればいいか。次は、以下の具体的な問題を題材にして考えて行く。</p>
+<p>あるXデータとYデータが与えられた時、XとYの線形関係を調べたい。つまり、Xをx軸、Yをy軸にしたとき、データ点の大まかな傾向を表す線
+<script type="math/tex">y = ax + b</script>
+を当てはめたい。そうするにはどうすればいいか。次は、以下の具体的な問題を題材にして考えて行く。</p>
 
 <h1 id="具体的な問題">具体的な問題</h1>
 
@@ -97,39 +99,95 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"専有面積面積 [$m^2$]"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"専有面積面積 [</span><span class="err">
+</span><span class="s">$$m^2$$</span><span class="err">
+</span><span class="s">]"</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"家賃 [円]"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><img src="linear-regression_files/linear-regression_5_0.png" alt="png" /></p>
 
-<p>そこで、専有面積と家賃の関係を確かめたいので、専有面積を$x$とし、家賃を$y$とする。そして、新たなマンションについて、専有面積だけが与えられたときに、家賃をどれぐらいに設定すれば良いかを予測してくれるモデルを作りたい。ここで、面積と家賃が線形関係にあると仮定する。つまり、面積の家賃の関係を一本の直線で表せると仮定する。</p>
+<p>そこで、専有面積と家賃の関係を確かめたいので、専有面積を
+<script type="math/tex">x</script>
+とし、家賃を
+<script type="math/tex">y</script>
+とする。そして、新たなマンションについて、専有面積だけが与えられたときに、家賃をどれぐらいに設定すれば良いかを予測してくれるモデルを作りたい。ここで、面積と家賃が線形関係にあると仮定する。つまり、面積の家賃の関係を一本の直線で表せると仮定する。</p>
 
 <p>これを特にはどうすればいいか？</p>
 
 <h1 id="モデルを定義する">モデルを定義する</h1>
 
-<p>まず、面積と家賃の関係を厳密に定義するところから始める。線形関係と仮定しているので、$y$が$x$の線形関数になると考えると、以下の式を構築できる。</p>
+<p>まず、面積と家賃の関係を厳密に定義するところから始める。線形関係と仮定しているので、
+<script type="math/tex">y</script>
+が
+<script type="math/tex">x</script>
+の線形関数になると考えると、以下の式を構築できる。</p>
 
 <script type="math/tex; mode=display">y = ax + b</script>
 
-<p>しかし、図で見えるように、データ点は全て同じ線上にない。これを言い換えると、つまり上の関係に別の影響要素が含まれていると考えられる。今回は専有面積と家賃しか考えていないので、その別の要素を誤差項$\epsilon$として定義できる。そうすると、新しい式は以下のようになる：</p>
+<p>しかし、図で見えるように、データ点は全て同じ線上にない。これを言い換えると、つまり上の関係に別の影響要素が含まれていると考えられる。今回は専有面積と家賃しか考えていないので、その別の要素を誤差項
+<script type="math/tex">\epsilon</script>
+として定義できる。そうすると、新しい式は以下のようになる：</p>
 
 <script type="math/tex; mode=display">y = ax + b + \epsilon</script>
 
-<p>これで、上記の問題を解くために、$a$と$b$の値を求めればよい。しかし、誤差項があるので、我々は真の$a$と$b$を知ることができない。そこで、$a$と$b$の推定値$\hat a$と$\hat b$を考える。我々の目的は、与えられたデータから$\hat a$と$\hat b$が真の$a$と$b$に一番近づくように値を求めることである。そうすると、我々の推定は以下の式に従う：</p>
+<p>これで、上記の問題を解くために、
+<script type="math/tex">a</script>
+と
+<script type="math/tex">b</script>
+の値を求めればよい。しかし、誤差項があるので、我々は真の
+<script type="math/tex">a</script>
+と
+<script type="math/tex">b</script>
+を知ることができない。そこで、
+<script type="math/tex">a</script>
+と
+<script type="math/tex">b</script>
+の推定値
+<script type="math/tex">\hat a</script>
+と
+<script type="math/tex">\hat b</script>
+を考える。我々の目的は、与えられたデータから
+<script type="math/tex">\hat a</script>
+と
+<script type="math/tex">\hat b</script>
+が真の
+<script type="math/tex">a</script>
+と
+<script type="math/tex">b</script>
+に一番近づくように値を求めることである。そうすると、我々の推定は以下の式に従う：</p>
 
 <script type="math/tex; mode=display">\hat y = \hat a x + \hat b</script>
 
 <h1 id="残差を最小にする">残差を最小にする</h1>
 
-<p>何らかの計算をして、$\hat a$と$\hat b$を求められたとします。先程述べたように、これらはあくまで推定値であって、真の値になりません。必然的に、$\hat y$も$y$と違う値を取ります。その時、$y - \hat y$のことを<strong>residual (残差)</strong>といいます。</p>
+<p>何らかの計算をして、
+<script type="math/tex">\hat a</script>
+と
+<script type="math/tex">\hat b</script>
+を求められたとします。先程述べたように、これらはあくまで推定値であって、真の値になりません。必然的に、
+<script type="math/tex">\hat y</script>
+も
+<script type="math/tex">y</script>
+と違う値を取ります。その時、
+<script type="math/tex">y - \hat y</script>
+のことを<strong>residual (残差)</strong>といいます。</p>
 
 <p>この残差をメドに、私達が計算したモデルの精度を測ることができます。具体的には、残差の平方和の半分を<strong>コスト</strong>として、以下の値を考えます：</p>
 
 <script type="math/tex; mode=display">J(\hat a, \hat b) = \frac{1}{2} \sum_i^N {(y_i - \hat y_i)^2} = \frac{1}{2}\sum_i^N{(y_i - \hat a x_i - \hat b)^2}</script>
 
-<p>このコストを最小にしたいです。つまり、最小値を求めればいいので、ここで微分を使うことができます。それぞれの変数について、$\frac{\partial J}{\partial \hat a}$と$\frac{\partial J}{\partial \hat b}$が$0$となるような$\hat a$と$\hat b$を求めれば良いです。これらを計算してみると、以下のようになる：</p>
+<p>このコストを最小にしたいです。つまり、最小値を求めればいいので、ここで微分を使うことができます。それぞれの変数について、
+<script type="math/tex">\frac{\partial J}{\partial \hat a}</script>
+と
+<script type="math/tex">\frac{\partial J}{\partial \hat b}</script>
+が
+<script type="math/tex">0</script>
+となるような
+<script type="math/tex">\hat a</script>
+と
+<script type="math/tex">\hat b</script>
+を求めれば良いです。これらを計算してみると、以下のようになる：</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{align}
@@ -162,11 +220,33 @@
 \sum y_i
 \end{pmatrix} %]]></script>
 
-<p>左辺の行列を$X$、ベクトルを$\hat B$、右辺を$Y$だとして、$\hat B$は以下で求められます：</p>
+<p>左辺の行列を
+<script type="math/tex">X</script>
+、ベクトルを
+<script type="math/tex">\hat B</script>
+、右辺を
+<script type="math/tex">Y</script>
+だとして、
+<script type="math/tex">\hat B</script>
+は以下で求められます：</p>
 
 <script type="math/tex; mode=display">\hat B = X^{-1}Y</script>
 
-<p>ここで改めて式の意味を確認すると、$J$に関するそれぞれのパラメーターでの偏微分が0となるような$\hat a$と$\hat b$が答えになります。そして、$J$の微分が0となる点は$J$の最小値なので、残差の平方和が最小となるような$\hat a$と$\hat b$の値が求まります。</p>
+<p>ここで改めて式の意味を確認すると、
+<script type="math/tex">J</script>
+に関するそれぞれのパラメーターでの偏微分が0となるような
+<script type="math/tex">\hat a</script>
+と
+<script type="math/tex">\hat b</script>
+が答えになります。そして、
+<script type="math/tex">J</script>
+の微分が0となる点は
+<script type="math/tex">J</script>
+の最小値なので、残差の平方和が最小となるような
+<script type="math/tex">\hat a</script>
+と
+<script type="math/tex">\hat b</script>
+の値が求まります。</p>
 
 <h1 id="実際に求めてみる">実際に求めてみる</h1>
 
@@ -182,16 +262,24 @@
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([1368.81906013, 8042.25140584])
 </code></pre></div></div>
 
-<p>上で計算をしてみると、$\hat a \approx 1369$が$\hat b \approx 8042$となりました。データ点に合わせ、求まった直線もプロットしてみましょう。</p>
+<p>上で計算をしてみると、
+<script type="math/tex">\hat a \approx 1369</script>
+が
+<script type="math/tex">\hat b \approx 8042</script>
+となりました。データ点に合わせ、求まった直線もプロットしてみましょう。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">yhat</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">xr</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xr</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'red'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">"$</span><span class="se">\\</span><span class="s">hat y = {B[0]:.2f}x + {B[1]:.2f}$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xr</span><span class="p">,</span> <span class="n">yhat</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">'red'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">f</span><span class="s">"</span><span class="err">
+</span><span class="s">$$</span><span class="se">\\</span><span class="s">hat y = {B[0]:.2f}x + {B[1]:.2f}$$</span><span class="err">
+</span><span class="s">"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"専有面積面積 [$m^2$]"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"専有面積面積 [</span><span class="err">
+</span><span class="s">$$m^2$$</span><span class="err">
+</span><span class="s">]"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"家賃 [円]"</span><span class="p">)</span>
 </code></pre></div></div>
@@ -204,23 +292,80 @@
 
 <p>今回は一つの説明変数（専有面積）と目的変数（家賃）の関係を調べましたが、説明変数・目的変数供に数を増やしても（例えば、マンションの専有面積と駅からの距離から、家賃と敷金の金額を予測するとか）、上の計算方法を少し工夫するだけで簡単に計算できます。</p>
 
-<p>説明変数が$m$個、目的変数が$k$、データ点（サンプル）が$n$こ与えられたとします。ただし、データ点の$m$個目（最後の）説明変数が常に$1$の値を取るとします。なぜなら、上の式で$b$の定数を足す動作を$bx_m = b$として表せるからです。</p>
+<p>説明変数が
+<script type="math/tex">m</script>
+個、目的変数が
+<script type="math/tex">k</script>
+、データ点（サンプル）が
+<script type="math/tex">n</script>
+こ与えられたとします。ただし、データ点の
+<script type="math/tex">m</script>
+個目（最後の）説明変数が常に
+<script type="math/tex">1</script>
+の値を取るとします。なぜなら、上の式で
+<script type="math/tex">b</script>
+の定数を足す動作を
+<script type="math/tex">bx_m = b</script>
+として表せるからです。</p>
 
 <p>これで、以下の表記を定義します：</p>
 
 <ul>
-  <li>$x_i^{(j)}$ - サンプル$j$の$i$個目の説明変数</li>
-  <li>$y_i^{(j)}$ - サンプル$j$の$i$個目の目的変数</li>
-  <li>$\beta_{ij}$ - 目的変数$y_i$のモデルにおいて、説明変数$x_j$にかける係数</li>
+  <li>
+    <script type="math/tex; mode=display">x_i^{(j)}</script>
+  </li>
+  <li>サンプル
+<script type="math/tex">j</script>
+の
+<script type="math/tex">i</script>
+個目の説明変数</li>
+  <li>
+    <script type="math/tex; mode=display">y_i^{(j)}</script>
+  </li>
+  <li>サンプル
+<script type="math/tex">j</script>
+の
+<script type="math/tex">i</script>
+個目の目的変数</li>
+  <li>
+    <script type="math/tex; mode=display">\beta_{ij}</script>
+  </li>
+  <li>目的変数
+<script type="math/tex">y_i</script>
+のモデルにおいて、説明変数
+<script type="math/tex">x_j</script>
+にかける係数</li>
 </ul>
 
-<p>各目的変数を$y_i$として、以下のモデルで表せます：</p>
+<p>各目的変数を
+<script type="math/tex">y_i</script>
+として、以下のモデルで表せます：</p>
 
 <script type="math/tex; mode=display">y_i = \beta_{i1}x_1 + \beta_{i2}x_2 + ... + \beta_{im}x_m + \epsilon = \Bigg( \sum_j^m \beta_{ij}x_j\Bigg) + \epsilon</script>
 
-<p>これはつまりどういうことかというと、各目的変数をお互いに関係ない別々の線形回帰だと考えているということです。更にここで再度注目すると、$x_m$は常に$1$なので、$w_{im}$は$y_i$におけるバイアス$b_i$に当たる。</p>
+<p>これはつまりどういうことかというと、各目的変数をお互いに関係ない別々の線形回帰だと考えているということです。更にここで再度注目すると、
+<script type="math/tex">x_m</script>
+は常に
+<script type="math/tex">1</script>
+なので、
+<script type="math/tex">w_{im}</script>
+は
+<script type="math/tex">y_i</script>
+におけるバイアス
+<script type="math/tex">b_i</script>
+に当たる。</p>
 
-<p>もちろん、上記と同じく、真の$\beta$は知れないので、推定値$\hat\beta$を考えます。各目的変数に対し、$J_i$を定義すると、その目的変数のコストを考えることができます。ここで偏微分の計算を省略しますが、偏微分で各$J_i$を最小にする$\hat\beta$を計算するには以下を考えれば良いです：</p>
+<p>もちろん、上記と同じく、真の
+<script type="math/tex">\beta</script>
+は知れないので、推定値
+<script type="math/tex">\hat\beta</script>
+を考えます。各目的変数に対し、
+<script type="math/tex">J_i</script>
+を定義すると、その目的変数のコストを考えることができます。ここで偏微分の計算を省略しますが、偏微分で各
+<script type="math/tex">J_i</script>
+を最小にする
+<script type="math/tex">\hat\beta</script>
+を計算するには以下を考えれば良いです：</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{pmatrix}
@@ -245,9 +390,15 @@
 \end{pmatrix} %]]></script>
 
 <hr />
-<p>ここで、$\hat\beta$が入っている行列をまず$B$だとします。</p>
+<p>ここで、
+<script type="math/tex">\hat\beta</script>
+が入っている行列をまず
+<script type="math/tex">B</script>
+だとします。</p>
 
-<p>次に、説明変数の積和が入っている左辺の行列に注目しましょう。まず、行列$X$を以下のように定義します：</p>
+<p>次に、説明変数の積和が入っている左辺の行列に注目しましょう。まず、行列
+<script type="math/tex">X</script>
+を以下のように定義します：</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 X = 
@@ -258,10 +409,16 @@ x_1^{(2)} & ... & ... & ... \\
 x_1^{(n)} & ... & ... & x_m^{(n)}
 \end{pmatrix} %]]></script>
 
-<p>ここで、$X^TX$を計算すると、$x$の平方和が入っている行列ができます。</p>
+<p>ここで、
+<script type="math/tex">X^TX</script>
+を計算すると、
+<script type="math/tex">x</script>
+の平方和が入っている行列ができます。</p>
 
 <hr />
-<p>次に、右辺の行列について考えます。行列$Y$を以下のように定義します：</p>
+<p>次に、右辺の行列について考えます。行列
+<script type="math/tex">Y</script>
+を以下のように定義します：</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 Y =
@@ -272,7 +429,9 @@ y_1^{(2)} & ... & ... & ... \\
 y_1^{(n)} & ... & ... & y_k^{(n)}
 \end{pmatrix} %]]></script>
 
-<p>これで$X^TY$を計算すると、上の式の右辺ができます。</p>
+<p>これで
+<script type="math/tex">X^TY</script>
+を計算すると、上の式の右辺ができます。</p>
 
 <hr />
 
@@ -280,11 +439,15 @@ y_1^{(n)} & ... & ... & y_k^{(n)}
 
 <script type="math/tex; mode=display">X^TXB = X^TY</script>
 
-<p>我々は$B$について解きたいので、逆行列を用いて書くと：</p>
+<p>我々は
+<script type="math/tex">B</script>
+について解きたいので、逆行列を用いて書くと：</p>
 
 <script type="math/tex; mode=display">B = (X^TX)^{-1}X^TY</script>
 
-<p>これで、コストを最小にする$\hat\beta$が得られて、線形回帰問題を解くことができました。</p>
+<p>これで、コストを最小にする
+<script type="math/tex">\hat\beta</script>
+が得られて、線形回帰問題を解くことができました。</p>
 
 <hr />
 <p>上のように、線形回帰を複数の説明変数と目的変数を扱うモデルを<strong>重回帰モデル</strong>と呼びます。そして、先程示した一般解のことを<strong>normal equations（正規方程式）</strong>と呼びます。</p>
@@ -294,7 +457,8 @@ y_1^{(n)} & ... & ... & y_k^{(n)}
 <p>正規方程式は綺麗な解き方ではありますが、パソコンで扱うには大きな問題点が2つあります。</p>
 
 <ol>
-  <li>$(X^TX)^{-1}$は逆行列で、一般的に逆行列を求めるのは時間がかかり、そもそも逆行列が存在しない場合もあるので、計算できないこともあります。</li>
+  <li><script type="math/tex">(X^TX)^{-1}</script>
+は逆行列で、一般的に逆行列を求めるのは時間がかかり、そもそも逆行列が存在しない場合もあるので、計算できないこともあります。</li>
   <li>逆行列をなんとか計算できたとしても、計算の精度はかなり低くなります。パソコンで扱える数値には限界がありますよね。<code class="highlighter-rouge">float</code>は7桁、<code class="highlighter-rouge">double</code>は15桁なので、範囲がかなり狭いです。</li>
 </ol>
 

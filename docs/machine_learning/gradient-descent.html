@@ -88,17 +88,57 @@
 
 <h1 id="関数の最適化">関数の最適化</h1>
 
-<p>まずは簡単な問題から始めましょう。ある関数$y = f(x)$の最小値を知りたい時、どうやって求めればいいでしょうか。当然答えは、$y\prime = 0$と起き、それを満たす$x$を探すわけです。これを<strong>解析的</strong>アプローチと言います。しかし、前回述べたように、解析的に中々解きにくい問題もあります。なので、今度は$y\prime = 0$を解くことを禁止して、別の方法で最小値を探す方法を考えなければなりません。</p>
+<p>まずは簡単な問題から始めましょう。ある関数
+<script type="math/tex">y = f(x)</script>
+の最小値を知りたい時、どうやって求めればいいでしょうか。当然答えは、
+<script type="math/tex">y\prime = 0</script>
+と起き、それを満たす
+<script type="math/tex">x</script>
+を探すわけです。これを<strong>解析的</strong>アプローチと言います。しかし、前回述べたように、解析的に中々解きにくい問題もあります。なので、今度は
+<script type="math/tex">y\prime = 0</script>
+を解くことを禁止して、別の方法で最小値を探す方法を考えなければなりません。</p>
 
-<p>一つの方法は、あらゆる$x$の値全てに対し$y$を計算し、その中から最小値とその$x$値を選ぶというやり方です。しかし、ご存知のように実数は無限なので、それも中々難しいです。一方、パソコンで表現できる実数は約$2^{64} = 18446744073709551616$通りあるのですが、それら全部を試してみるのを考えると、1秒に1000000000個（そもそも無理）試せたとしても600年ぐらいかかります。というわけで値を全部試すことは無理なので、$x$を賢く選んで、試す値の個数を最低限に抑える方法を探さなければいけません。</p>
+<p>一つの方法は、あらゆる
+<script type="math/tex">x</script>
+の値全てに対し
+<script type="math/tex">y</script>
+を計算し、その中から最小値とその
+<script type="math/tex">x</script>
+値を選ぶというやり方です。しかし、ご存知のように実数は無限なので、それも中々難しいです。一方、パソコンで表現できる実数は約
+<script type="math/tex">2^{64} = 18446744073709551616</script>
+通りあるのですが、それら全部を試してみるのを考えると、1秒に1000000000個（そもそも無理）試せたとしても600年ぐらいかかります。というわけで値を全部試すことは無理なので、
+<script type="math/tex">x</script>
+を賢く選んで、試す値の個数を最低限に抑える方法を探さなければいけません。</p>
 
-<p>ではどうやって$x$の値を選べば良いでしょうか。答えは、「隣の$x$」を見ることです。左隣（負の方向）の$x_l$での$y_l$が自分より大きければ、左（負の方向）に行く必要がありません。一方右隣（正の方向）の$x_r$での$y_r$が自分より小さければ、右（正の方向）に行くと最小値に近づくことになります。しかし残念ながら、この方法も一つ落とし穴があります。皆さんは既に気づいているかもしれませんが、極小値（グラフでの谷）が何個もあると、その中の一つにたどり着いたらそこからもう抜け出すことができません（右も左も自分より大きいので）。これを数学の言葉で言うと、$f(x)$が<a href="https://ja.wikipedia.org/wiki/%E5%87%B8%E9%96%A2%E6%95%B0">Convex Function</a>（凸関数）の時のみこの方法が最小値を出すことが保証されます。</p>
+<p>ではどうやって
+<script type="math/tex">x</script>
+の値を選べば良いでしょうか。答えは、「隣の
+<script type="math/tex">x</script>
+」を見ることです。左隣（負の方向）の
+<script type="math/tex">x_l</script>
+での
+<script type="math/tex">y_l</script>
+が自分より大きければ、左（負の方向）に行く必要がありません。一方右隣（正の方向）の
+<script type="math/tex">x_r</script>
+での
+<script type="math/tex">y_r</script>
+が自分より小さければ、右（正の方向）に行くと最小値に近づくことになります。しかし残念ながら、この方法も一つ落とし穴があります。皆さんは既に気づいているかもしれませんが、極小値（グラフでの谷）が何個もあると、その中の一つにたどり着いたらそこからもう抜け出すことができません（右も左も自分より大きいので）。これを数学の言葉で言うと、
+<script type="math/tex">f(x)</script>
+が<a href="https://ja.wikipedia.org/wiki/%E5%87%B8%E9%96%A2%E6%95%B0">Convex Function</a>（凸関数）の時のみこの方法が最小値を出すことが保証されます。</p>
 
 <p>これ以上賢いことを考えようとすると、話が複雑になるので、今回は最適化したい関数が凸関数であると仮定し、隣を見る方法について解説します。</p>
 
 <h1 id="隣を見る">隣を見る</h1>
 
-<p>上では「隣の$x$での$y$を見る」と書きましたが、集合に詳しい人は「実数の集合で隣の$x$なんて概念はないよ！」と、心の中で叫んでるはずです。その通りです。$\pi$の隣の数なんてのは定義できないので、数学を語る時は別の捉え方をする必要があります。</p>
+<p>上では「隣の
+<script type="math/tex">x</script>
+での
+<script type="math/tex">y</script>
+を見る」と書きましたが、集合に詳しい人は「実数の集合で隣の
+<script type="math/tex">x</script>
+なんて概念はないよ！」と、心の中で叫んでるはずです。その通りです。
+<script type="math/tex">\pi</script>
+の隣の数なんてのは定義できないので、数学を語る時は別の捉え方をする必要があります。</p>
 
 <p>良く考えてみると、「隣を見る」時のパターンは4通りあります。一つは、左が小さく、右が大きいパターン。もう一つは、左が大きく、右が小さいパターン。そして残りの2つは、左も右もともに小さい、もしくは大きいパターン。ここまで言うともう分かると思うのですが、「隣を見る」というのは実は微分で表すことができます！微分は関数の変化の激しさを表してくれるので、負の時は1つめのパターン、正の時は2つめのパターン、0の時は3つ目と4つ目のパターンに対応します。</p>
 
@@ -121,9 +161,29 @@
 
 <h1 id="微分を使って最適化する">微分を使って最適化する</h1>
 
-<p>上の話をまとめましょう。まず、関数$f(x)$の微分関数$\frac{df}{dx}$は<strong>増加方向</strong>と<strong>増加程度</strong>を教えてくれます。これを最小値の探索にどう使うのかというと、現在見ている$x_1$からその$x_1$での微分関数の値を引き算すれば良いです。そうすると、どこか新しい$x_2$に辿り着くことができ、その$x_2$に対し$f\prime(x_2) \leq f\prime(x_1)$が成り立ちます。この操作を何回も繰り返せば、微分値がどんどん小さくなっていき、無限回繰り返すと微分値が0に収束します。</p>
+<p>上の話をまとめましょう。まず、関数
+<script type="math/tex">f(x)</script>
+の微分関数
+<script type="math/tex">\frac{df}{dx}</script>
+は<strong>増加方向</strong>と<strong>増加程度</strong>を教えてくれます。これを最小値の探索にどう使うのかというと、現在見ている
+<script type="math/tex">x_1</script>
+からその
+<script type="math/tex">x_1</script>
+での微分関数の値を引き算すれば良いです。そうすると、どこか新しい
+<script type="math/tex">x_2</script>
+に辿り着くことができ、その
+<script type="math/tex">x_2</script>
+に対し
+<script type="math/tex">f\prime(x_2) \leq f\prime(x_1)</script>
+が成り立ちます。この操作を何回も繰り返せば、微分値がどんどん小さくなっていき、無限回繰り返すと微分値が0に収束します。</p>
 
-<p>しかし、これだけでは不十分です。例えば、$f(x) = x^2$を考えます。この時上の過程を5回繰り返し、辿った$x$を出力してみましょう。最初値は$x=0$で得られるので、そこに近づいていけば正しい動作です。</p>
+<p>しかし、これだけでは不十分です。例えば、
+<script type="math/tex">f(x) = x^2</script>
+を考えます。この時上の過程を5回繰り返し、辿った
+<script type="math/tex">x</script>
+を出力してみましょう。最初値は
+<script type="math/tex">x=0</script>
+で得られるので、そこに近づいていけば正しい動作です。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">8.0</span><span class="p">]</span>
 <span class="k">print</span><span class="p">(</span><span class="s">"x_0 ="</span><span class="p">,</span> <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -141,9 +201,16 @@ x_4 = x_4 - f'(x_4) = (+8.0) - (+16.0) = -8.0
 x_5 = x_5 - f'(x_5) = (-8.0) - (-16.0) = +8.0
 </code></pre></div></div>
 
-<p>$f\prime(x) = 2x$なので、同じ二つの$x$値を交互に辿っているだけです。全く話になりません。</p>
+<p><script type="math/tex">f\prime(x) = 2x</script>
+なので、同じ二つの
+<script type="math/tex">x</script>
+値を交互に辿っているだけです。全く話になりません。</p>
 
-<p>では、$f(x) = 10x^2$はどうなるでしょうか。同じく最小値は$x=0$で得られます。</p>
+<p>では、
+<script type="math/tex">f(x) = 10x^2</script>
+はどうなるでしょうか。同じく最小値は
+<script type="math/tex">x=0</script>
+で得られます。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">8.0</span><span class="p">]</span>
 <span class="k">print</span><span class="p">(</span><span class="s">"x_0 ="</span><span class="p">,</span> <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -161,21 +228,29 @@ x_4 = x_4 - f'(x_4) = (+54872.0) - (+1097440.0) = -1042568.0
 x_5 = x_5 - f'(x_5) = (-1042568.0) - (-20851360.0) = +19808792.0
 </code></pre></div></div>
 
-<table>
-  <tbody>
-    <tr>
-      <td>最小値に辿り着くどころか、どんどん遠ざかっていってます。どういうことかというと、$f\prime(x_i) = f\prime(-x_i)$なので、もし$</td>
-      <td>x_{i+1}</td>
-      <td>&gt;</td>
-      <td>x_i</td>
-      <td>$になったら、微分値が前より大きくなり、それが繰り返し起こると$x_i$が発散します。（各自図を描いてみて確認しましょう）</td>
-    </tr>
-  </tbody>
-</table>
+<p>最小値に辿り着くどころか、どんどん遠ざかっていってます。どういうことかというと、
+<script type="math/tex">f\prime(x_i) = f\prime(-x_i)</script>
+なので、もし
+<script type="math/tex">|x_{i+1}| > |x_i|</script>
+になったら、微分値が前より大きくなり、それが繰り返し起こると
+<script type="math/tex">x_i</script>
+が発散します。（各自図を描いてみて確認しましょう）</p>
 
-<p>というわけで、微分を引くだけだと、$x$が発散したり、二つの値を往復したりしてしまうことになりえるので、何か工夫をしなければいけません。ここで一番簡単な解決策は、微分値を引く前に係数をかけることです。この係数を$\alpha$だとして、$\alpha$が小さければ小さいほど、$x$が動く「歩幅」が小さくなるので、この二つの問題を防ぐことができます。</p>
+<p>というわけで、微分を引くだけだと、
+<script type="math/tex">x</script>
+が発散したり、二つの値を往復したりしてしまうことになりえるので、何か工夫をしなければいけません。ここで一番簡単な解決策は、微分値を引く前に係数をかけることです。この係数を
+<script type="math/tex">\alpha</script>
+だとして、
+<script type="math/tex">\alpha</script>
+が小さければ小さいほど、
+<script type="math/tex">x</script>
+が動く「歩幅」が小さくなるので、この二つの問題を防ぐことができます。</p>
 
-<p>改めて$f(x) = 10x^2$の最小値を探してみましょう。今回は、$\alpha = 0.04$に設定しておきます。</p>
+<p>改めて
+<script type="math/tex">f(x) = 10x^2</script>
+の最小値を探してみましょう。今回は、
+<script type="math/tex">\alpha = 0.04</script>
+に設定しておきます。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xs</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">8.0</span><span class="p">]</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.04</span>
@@ -194,7 +269,9 @@ x_4 = x_4 - f'(x_4) = (-0.064) - (-0.051) = -0.013
 x_5 = x_5 - f'(x_5) = (-0.013) - (-0.010) = -0.003
 </code></pre></div></div>
 
-<p>今回はちゃんと収束しますね！残念ながら、$\alpha$の値は最適化したい関数毎に自分で決めなければいけないです。注意しなければいけないのは、大きすぎると発散が起こり、小さすぎると収束に時間がかかります。</p>
+<p>今回はちゃんと収束しますね！残念ながら、
+<script type="math/tex">\alpha</script>
+の値は最適化したい関数毎に自分で決めなければいけないです。注意しなければいけないのは、大きすぎると発散が起こり、小さすぎると収束に時間がかかります。</p>
 
 <p>上手な決め方についてはまた今度書きますが、一旦は自分で試してみて、収束するようになるまで小さくしていくという決め方を使いましょう。</p>
 
@@ -204,9 +281,23 @@ x_5 = x_5 - f'(x_5) = (-0.013) - (-0.010) = -0.003
 
 <h2 id="多次元での微分">多次元での微分</h2>
 
-<p>一次元での微分値$f\prime(x_1)$は、$x_1$をどの方向にずらせば$f(x_1)$が大きくなるか、そしてどれぐらい大きくなるかを教えてくれます。2次元になると、動かす物が2個–$x$と$y$–あるので、「どの方向に動かせばいいか」というのは自然とベクトルになります。そして、そのベクトルの絶対値が「どれぐらい大きくなるか」を教えてくれます。</p>
+<p>一次元での微分値
+<script type="math/tex">f\prime(x_1)</script>
+は、
+<script type="math/tex">x_1</script>
+をどの方向にずらせば
+<script type="math/tex">f(x_1)</script>
+が大きくなるか、そしてどれぐらい大きくなるかを教えてくれます。2次元になると、動かす物が2個–
+<script type="math/tex">x</script>
+と
+<script type="math/tex">y</script>
+–あるので、「どの方向に動かせばいいか」というのは自然とベクトルになります。そして、そのベクトルの絶対値が「どれぐらい大きくなるか」を教えてくれます。</p>
 
-<p>では、このベクトルに何を入れればいいかというと、一つ目の要素には「$x$を動かすとどれぐらい大きくなるか」、もう一つの要素には「$y$を動かすとどれぐらい大きくなるか」を入れれば良いです。方向は符号で決まるのでもちろんそれぞれの符号も必要です。そして、この「◯を動かせば」という制約があるので、ここで偏微分が登場します。</p>
+<p>では、このベクトルに何を入れればいいかというと、一つ目の要素には「
+<script type="math/tex">x</script>
+を動かすとどれぐらい大きくなるか」、もう一つの要素には「
+<script type="math/tex">y</script>
+を動かすとどれぐらい大きくなるか」を入れれば良いです。方向は符号で決まるのでもちろんそれぞれの符号も必要です。そして、この「◯を動かせば」という制約があるので、ここで偏微分が登場します。</p>
 
 <p>さて、説明はここまでにして、話を数学の言葉に直しましょう。上で言ったベクトルは、<strong>Gradient</strong>（勾配）と言います。そしてその定義は以下です。</p>
 
@@ -217,13 +308,19 @@ x_5 = x_5 - f'(x_5) = (-0.013) - (-0.010) = -0.003
 ...
 \end{pmatrix}</script>
 
-<p>ここで一つ注意点を述べましょう。関数が$f(x)$の時、つまり1次元関数である時、勾配は$x$での微分と等しいです。つまり：</p>
+<p>ここで一つ注意点を述べましょう。関数が
+<script type="math/tex">f(x)</script>
+の時、つまり1次元関数である時、勾配は
+<script type="math/tex">x</script>
+での微分と等しいです。つまり：</p>
 
 <script type="math/tex; mode=display">\nabla f(x) = \frac{df}{dx}</script>
 
 <h2 id="勾配で関数を最適化する">勾配で関数を最適化する</h2>
 
-<p>勾配の意味をわかりやすくするために、関数$f(x, y) = x^2 + y^2$を考えましょう。この関数のグラフを描くと、以下の曲面ができます。</p>
+<p>勾配の意味をわかりやすくするために、関数
+<script type="math/tex">f(x, y) = x^2 + y^2</script>
+を考えましょう。この関数のグラフを描くと、以下の曲面ができます。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
@@ -238,7 +335,9 @@ x_5 = x_5 - f'(x_5) = (-0.013) - (-0.010) = -0.003
 
 <p><img src="gradient-descent_files/gradient-descent_21_1.png" alt="png" /></p>
 
-<p>次に、$f$の勾配を2次平面上に描くとどうなるのでしょうか。勾配の矢印が関数の高いところを指していることを意識して、次の図を描いてみましょう。</p>
+<p>次に、
+<script type="math/tex">f</script>
+の勾配を2次平面上に描くとどうなるのでしょうか。勾配の矢印が関数の高いところを指していることを意識して、次の図を描いてみましょう。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
@@ -260,9 +359,19 @@ x_5 = x_5 - f'(x_5) = (-0.013) - (-0.010) = -0.003
 
 <p><img src="gradient-descent_files/gradient-descent_23_1.png" alt="png" /></p>
 
-<p>ここで、色は曲面の$z$座標 - $f(x, y)$の値 - を表します。みての通り、$(0, 0$で関数が最小値をとるので、勾配がゼロになるし、そこから遠ざかっていくとどんどん増加が激しくなり、矢印が長くなっていきます。</p>
+<p>ここで、色は曲面の
+<script type="math/tex">z</script>
+座標 - 
+<script type="math/tex">f(x, y)</script>
+の値 - を表します。みての通り、
+<script type="math/tex">(0, 0</script>
+で関数が最小値をとるので、勾配がゼロになるし、そこから遠ざかっていくとどんどん増加が激しくなり、矢印が長くなっていきます。</p>
 
-<p>では、この関数を最適化するにはどうしたら良いのかというと、１次元の時と全く同じです。ただ今回は、$x_i$の変わりに$(x_i, y_i)$ベクトルから勾配ベクトルを引き、更新していきます。つまり：</p>
+<p>では、この関数を最適化するにはどうしたら良いのかというと、１次元の時と全く同じです。ただ今回は、
+<script type="math/tex">x_i</script>
+の変わりに
+<script type="math/tex">(x_i, y_i)</script>
+ベクトルから勾配ベクトルを引き、更新していきます。つまり：</p>
 
 <script type="math/tex; mode=display">\begin{pmatrix}
 x_{i+1} \\
@@ -271,7 +380,13 @@ y_{i+1}
 \mathbf{v}_{i+1}
 = \mathbf{v} - \alpha\nabla f(x_i, y_i)</script>
 
-<p>さて、$f(x, y) = 2x^2 + y^2$を最適化してみましょう。$\alpha$を$0.1$と置いて、10回計算していきます。</p>
+<p>さて、
+<script type="math/tex">f(x, y) = 2x^2 + y^2</script>
+を最適化してみましょう。
+<script type="math/tex">\alpha</script>
+を
+<script type="math/tex">0.1</script>
+と置いて、10回計算していきます。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">5.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">8.0</span><span class="p">])</span>
 <span class="n">vs</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="c1"># vの履歴
@@ -297,7 +412,13 @@ v_9 = [-0.05038848 -1.07374182]
 v_10 = [-0.03023309 -0.85899346]
 </code></pre></div></div>
 
-<p>確かに$(0, 0)$に収束していきますね。これで何が起きているかイメージ付けるために、$f$の勾配の図で勾配矢印を逆方法に向け、その上に$v_i$が通った点を図示してみましょう。</p>
+<p>確かに
+<script type="math/tex">(0, 0)</script>
+に収束していきますね。これで何が起きているかイメージ付けるために、
+<script type="math/tex">f</script>
+の勾配の図で勾配矢印を逆方法に向け、その上に
+<script type="math/tex">v_i</script>
+が通った点を図示してみましょう。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 上記と同じお絵描き
 </span><span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
@@ -325,17 +446,25 @@ v_10 = [-0.03023309 -0.85899346]
 
 <p>確かに勾配に従ってそうですね。</p>
 
-<p>一般的に、2次元関数$f(x, y)$が描く曲面は、山と谷のように見えますよね。勾配で最適化をすると、最小値に辿り着くようにいろいろな点を辿るわけですが、その点は必ず前の点より低いところにないといけません。これは言い換えると、山から谷に降りているようなことです。そのイメージから、<strong>Gradient Descent</strong>（勾配降下法）という名前が生まれたのです。</p>
+<p>一般的に、2次元関数
+<script type="math/tex">f(x, y)</script>
+が描く曲面は、山と谷のように見えますよね。勾配で最適化をすると、最小値に辿り着くようにいろいろな点を辿るわけですが、その点は必ず前の点より低いところにないといけません。これは言い換えると、山から谷に降りているようなことです。そのイメージから、<strong>Gradient Descent</strong>（勾配降下法）という名前が生まれたのです。</p>
 
 <h1 id="勾配降下法と線形回帰">勾配降下法と線形回帰</h1>
 
 <p>勾配降下法は、関数の最適化を行う方法です。何の関数を最適化するかは全く自由で、その勾配さえ求まれば勾配降下を使うことができます。</p>
 
-<p>今回は、線形回帰に購買降下法を使ってみます。<a href="./linear-regression.html">前回</a>の内容を思い出してみると、線形回帰ではコスト関数（誤差関数）を最小にするのが目的です。そして、コスト関数は回帰係数$\beta_{ij}$を変数としています。その式を改めて書いてみると以下になります。</p>
+<p>今回は、線形回帰に購買降下法を使ってみます。<a href="./linear-regression.html">前回</a>の内容を思い出してみると、線形回帰ではコスト関数（誤差関数）を最小にするのが目的です。そして、コスト関数は回帰係数
+<script type="math/tex">\beta_{ij}</script>
+を変数としています。その式を改めて書いてみると以下になります。</p>
 
 <script type="math/tex; mode=display">J_k(\mathbf{\beta}) = \frac{1}{2}\sum_i^N{\Big(y_k^{(i)} - \hat y_k^{(i)}\Big)^2} = \frac{1}{2}\sum_i^N{\Big(y_k^{(i)} - \sum_j^M \beta_{kj}x_j^{(i)}\Big)^2}</script>
 
-<p>これは、$k$個目の出力（目的変数）に対するコスト$J_k$が、全てのサンプル（データ点）の目的変数の真の値から推測した値を弾いたものの2乗です。さて、この式の勾配は何になるのでしょうか？式を展開してみましょう。</p>
+<p>これは、
+<script type="math/tex">k</script>
+個目の出力（目的変数）に対するコスト
+<script type="math/tex">J_k</script>
+が、全てのサンプル（データ点）の目的変数の真の値から推測した値を弾いたものの2乗です。さて、この式の勾配は何になるのでしょうか？式を展開してみましょう。</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \begin{aligned}
@@ -343,7 +472,11 @@ J_k(\mathbf{\beta}) &= \frac{1}{2}\sum_i^N{\Big(y_k^{(i)} - \sum_j^M \beta_{kj}x
 &= \frac{1}{2}\sum_i^N{ \Big[ (y_k^{(i)})^2 + \Big(\sum_j^M \beta_{kj}x_j^{(i)} \Big)^2 - 2y_k^{(i)}\sum_j^M\Big(\beta_{kj}x_j^{(i)}\Big) \Big]}
 \end{aligned} %]]></script>
 
-<p>さて、ここで勾配をとるとどうなるでしょうか？勾配は$\mathbf{\beta}<em>k$（ベクトル）の要素の個数分の要素を持つわけですので、その一つの要素、$\beta</em>{kp}$に注目してみましょう。</p>
+<p>さて、ここで勾配をとるとどうなるでしょうか？勾配は
+<script type="math/tex">\mathbf{\beta}_k</script>
+（ベクトル）の要素の個数分の要素を持つわけですので、その一つの要素、
+<script type="math/tex">\beta_{kp}</script>
+に注目してみましょう。</p>
 
 <script type="math/tex; mode=display">% <![CDATA[
 \def\pd#1{\frac{\partial}{\partial #1}}
@@ -355,7 +488,9 @@ J_k(\mathbf{\beta}) &= \frac{1}{2}\sum_i^N{\Big(y_k^{(i)} - \sum_j^M \beta_{kj}x
 &= \sum_i^N{x_p^{(i)}(y_k^{(i)} - \hat y_k^{(i)})}
 \end{aligned} %]]></script>
 
-<p>かなり綺麗な式になってみましたね！これで$\nabla J_k$の全ての要素が同じように求まります。そして、勾配を求めることができたので、後は勾配降下を適用するだけです！そのために、コスト関数とコスト関数の勾配を計算してくれるpython関数と、勾配降下を行い、最適化した答えを返してくれるpython関数を実装しましょう。</p>
+<p>かなり綺麗な式になってみましたね！これで
+<script type="math/tex">\nabla J_k</script>
+の全ての要素が同じように求まります。そして、勾配を求めることができたので、後は勾配降下を適用するだけです！そのために、コスト関数とコスト関数の勾配を計算してくれるpython関数と、勾配降下を行い、最適化した答えを返してくれるpython関数を実装しましょう。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># コスト関数は勾配降下では使われませんが、あとから使うので今実装しておきます
 </span><span class="k">def</span> <span class="nf">J</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
@@ -399,7 +534,9 @@ J_k(\mathbf{\beta}) &= \frac{1}{2}\sum_i^N{\Big(y_k^{(i)} - \sum_j^M \beta_{kj}x
  [8041.73159107]]
 </code></pre></div></div>
 
-<p>勾配降下の結果は$\mathbf{\beta} = (1369, 8042)$となりました。正規方程式で得た値と同じですね！</p>
+<p>勾配降下の結果は
+<script type="math/tex">\mathbf{\beta} = (1369, 8042)</script>
+となりました。正規方程式で得た値と同じですね！</p>
 
 <p>次に、実際の勾配降下の軌道を描いてみますが、更にコスト関数のあらゆる値を計算してみて、2次平面で色を使って曲面と勾配を表しましょう。</p>
 
@@ -448,7 +585,9 @@ J_k(\mathbf{\beta}) &= \frac{1}{2}\sum_i^N{\Big(y_k^{(i)} - \sum_j^M \beta_{kj}x
 
 <p><img src="gradient-descent_files/gradient-descent_36_1.png" alt="png" /></p>
 
-<p>少しわかりにくいですが、勾配降下は徐々に$(1369, 8042)$へ近づいていっていますね。最後に、回帰線を描きながら、勾配降下がどのように動いているかを描いてみましょう。</p>
+<p>少しわかりにくいですが、勾配降下は徐々に
+<script type="math/tex">(1369, 8042)</script>
+へ近づいていっていますね。最後に、回帰線を描きながら、勾配降下がどのように動いているかを描いてみましょう。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">bxx</span><span class="p">,</span> <span class="n">byy</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
@@ -1433,7 +1572,9 @@ TGF2ZjU3LjgzLjEwMA==
 
 <p>今回は勾配降下法について解説しました。関数の解析的な最適化と数値的な最適化、そして微分・勾配を使った最適化を実装しながら、なぜこんなことができるかについて議論しました。</p>
 
-<p>しかし、勾配降下法にも弱点があります。既に気づいている人もいるかもしれませんが、上の図からで購買は「だいたい」のところを当ててから非常に遅くなります。なぜかと言うと、途中から勾配の大きさが極端に小さくなるからです（何故か各自で考えてみましょう）。一方、$\alpha$を大きくすると発散してしまうので、結局はゆっくりゆっくり解答に近づけていくしか選択肢がなくなり、遅くなります。これらの問題をどう解くかはまた別の機会でお話しようと思います。</p>
+<p>しかし、勾配降下法にも弱点があります。既に気づいている人もいるかもしれませんが、上の図からで購買は「だいたい」のところを当ててから非常に遅くなります。なぜかと言うと、途中から勾配の大きさが極端に小さくなるからです（何故か各自で考えてみましょう）。一方、
+<script type="math/tex">\alpha</script>
+を大きくすると発散してしまうので、結局はゆっくりゆっくり解答に近づけていくしか選択肢がなくなり、遅くなります。これらの問題をどう解くかはまた別の機会でお話しようと思います。</p>
 
 <p>これで線形回帰に関する話がまとまったので、今度はロジスティック回帰（分類問題）について解説しようと思います。</p>
 

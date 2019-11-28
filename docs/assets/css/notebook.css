@@ -2,6 +2,22 @@ header details.toc summary {
   cursor: default;
   user-select: none; }
 
+div.highlighter-rouge {
+  border-radius: 5px;
+  border: solid thin #CCC;
+  margin-top: 3px; }
+
+div.highlight, div.highlighter-rouge {
+  padding: 5px; }
+
+.language-python + .highlighter-rouge:not(.language-python) {
+  border: none; }
+
+code.highlighter-rouge {
+  background: #EEE;
+  padding: 0px 5px 0px 5px;
+  display: inline; }
+
 nav {
   padding: 3px; }
   nav a {
@@ -34,7 +50,8 @@ section {
 
 video, img {
   max-width: 80vw;
-  align-self: center; }
+  margin: 0 auto;
+  display: block; }
 
 .MathJax_Display {
   padding-top: 20px;

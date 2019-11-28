@@ -1,0 +1,973 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/syntax.css">
+<link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/style.css">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
+<script async type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/x-mathjax-config">
+  var isMobile = window.matchMedia('(max-width: 600px)').matches
+  console.log(isMobile)
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+    },
+    "HTML-CSS": {
+      scale: isMobile ? 70 : 100,
+      styles: {
+        ".MathJax_Display": {
+          width: isMobile ? "95%" : "100%"
+        }
+      }
+    },
+  });
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>numpy入門</title>
+    <link rel="stylesheet" type="text/css" href="/saidai-deep-learning/assets/css/notebook.css">
+  </head>
+  <body>
+    <nav>
+  <a class="" href="/saidai-deep-learning/">Home</a>
+</nav>
+
+    
+    <main>
+      <header>
+        <h1>
+          Pythonについて - numpy入門
+        </h1>
+        <details class="toc">
+  <summary>
+    目次
+  </summary>
+  <ul class="section-nav">
+<li class="toc-entry toc-h1"><a href="#前提知識準備">前提知識・準備</a></li>
+<li class="toc-entry toc-h1"><a href="#numpyを使うには">numpyを使うには</a></li>
+<li class="toc-entry toc-h1"><a href="#pythonの配列とnumpyの配列">pythonの配列とnumpyの配列</a></li>
+<li class="toc-entry toc-h1"><a href="#numpyndarray">numpy.ndarray</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#よく使うnumpyndarrayの性質">よく使うnumpy.ndarrayの性質</a>
+<ul>
+<li class="toc-entry toc-h3"><a href="#shape">shape</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#reshape">reshape</a></li>
+<li class="toc-entry toc-h2"><a href="#t">T</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#numpyndarrayに対する演算">numpy.ndarrayに対する演算</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#数との演算">数との演算</a></li>
+<li class="toc-entry toc-h2"><a href="#numpyndarray同士の演算とbroadcasting">numpy.ndarray同士の演算とBroadcasting</a></li>
+<li class="toc-entry toc-h2"><a href="#行列積">行列積</a></li>
+<li class="toc-entry toc-h2"><a href="#次元を変える演算">次元を変える演算</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#numpyで数値を生成する">numpyで数値を生成する</a>
+<ul>
+<li class="toc-entry toc-h2"><a href="#numpylinspace">numpy.linspace</a></li>
+<li class="toc-entry toc-h2"><a href="#numpyarange">numpy.arange</a></li>
+<li class="toc-entry toc-h2"><a href="#numpyonesとnumpyzeros">numpy.onesとnumpy.zeros</a></li>
+<li class="toc-entry toc-h2"><a href="#numpyones_likeとnumpyzeros_like">numpy.ones_likeとnumpy.zeros_like</a></li>
+<li class="toc-entry toc-h2"><a href="#numpymeshgrid">numpy.meshgrid</a></li>
+<li class="toc-entry toc-h2"><a href="#numpyrandom">numpy.random</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h1"><a href="#まとめ">まとめ</a></li>
+</ul>
+</details>
+
+
+        <br />
+        <a href="https://github.com/Stealthmate/saidai-deep-learning/tree/master/notebooks/python/numpy-intro">このNotebookへのリンク</a>
+      </header>
+      <hr>
+      <section>
+        <p>機械学習や深層学習だけではなく、いろいろな場面で数値計算というのが必要になったり、あるいはただ便利だったりします。pythonで数値計算をしたい時は、pythonだけで足りる場合もありますが、少し高度な数学になるとnumpy（ナムパイ、或いはナムピー）というライブラリーのありがたさがわかります。今回はnumpyについて、基礎的な概念といくつか便利な関数を紹介していきます。</p>
+
+<h1 id="前提知識準備">前提知識・準備</h1>
+
+<ul>
+  <li><a href="/saidai-deep-learning/python/python_intro.html">Python即入門</a></li>
+  <li>numpyが使えるようになっている</li>
+</ul>
+
+<h1 id="numpyを使うには">numpyを使うには</h1>
+
+<p>numpyはライブラリーなので、使いたいときはそれを宣言する必要があります（もちろんその前にインストールが必要です）。ここで、pythonでのライブラリー宣言、すなわち<code class="highlighter-rouge">import</code>文について簡単な説明をします。</p>
+
+<p>まず、ライブラリーを宣言したい時はそのまま<code class="highlighter-rouge">import ライブラリー名</code>と書けばいいです。今回の場合はnumpyを使いたいので、次を書きましょう：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="n">numpy</span><span class="o">.</span><span class="n">pi</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3.141592653589793
+</code></pre></div></div>
+
+<p>簡単ですね。</p>
+
+<p>ライブラリーの中に入っている定数や関すを使いたい時は、上記のようにライブラリー名を書かなければいけません。一般的にnumpyは頻繁に使われ、毎回<code class="highlighter-rouge">numpy.何か</code>と書くのがめんどくさいので、<code class="highlighter-rouge">numpy</code>を<code class="highlighter-rouge">np</code>に<strong>rename</strong>することができます。そのためには次のように<code class="highlighter-rouge">import</code>文を変えます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3.141592653589793
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">import numpy as</code>の後ろは好きな名前を付けてもいいのですが、一般的にnumpyはnpと略されることが多いので、今後もその略し方を採用します。ただし、ドキュメンテーションや、コードではない文脈では、<code class="highlighter-rouge">np.何か</code>ではなく<code class="highlighter-rouge">numpy.何か</code>と書くことにします。なぜなら、コードでは略し方げ明記されていますが、一般的に話す時には紛らわしうなるからです。</p>
+
+<h1 id="pythonの配列とnumpyの配列">pythonの配列とnumpyの配列</h1>
+
+<p>pythonでは<code class="highlighter-rouge">arr = [1, 2, 3]</code>のように配列を定義します。しかし、pythonの配列は当然プログラミングの世界で使う配列の性質や機能を持っていて、数値計算には向いていません。例えば、2つのベクトルを<code class="highlighter-rouge">a = [1, 2, 3]</code>と<code class="highlighter-rouge">b = [2, 3, 4]</code>と定義したとき、数学ではそれらを足し算できますが、pythonでは足し算ができません。試してみましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2, 3, 2, 3, 4]
+</code></pre></div></div>
+
+<p>エラーが出ると思いきや、配列が連接されました。一般的なプログラミングでは、ベクトルの足し算よりこのような使い方が多いので、pythonを作った人たちはこの仕様を採用したのです。</p>
+
+<p>足し算に関してはたまたま意味的に似た動作があったのですが、実は掛け算も注意しなければいけません。数学では</p>
+
+<script type="math/tex; mode=display">3\begin{pmatrix}
+1 \\
+2 \\
+3
+\end{pmatrix} = \begin{pmatrix}
+3 \\
+6 \\
+9
+\end{pmatrix}</script>
+
+<p>となります。しかし、pythonではどうでしょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">3</span> <span class="o">*</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1, 2, 3, 1, 2, 3, 1, 2, 3]
+</code></pre></div></div>
+
+<p>同じ配列が3回続く配列ができました。これもプログラミングで比較的良く使われる動作だから、このように定義されています。</p>
+
+<p>このように、配列には注意をしなければいけません。勘違いして使うと、後から問題を探すのが難しいです。幸い、引き算や割り算に関しては何も定義されていませんので、配列同士を引き算したり割り算したりしようとすると、普通にエラーが出ます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-5-ca1d87dcaf3d&gt; in &lt;module&gt;
+----&gt; 1 [1, 2, 3] - [2, 3, 4]
+
+
+TypeError: unsupported operand type(s) for -: 'list' and 'list'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">/</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-6-ad7646008860&gt; in &lt;module&gt;
+----&gt; 1 [1, 2, 3] / [1, 1, 1]
+
+
+TypeError: unsupported operand type(s) for /: 'list' and 'list'
+</code></pre></div></div>
+
+<p>一方、numpyの配列は、四則演算やその他の演算もできます。例えば：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([3, 5, 7])
+</code></pre></div></div>
+
+<p>しかし、これ以上話す前に、numpyの配列の特徴について述べることにします。</p>
+
+<h1 id="numpyndarray"><code class="highlighter-rouge">numpy.ndarray</code></h1>
+
+<p>numpyでは、<strong>n次元配列</strong>を適宜することができます。そしてその型の名前はもちろん<code class="highlighter-rouge">ndarray</code>（<strong>n</strong>-<strong>d</strong>imensional <strong>array</strong>）と呼びます。<code class="highlighter-rouge">ndarray</code>は、一般的にpythonの配列に対し<code class="highlighter-rouge">numpy.array</code>という関数を呼ぶことで作れます。つまり、ベクトル
+<script type="math/tex">% <![CDATA[
+\begin{pmatrix}1 & 2 & 3\end{pmatrix} %]]></script>
+を作りたければ、以下のように書きます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([1, 2, 3])
+</code></pre></div></div>
+
+<p>また、行列を作りたければ、以下のように作ります。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[1, 2, 3],
+       [2, 3, 4],
+       [3, 4, 5]])
+</code></pre></div></div>
+
+<p>行列は2次元配列ですが、numpyでは文字通り3次元や4次元、12345678次元配列も作れます。そして、イメージでしか無いが、n次元配列と言われたら、</p>
+
+<blockquote>
+  <p>数の配列の配列．．．の配列</p>
+</blockquote>
+
+<p>の中に、「の配列」がn個あると思ってください。</p>
+
+<h2 id="よく使うnumpyndarrayの性質">よく使う<code class="highlighter-rouge">numpy.ndarray</code>の性質</h2>
+
+<h3 id="shape"><code class="highlighter-rouge">shape</code></h3>
+
+<p>numpy配列の次元と要素数を調べたいとき、<code class="highlighter-rouge">x.shape</code>と書くと、<strong>タプル</strong>（中身が定数の配列）が返ってきます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">x</span><span class="o">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(2, 3)
+</code></pre></div></div>
+
+<p>これはつまり次のことを言っています：</p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">x</code>は2つの要素を持ち、それぞれ配列で3つずつ要素持つ</p>
+</blockquote>
+
+<p>ということです。実際にコードを見ても、同じことが言えますね。</p>
+
+<p>では、次の2つの例も見てみましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(3,) (1, 3)
+</code></pre></div></div>
+
+<p>どういう意味でしょう。</p>
+
+<p>実は、numpyで配列の形で意識しなければいけないところがあります。上の二つは、厳密に言うと<code class="highlighter-rouge">x</code>は1次元配列、<code class="highlighter-rouge">y</code>は2次元配列（<code class="highlighter-rouge">x.shape</code>の要素=<code class="highlighter-rouge">x</code>の次元の数）。数学で考える時に、上はどちらも同じものとして扱われますが、numpyでは違います。この後行列の掛け算等の話をする時にも出て来ますが、配列の形を合わせなければいけない時があります。その時に、<code class="highlighter-rouge">x</code>を<code class="highlighter-rouge">y</code>にしたり、<code class="highlighter-rouge">y</code>を<code class="highlighter-rouge">x</code>にしたりする必要があります。その変換をどう行うのかというと、<code class="highlighter-rouge">reshape</code>という関数を使います。</p>
+
+<h2 id="reshape"><code class="highlighter-rouge">reshape</code></h2>
+
+<p>簡単に言うと、<code class="highlighter-rouge">reshape</code>というのは文字通り配列の形を変えるための関数です。早速使ってみましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(3,)
+(3, 1)
+</code></pre></div></div>
+
+<p>このように、1次元配列を2次元配列に変換することができます。もう一つ例を試してみましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(4,)
+(2, 2)
+[[1 2]
+ [3 4]]
+</code></pre></div></div>
+
+<p>このような使い方をすると、要素の数の配置を変えることもできます。しかし、ここでもちろん注意しなければいけない点があり、<code class="highlighter-rouge">reshape</code>の中に元の配列と合わないものを入れたら当然エラーげ出てきます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-14-4821d58ae343&gt; in &lt;module&gt;
+      1 x = np.array([1, 2, 3])
+----&gt; 2 x.reshape(3, 3)
+
+
+ValueError: cannot reshape array of size 3 into shape (3,3)
+</code></pre></div></div>
+
+<h2 id="t"><code class="highlighter-rouge">T</code></h2>
+
+<p>最後に、行列を扱う時に役に立つものを紹介しましょう。数学で行列の転置を示す時に、
+<script type="math/tex">M^T</script>
+と書きます。これに因んで、numpyも同じように、<code class="highlighter-rouge">x.T</code>で転置をとることができます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">x</span><span class="o">.</span><span class="n">T</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[1, 4],
+       [2, 5],
+       [3, 6]])
+</code></pre></div></div>
+
+<p>他にもnumpy配列の特徴はいっぱいありますが、気になる人は<a href="https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html">numpyのドキュメンテーション</a>を読みましょう。</p>
+
+<h1 id="numpyndarrayに対する演算"><code class="highlighter-rouge">numpy.ndarray</code>に対する演算</h1>
+
+<h2 id="数との演算">数との演算</h2>
+
+<p>配列同士の演算を除き、numpy配列に対し何か演算をする時、それが全ての要素に適用されます。例えば：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="mi">3</span> <span class="o">*</span> <span class="n">x</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[ 3,  6,  9],
+       [12, 15, 18]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">+</span> <span class="mi">10</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[11, 12, 13],
+       [14, 15, 16]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">**</span> <span class="mf">1.23</span> <span class="c1"># xの1.23乗
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[1.        , 2.3456699 , 3.86241685],
+       [5.50216727, 7.23990896, 9.05995495]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">e</span> <span class="o">**</span> <span class="n">x</span> <span class="c1"># eのx乗
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[  2.71828183,   7.3890561 ,  20.08553692],
+       [ 54.59815003, 148.4131591 , 403.42879349]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">3</span> <span class="o">/</span> <span class="n">x</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[3.  , 1.5 , 1.  ],
+       [0.75, 0.6 , 0.5 ]])
+</code></pre></div></div>
+
+<p>というように、全ての要素に対し、四則演算、そしてべき乗算ができます。</p>
+
+<p>また、数学で良く使う三角関数や、べき乗関数等、絶対値関数、対数関数、などなど<a href="https://docs.scipy.org/doc/numpy/reference/routines.math.html">numpyの中にある様々な関数</a>を<code class="highlighter-rouge">x</code>の各要素に対して計算できます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[ 0.84147098,  0.90929743,  0.14112001],
+       [-0.7568025 , -0.95892427, -0.2794155 ]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">cosh</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[  1.54308063,   3.76219569,  10.067662  ],
+       [ 27.30823284,  74.20994852, 201.71563612]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># eに対するlog
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0.        , 0.69314718, 1.09861229],
+       [1.38629436, 1.60943791, 1.79175947]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># 角度をラジアンに変換
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0.01745329, 0.03490659, 0.05235988],
+       [0.06981317, 0.08726646, 0.10471976]])
+</code></pre></div></div>
+
+<p>なお、上の全ての関数はただの数に対しても使うことができます。例えば</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.0
+</code></pre></div></div>
+
+<h2 id="numpyndarray同士の演算とbroadcasting"><code class="highlighter-rouge">numpy.ndarray</code>同士の演算とBroadcasting</h2>
+
+<p>numpyで<strong>次元が同じもの同士</strong>に対して演算したい時、そのまま演算子を使えば、結果が出てきます。その時、演算はそれぞれの要素毎に行われます。つまり：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([5, 7, 9])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">*</span> <span class="n">y</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 4, 10, 18])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">**</span> <span class="n">y</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([  1,  32, 729])
+</code></pre></div></div>
+
+<p>しかし、numpyの力は、<strong>次元が違っても演算できる</strong>というところにあります。例えば、ある行列の全ての行に、ベクトルを足したいとき、以下を書けばいいです。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">M</span> <span class="o">+</span> <span class="n">x</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[2, 4, 6],
+       [5, 7, 9]])
+</code></pre></div></div>
+
+<p>しかし、これで何でもできるわけではありません。次の例をみてみましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">M</span> <span class="o">+</span> <span class="n">x</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-30-f87433b7edb2&gt; in &lt;module&gt;
+      5 ])
+      6 
+----&gt; 7 M + x
+
+
+ValueError: operands could not be broadcast together with shapes (3,2) (3,) 
+</code></pre></div></div>
+
+<p>何が起きたのかというと、<strong>shapeの後ろが不一致</strong>なので、演算ができなかったです。</p>
+
+<p>numpyのこの機能のことを<strong>broadcasting</strong>と呼びます。broadcastingの詳しい説明は<a href="https://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">ドキュメンテーション</a>に書いてありますので、気になる人は読みましょう。いずれにしても、一番簡単な捉え方は<strong>shapeの後ろが一致してれば演算できる</strong>ということです。</p>
+
+<p>もういくつかの例をみてみましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">M</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">M</span> <span class="o">*</span> <span class="n">x</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(3, 2) (2,)
+
+array([[ 1,  4],
+       [ 3,  8],
+       [ 5, 12]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">])</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">T</span> <span class="o">-</span> <span class="n">M</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[[ 0,  1,  2],
+        [ 2,  3,  4]],
+
+       [[ 6,  7,  8],
+        [ 8,  9, 10]]])
+</code></pre></div></div>
+
+<h2 id="行列積">行列積</h2>
+
+<p>数値解析で行列積は必要不可欠です。行列の要素毎の積ではなく、行列積をとりたい時は<code class="highlighter-rouge">@</code>演算子を使います。ただし、行列の<code class="highlighter-rouge">shape</code>はもちろん合致しなければいけません。これは数学と同じで、<code class="highlighter-rouge">x.shape = (m, n)</code>と<code class="highlighter-rouge">y.shape = (n, k)</code>なら、<code class="highlighter-rouge">(x @ y).shape = (m, k)</code>となります。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">M1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">M2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+    
+<span class="p">])</span>
+
+<span class="n">M3</span> <span class="o">=</span> <span class="n">M1</span> <span class="o">@</span> <span class="n">M2</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">M1</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">M2</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">M3</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">M3</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(2, 3) (3, 2) (2, 2)
+
+array([[22, 28],
+       [49, 64]])
+</code></pre></div></div>
+
+<p>しかし、実はここでもbroadcastingが使えます！例えば、配列<code class="highlighter-rouge">A</code>が行列の配列だとして、<code class="highlighter-rouge">A</code>の全ての要素に対し<code class="highlighter-rouge">B</code>を書けたいとき、以下のように書けばできます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span>
+<span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">C</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(3, 3, 2) (2, 2) (3, 3, 2)
+
+array([[[-1, -2],
+        [-2, -1],
+        [-1, -2]],
+
+       [[-2, -3],
+        [-3, -2],
+        [-2, -3]],
+
+       [[-3, -4],
+        [-4, -3],
+        [-3, -4]]])
+</code></pre></div></div>
+
+<p>最後に、1次元配列（ベクトル）と行列の行列積をとるときは、ベクトルが左ならば行ベクトル、右ならば列ベクトルとして扱われます。その時、行列のそれぞれの次元に合わせなければならないので注意しましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">M1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">M1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">@</span> <span class="n">M1</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(2,) (2, 3)
+
+array([5, 7, 9])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">M1</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">M1</span> <span class="o">@</span> <span class="n">A</span> <span class="c1"># 次元が合わない
+</span></code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(2, 3) (2,)
+
+---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-36-8eb813ca0522&gt; in &lt;module&gt;
+      1 print(M1.shape, A.shape)
+----&gt; 2 M1 @ A # 次元が合わない
+
+
+ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)-&gt;(n?,m?) (size 2 is different from 3)
+</code></pre></div></div>
+
+<h2 id="次元を変える演算">次元を変える演算</h2>
+
+<p>時々、というかかなりの頻度で、
+<script type="math/tex">\sum</script>
+や
+<script type="math/tex">\prod</script>
+を使う式があります。例えば以下の式をみてみましょう。</p>
+
+<script type="math/tex; mode=display">S = \sum_i^N{a_i}</script>
+
+<p>この時、
+<script type="math/tex">a</script>
+が配列だと考えて、
+<script type="math/tex">S</script>
+は配列を一つの数にしたものですよね。このような計算はnumpyでは以下のように書きます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>10
+</code></pre></div></div>
+
+<p>しかし、これだけだとつまらないですね。次は行列に対して<code class="highlighter-rouge">numpy.sum</code>を使ってみましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>21
+</code></pre></div></div>
+
+<p>同じく全ての要素の和が出力されますね。でも実は、違う足し方を指定することができます。<a href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.sum.html#numpy.sum"><code class="highlighter-rouge">numpy.sum</code>の定義</a>を見ると、<code class="highlighter-rouge">axis</code>という引数を受け取ることがわかります。この<code class="highlighter-rouge">axis</code>というのは、どの次元に対して和をとるか、という意味です。指定してみて結果を確認しましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([5, 7, 9])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 6, 15])
+</code></pre></div></div>
+
+<p>何が起こっているかわかりますか？</p>
+
+<p>numpy配列は「数の配列の配列の配列．．．」だと先程言いました。この中で、何番目「配列」に対して和をとるかというのが<code class="highlighter-rouge">axis</code>の値です。<code class="highlighter-rouge">axis=0</code>の時は一番右の配列、つまり一番外側の配列に対して和をとるという意味になります。</p>
+
+<p>これをわかりやすくするために、次の3次元配列を考えましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+    <span class="p">]</span>
+<span class="p">])</span>
+<span class="n">T</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[[ 1,  2,  3],
+        [ 4,  5,  6]],
+
+       [[ 7,  8,  9],
+        [10, 11, 12]]])
+</code></pre></div></div>
+
+<p>ここで<code class="highlighter-rouge">T</code>のことを、「二つの行列を重ねたもの」だと思ってください。この時、それぞれの<code class="highlighter-rouge">axis</code>で和をとるとどうなるかみていきましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[ 8, 10, 12],
+       [14, 16, 18]])
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">axis=0</code>は一番外側の配列を指すので、重ねた行列を要素毎足すのと同じです。つまり</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{pmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{pmatrix} + 
+\begin{pmatrix}
+7 & 8 & 9 \\
+10 & 11 & 12
+\end{pmatrix} %]]></script>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[ 5,  7,  9],
+       [17, 19, 21]])
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">axis=1</code>は2番目の配列という意味なので、それぞれの行列の行の和という演算になります。つまり</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{pmatrix}
+1 & 2 & 3 \\
+4 & 5 & 6
+\end{pmatrix} \to
+\begin{pmatrix} 1 & 2 & 3 \end{pmatrix} + \begin{pmatrix} 4 & 5 & 6 \end{pmatrix} %]]></script>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{pmatrix}
+7 & 8 & 9 \\
+10 & 11 & 12
+\end{pmatrix} \to
+\begin{pmatrix} 7 & 8 & 9 \end{pmatrix} + \begin{pmatrix} 10 & 11 & 12 \end{pmatrix} %]]></script>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[ 6, 15],
+       [24, 33]])
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">axis=2</code>は3番目の配列という意味なので、それぞれの行列の、それぞれの行の、要素の和という意味になります。つまり</p>
+
+<script type="math/tex; mode=display">% <![CDATA[
+\begin{aligned}
+\begin{pmatrix} 1 & 2 & 3 \end{pmatrix} &\to 1 + 2 + 3 \\
+\begin{pmatrix} 4 & 5 & 6 \end{pmatrix} &\to 4 + 5 + 6 \\
+& \\
+\begin{pmatrix} 7 & 8 & 9 \end{pmatrix} &\to 7 + 8 + 9 \\
+\begin{pmatrix} 10 & 11 & 12 \end{pmatrix} &\to 10 + 11 + 12 \\
+\end{aligned} %]]></script>
+
+<p>このような計算は、ある次元をreduceすると言います。<code class="highlighter-rouge">numpy.sum</code>の他に、<code class="highlighter-rouge">numpy.prod</code>等もあります。</p>
+
+<h1 id="numpyで数値を生成する"><code class="highlighter-rouge">numpy</code>で数値を生成する</h1>
+
+<p>多次元配列の演算も便利ですが、numpyのデータ生成機能もとても便利です。これからよく使う関数について簡単に解説していきます。</p>
+
+<h2 id="numpylinspace"><code class="highlighter-rouge">numpy.linspace</code></h2>
+
+<p>点<code class="highlighter-rouge">A</code>から点<code class="highlighter-rouge">B</code>までの（多次元）直線上にある点を<code class="highlighter-rouge">n</code>個、等間隔で生成してくれます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 0. ,  2.5,  5. ,  7.5, 10. ])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[ 0.  ,  0.  ],
+       [ 2.5 ,  1.25],
+       [ 5.  ,  2.5 ],
+       [ 7.5 ,  3.75],
+       [10.  ,  5.  ]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[ 0.  ,  0.  ,  0.  ],
+       [ 0.25, -1.25,  1.  ],
+       [ 0.5 , -2.5 ,  2.  ],
+       [ 0.75, -3.75,  3.  ],
+       [ 1.  , -5.  ,  4.  ]])
+</code></pre></div></div>
+
+<h2 id="numpyarange"><code class="highlighter-rouge">numpy.arange</code></h2>
+
+<p><code class="highlighter-rouge">A</code>から<code class="highlighter-rouge">B</code>未満の数を間隔<code class="highlighter-rouge">t</code>で生成してくれます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([ 0,  5, 10, 15, 20, 25, 30, 35, 40, 45])
+</code></pre></div></div>
+
+<h2 id="numpyonesとnumpyzeros"><code class="highlighter-rouge">numpy.ones</code>と<code class="highlighter-rouge">numpy.zeros</code></h2>
+
+<p>それぞれ1か0の配列を生成してくれます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([1., 1., 1., 1., 1.])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.],
+       [0., 0., 0., 0., 0.]])
+</code></pre></div></div>
+
+<h2 id="numpyones_likeとnumpyzeros_like"><code class="highlighter-rouge">numpy.ones_like</code>と<code class="highlighter-rouge">numpy.zeros_like</code></h2>
+
+<p>ある配列と同じ次元の、1か0の配列を生成してくれます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[1, 1, 1],
+       [1, 1, 1]])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0, 0, 0],
+       [0, 0, 0]])
+</code></pre></div></div>
+
+<h2 id="numpymeshgrid"><code class="highlighter-rouge">numpy.meshgrid</code></h2>
+
+<p>1次元配列を<code class="highlighter-rouge">n</code>個受け取って、それぞれの組み合わせからなる座標行列を生成してくれます。段階的に例をみていきましょう。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[0. 1. 2. 3. 4.]
+[ 0. -1. -2. -3. -4. -5. -6. -7. -8. -9.]
+</code></pre></div></div>
+
+<p>これらに対し<code class="highlighter-rouge">numpy.meshgrid</code>を使うと、それぞれ<code class="highlighter-rouge">x</code>と<code class="highlighter-rouge">y</code>の行列が返ってきます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span>
+<span class="k">print</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[[0. 1. 2. 3. 4.]
+ [0. 1. 2. 3. 4.]
+ [0. 1. 2. 3. 4.]
+ [0. 1. 2. 3. 4.]
+ [0. 1. 2. 3. 4.]
+ [0. 1. 2. 3. 4.]
+ [0. 1. 2. 3. 4.]
+ [0. 1. 2. 3. 4.]
+ [0. 1. 2. 3. 4.]
+ [0. 1. 2. 3. 4.]]
+
+[[ 0.  0.  0.  0.  0.]
+ [-1. -1. -1. -1. -1.]
+ [-2. -2. -2. -2. -2.]
+ [-3. -3. -3. -3. -3.]
+ [-4. -4. -4. -4. -4.]
+ [-5. -5. -5. -5. -5.]
+ [-6. -6. -6. -6. -6.]
+ [-7. -7. -7. -7. -7.]
+ [-8. -8. -8. -8. -8.]
+ [-9. -9. -9. -9. -9.]]
+</code></pre></div></div>
+
+<p>この行列は同じ形をしているので、重ねてみると、対応し合う要素が座標になります。つまり、<code class="highlighter-rouge">xx[1][1]</code>と<code class="highlighter-rouge">yy[1][1]</code>を例にとると、それが点<code class="highlighter-rouge">(1, -1)</code>を意味します。</p>
+
+<p>ここは例外的に、イメージしてもらうために一回だけ別のライブラリーを使って、上のデータをプロットします。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(-10, 1)
+</code></pre></div></div>
+
+<p><img src="numpy-intro_files/numpy-intro_106_1.png" alt="png" /></p>
+
+<p>このように、<code class="highlighter-rouge">xx</code>と<code class="highlighter-rouge">yy</code>はそれぞれの点のx座標とy座標を表しています。なお、同じように、<code class="highlighter-rouge">xx, yy, zz = np.meshgrid(x, y, z)</code>というように描くと、平面ではなく立方体の形をした点ができ、同じように次元をもっと増やすこともできます。</p>
+
+<h2 id="numpyrandom"><code class="highlighter-rouge">numpy.random</code></h2>
+
+<p><a href="https://docs.scipy.org/doc/numpy-1.15.0/reference/routines.random.html"><code class="highlighter-rouge">numpy.random</code>というサブモジュールには</a>、乱数を生成するための関数があります。ここでは一番良く使う<code class="highlighter-rouge">numpy.random.rand</code>だけを紹介します。他の関数はぜひ各自で調べましょう。</p>
+
+<p><code class="highlighter-rouge">np.random.rand</code>は、一様分布に従う点を好きな次元で生成してくれます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([0.25277551, 0.14223144, 0.61076175, 0.09447369, 0.17204996])
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>array([[0.03464404, 0.8597695 , 0.52694794],
+       [0.67242433, 0.54093467, 0.71483627],
+       [0.4532828 , 0.90816431, 0.27257564]])
+</code></pre></div></div>
+
+<h1 id="まとめ">まとめ</h1>
+
+<p>numpyの基礎的な概念と便利な関数について解説しました。しかし、これはnumpyの表面を触っただけであり、深く掘れば掘るほど面白い関数があります。なので、これだけで満足せずに、何か新しいことをしたければぜひ自分たちで調べましょう。それから、<a href="https://docs.scipy.org/doc/numpy/reference/index.html">numpyのドキュメンテーション</a>に一度目を通してみましょう。どんな機能があるか、どんな関数があるか、関数名だけで分かるものもあるので、大雑把でもいいので把握しておきましょう。</p>
+
+      </section>
+    </main>
+    <script defer>
+  $('p:has(img)').css({
+    "display": "flex",
+    "flex-direction": "column"
+  })
+</script>
+
+  </body>
+</html>
