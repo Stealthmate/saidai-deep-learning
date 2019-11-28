@@ -11,7 +11,9 @@ $(NOTEBOOKS): _%.md: notebooks/%.ipynb
 	# mv $@.sed $@
 	# mv $@.sed $@
 
-build: clean $(NOTEBOOKS)
+build-notebooks: $(NOTEBOOKS)
+
+build: clean build-notebooks
 	bundle exec jekyll build
 
 clean:
